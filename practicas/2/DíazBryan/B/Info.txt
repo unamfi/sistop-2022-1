@@ -1,1 +1,0 @@
-Soy usuario de Windows pero con la ayuda de una virtual box obtuve la información de la CPU

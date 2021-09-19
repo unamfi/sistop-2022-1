@@ -1,3 +1,4 @@
+Soy usuario de windows pero con la ayuda de una virtual box obtuve la información de la CPU en linux mint
 processor	: 0
 vendor_id	: GenuineIntel
 cpu family	: 6
