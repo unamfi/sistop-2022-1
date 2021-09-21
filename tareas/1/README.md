@@ -59,7 +59,7 @@ realidad que Roscoe nos presenta.
   Y... ¿Se les ocurre algo que pueda terminar resultando más *peso
   muerto* que otra cosa?
 
-## Instrucciones de entrega
+# Instrucciones de entrega
 
 - Pueden entregar esta tarea *de forma individual* o *en equipos de
   dos personas*.
@@ -69,3 +69,19 @@ realidad que Roscoe nos presenta.
   fotografías de papeles donde hayan garabateado, _lo que les parezca
   adecuado_ para el material que generen — siempre y cuando sea claro
   y legible.
+
+# Más allá...
+
+¿Te intereso el tema? ¡Buenísimo!
+
+Les comparto aquí otros dos artículos, ambos publicados en *ACM Queue*
+y del mismo autor, que me gustan mucho con puntos de vista similares
+(aunque desde otro ángulo) a este:
+
+- [C Is Not a Low-level Language Your computer is not a fast
+  PDP-11.](https://queue.acm.org/detail.cfm?id=3212479) (David
+  Chisnall 2018)
+- [There's No Such Thing as a General-purpose Processor And the belief
+  in such a device is
+  harmful](https://queue.acm.org/detail.cfm?id=2687011) (David
+  Chisnall 2014)
