@@ -1,0 +1,15 @@
+#!/usr/bin/ruby
+# coding: utf-8
+
+systems = { "servidor_potamos" => "Servidor Xeon Silver 4208 (x86, 8 núcleos, HT)",
+            "raspi_4" => "Raspberry Pi 4 8GB (ARM, 4 núcleos)",
+            "laptop_i7-8565U" => "Laptop i7-8565U @ 1.80GHz (x86, 4 núcleos, HT)", 
+            "pc_i7-4790" => "Escritorio i7-4790 @ 3.60GHz (x86, 4 núcleos, HT)", 
+            "yoga_C630" => "Laptop con Snapdragon 850 (ARM, 8 núcleos)"
+}
+
+systems.keys.each do |item|
+  next unless File.exists?('%s.txt' % item)
+  puts 'Procesando %s...' % systems[item]
+  system('./paralelizando_una_compilacion.rb', item, systems[item])
+end
