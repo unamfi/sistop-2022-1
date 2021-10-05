@@ -1,5 +1,9 @@
 //Ejercicio EDA 2 Prof. Francisco Rodriguez
 
+/* Para compilar usar 
+gcc -Wall -std=c99 sum_parallel.c -fopenmp
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 // para la función rand()
@@ -48,5 +52,4 @@ int main() {
 
         printf( "%2d) %d + %d = %d\n", i + 1, a[ i ], b[ i ], c[ i ] );
     }
-
 }
