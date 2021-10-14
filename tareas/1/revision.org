@@ -1,0 +1,216 @@
+** Santos Albañil
+- Archivos :: [[./AlbañilSantos/comentario.pdf][comentario.pdf]], [[./AlbañilSantos/diagrama basico.pdf][diagrama basico.pdf]], [[./AlbañilSantos/intento de mapa mental.pdf][intento de mapa mental.pdf]]
+- Comentarios ::
+  - No te preocupes, yo también prefiero la prosa a los mapas
+    mentales. Vale la pena darte la oportunidad de intentarlo –como
+    veo que lo haces– porque son una buena herramienta para ir
+    /descargando/ un conjunto complejo de conceptos para que vayan
+    tomando forma /por sí solos/ — te llevan a aprender sobre lo que
+    ya sabes.
+  - Muy buena reflexión respecto a la materia y su relación con la
+    "realidad" ☺
+- Calificación :: 10
+
+** Ricardo Carrillo
+- Archivos :: [[./CarrilloRicardo/Tarea1_CarrilloRicardo.pdf][Tarea1_CarrilloRicardo.pdf]]
+- Comentarios ::
+  - Espero no haberlos espantado demasiado... Pones como centro el
+    «hacia dónde movernos»; ¡espero que el campo de los sistemas
+    operativos siga teniendo centralidad por muchos años!
+    - Claro, esto puede requerir que el campo de los sistemas
+      operativos /crezca/ para englobar lo que hoy en día está
+      ignorando...
+  - Porque, como bien dices... ¡El /modelo von Neumann/ sigue estando
+    al centro de todo!
+    - (aunque sea un centro más bien excéntrico)
+- Calificación :: 10
+
+** Raul Cruz
+- Archivos :: [[./CruzRaul/CruzMartinezRaul_Tarea1.pdf][CruzMartinezRaul_Tarea1.pdf]]
+- Comentarios ::
+  - Tu "esquema previo" está muy interesante. ¡Felicidades! Me gusta y
+    me parece poco típico ver que ubicas entrada y salida dependientes
+    / conectados tanto a CPU como a memoria.
+  - Mapa mental muy completo y creativo, y claramente resultado de
+    /comprender/ y procesar conceptos (no de ir listándolos en orden)
+  - Respecto al texto desarrollado: ¿Por qué enseñamos lo mismo que
+    hace tantos años? Tienes un poco de razón (de la ignorancia nadie
+    nos exime)...
+    - Pero también, porque en la licenciatura tienen que impartirse
+      /buenas bases/ para operar como ingenieros en computación /en
+      general/. Si quieres especializarte... hay que ir /pelando la
+      cebolla/ de los engaños/simplificaciones que te presentamos.
+    - Además, la hetereogeneidad: Podemos generalizar cosas respecto a
+      las arquitecturas de cómputo, pero cada SoC en específico tiene
+      cosas tan distintas y tan poco generalizables que... nuevamente,
+      es necesario especializarse para entender los detalles ☹
+- Calificación :: 10
+
+** Bryan Díaz
+- Archivos :: [[./DíazBryan/Tarea1_DíazBryan.pdf][Tarea1_DíazBryan.pdf]]
+- Comentarios ::
+  - Me gusta lo que planteas... yo he defendido que este curso debería
+    ser más largo, o tener una segunda parte ☹ Pero, claro, no podemos
+    hacer de los alumnos especialistas en cada uno de los temas
+    favoritos de cada uno de los docentes 😉
+- Calificación :: 10
+
+** Nestor Fuerte
+- Archivos :: [[./Fuerte Nestor/Fuerte Nestor.pdf][Fuerte Nestor.pdf]]
+- Comentarios ::
+  - Me gustan tus conclusiones. Aunque, como sea, como está planteado
+    en este momento, sí nos lleva a /sobre/-simplificar un
+    poco... Sería muy bueno que pudiéramos dedicarle el tiempo a
+    presentar una vista completa. Pero, sí, requiere mayor
+    especialización de la que podemos alcanzar en ”únicamente” una
+    licenciatura ☹
+- Calificación :: 10
+
+** Edgar Garcia
+- Archivos :: [[./GarciaEdgar/Tarea1.pdf][Tarea1.pdf]]
+- Comentarios ::
+  - ¡Muy bueno que des atribución y detalles completos de las
+    ilustraciones que usas! ☺
+  - Me gustan tus conclusiones, estoy completamente de acuerdo.
+  - No creo que los desarrolladores de los sistemas operativos
+    actuales sean tan ingenuos para no saber todo lo que escapa al SO
+    (es algo que nos pasa más bien en la academia); los sistemas
+    operativos actuales siguen cumpliendo su tarea /limitados/ al
+    ámbito del CPU; los demás coprocesadores son controladores
+    específicos que han crecido (y crecido y crecido) hasta
+    convertirse en computadoras por deerecho propio
+- Calificación :: 10
+
+** Alberto Garcia Figueroa y Eduardo Moreno
+- Archivos :: [[./GarciaFigueroaAlberto-MorenoEduardo/Tarea_1.pdf][Tarea_1.pdf]]
+- Comentarios ::
+  - Me gusta la estética del esquema; queda limpio y bonito. Sin
+    embargo, en las categorías que tienen más de un ”nodo”, el
+    caminito mental no queda muy claro
+    - No se preocupen, no /juega en contra/ para esta tarea; lo digo
+      para que los mapas mentales que generen con esta herramienta
+      sean más eficaces para transmitir sus ideas
+  - ¡Revisen la ortografía!
+    - El video es en inglés, pero /architectura/ no es ni inglés ni
+      español 😉
+    - No usan acentos ni en defensa propia ☹ Eso, a pesar de la buena
+      imagen de una presentación bien diseñada que eligieron, da una
+      mala impresión, de poco profesional.
+  - La redacción... Las notas que me dan es un "muro de texto", sin un
+    sólo fin de frase. ¡No hay ni un punto en media página! Al no
+    darle una pausa al cerebro, me cuesta trabajo entender el sentido
+    de lo que escriben.
+
+    Parte de su formación como ingenieros _necesita_ enfocarse en
+    poder establecer comunicación técnica eficaz y clara.
+- Calificación :: 8
+
+** Ivan Hernandez
+- Archivos :: [[./HernandezIvan/tarea01.pdf][tarea01.pdf]]
+- Comentarios ::
+  - Me gusta lo que planteas como conclusión, y estoy completamente de
+    acuerdo: tenemos que comprender cómo funciona el fundamento común
+    a todos estos sistemas, para poder posteriormente aprender los
+    detalles de arquitectura específicos con que estemos trabajando.
+- Calificación :: 10
+
+** Rodrigo Jimenez
+- Archivos :: [[./JimenezRodrigo/SistemasOperativos.png][SistemasOperativos.png]]
+- Comentarios ::
+  - Buen resumen. ¡Y me da gusto que tengas el valor de decir que no
+    consideras que la materia sea de utilidad, a la luz de lo que nos
+    dice la realidad! 😉
+  - Ya luego veremos... Yo espero que la materia te resulte
+    interesante y útil, aunque no te lleve a lo último de lo último
+    del desarrollo.
+- Calificación :: 10
+
+** Jorge Manzanares y Jesus Salazar
+- Archivos :: [[./ManzanaresJorge-SalazarJesus/Tarea1.ManzanaresSalazar.pdf][Tarea1.ManzanaresSalazar.pdf]]
+- Comentarios ::
+  - Buen trabajo ☺
+  - ¡No quiero seguir repitiendo lo que le dije a los demás
+    compañeros! Me da gusto que los comentarios en general vayan sobre
+    la misma línea.
+- Calificación :: 10
+
+** Carlos Mendoza
+- Archivos :: [[./MendozaCarlos/Mendoza_Bolaños_CarlosGabriel_Tarea1.pdf][Mendoza_Bolaños_CarlosGabriel_Tarea1.pdf]]
+- Comentarios ::
+  - Buen hilo de razonamiento, coincide bastante con mi punto de vista
+    sobre el tema.
+- Calificación :: 10
+
+** Iñaky Ordiales
+- Archivos :: [[./OrdialesIñaky/OrdialesIñaky - Tarea 1.pdf][OrdialesIñaky - Tarea 1.pdf]]
+- Comentarios ::
+  - ¡Ojo! ¡Ojo! ¡Ojo! Mencionas que «el SO establece la forma en que
+    se distribuyen y leen los archivos de la memoria y
+    almacenamiento. Esto mediante un ssitema de archivos
+    específico».
+    - Les comenté ya que me sorprende cómo /memoria/ y
+      /almacenamiento/ han comenzado a confundirse; hasta hace un par
+      de años era mucho más clara la diferencia entre ellos
+    - La /memoria/ _no se maneja mediante archivos_ (sino que por
+      referencia directa a la dirección).
+  - Hay un par de puntos muy claros donde sí interactúan el CPU y el
+    SO. Particularmente: Atención a interrupciones y excepciones. La
+    acción que el CPU toma respecto a cualquiera de estos /determina
+    cómo debe atenderlos/ el sistema operativo, y es una de las
+    principales diferencias al pasar de una arquitectura a otra.
+  - ¡Muy buen trabajo!
+- Calificación :: 10
+
+** Ramses Rosario
+- Archivos :: [[./RosarioRamses/Tarea1.pdf][Tarea1.pdf]]
+- Comentarios ::
+  - El ALU es uno de los componentes del CPU (no un bloque aparte)
+  - Las unidades de almacenamiento masivo también son de entrada y
+    salida :-)
+  - Yo me niego a aceptar eso que se dice tanto, que en este campo
+    /todo está cambiando rápidamente/. Creo que una /prueba/ de eso es
+    que el hardware cambia, pero el software va colgando bastante
+    detrás, ¿no?
+- Calificación :: 10
+
+** Alan Sánchez
+- Archivos :: [[./SánchezAlan/SánchezCanoAlanTarea1.pdf][SánchezCanoAlanTarea1.pdf]]
+- Comentarios ::
+  - Pero, pero... ¡El disipador es sólo un pedazo de metal y un
+    ventilador! ☺ En un diagrama lógico no cumple ninguna
+    función... ¿O sí?
+  - El BIOS ya no existe... Pero llamémosle así al firmware de primer
+    arranque. Es sólo un tipo /especializado/ de memoria.
+  - Me gustan los puntos específicos a Linux que mencionas en tu mapa
+    mental.
+- Calificación :: 10
+
+** Erick Vazquez
+- Archivos :: [[./VazquezErick/VazquezErick.pdf][VazquezErick.pdf]]
+- Comentarios ::
+  - ¡Cuidado! ¡Ojo con la confusión! Uno de los peligros de pensar en
+    la /jerarquía de memoria/ que les dije que /no me gusta/ enseñar
+    así es que lleva a confusiones como la que presentas, en que el
+    almacenamiento (/memoria secundaria/) ”cuelga” detrás de la
+    memoria principal. ¡No! Es un bicho completamente distinto, e iría
+    detrás de la caja de /periféricos/. ¡No confundas memoria con
+    almacenamiento!
+- Calificación :: 10
+
+** Miguel Villanueva
+- Archivos :: [[./VillanuevaMiguel/VillanuevaCoronaMiguelAngel_Tarea1.pdf][VillanuevaCoronaMiguelAngel_Tarea1.pdf]]
+- Comentarios ::
+  - El modelo de procesamiento que presentan... Tiene más similitud
+    con las computadoras de los 1950s que con las actuales 😉
+    - ¿Uso interactivo? ¿Almacenamiento de programas y datos?
+  - ¡Ojo con la ortografía, que da muy mala imagen!
+    - «fantacia», «demaciados», «aveces», «hacerca»
+    - Varios dedazos: «utilida», «ketnel»
+    - No usan acentos ni en defensa propia ☹
+  - Parte de su formación como ingenieros _necesita_ enfocarse en
+    poder establecer comunicación técnica eficaz y clara.
+  - El mapa que presentan es bastante completo y describe bien lo
+    caótico de los procesos mentales... pero espero que no se dediquen
+    a la cartografía 😉 ¡Es demasiado fácil perderse entre tantas
+    bifurcaciones y re-uniones!
+- Calificación :: 8
