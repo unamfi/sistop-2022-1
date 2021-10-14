@@ -1,0 +1,11 @@
+Problema: Santa Claus
+Solución implementada por: Manzanares Peña Jorge Luis & Salazar Domínguez Jesús Eduardo
+Fecha: 14/10/2021
+
+Nosotros decidimos resolver el problemas de Santa Claus. Para esto, utilizamos el lenguaje de programación Python, específicamente la versión 3.7. En adición a esto, trabajamos en el editor Visual Studio Code, debido a su soporte en múltiples sistemas operativos (en nuestro caso Fedora y MacOS), además de las facilidades que ofrece referentes a la conexión con Github y su terminal integrada. En consecuencia, lo único que se requiere para ejecutar nuestro programa es tener Python 3 instalado.
+
+Este problema no plantea refinamientos dentro de las diapositivas, sin embargo, como elemento adicional decidimos crear un identificador para los duendes y otro para los renos. De esta forma, podemos conocer el funcionamiento de cada hilo en específico. Además, creamos una lista de duendes en problemas, a través de la cual Santa indica los IDs de aquellos hilos que ayudó. Para el caso de los renos esto no se consideró necesario, puesto que siempre se requiere de los mismos nueve para despertar a Santa Claus.
+
+Para implementar la solución se crearon dos estructuras estilo barrera, una para los duendes y otra para los renos. Para lograr esto, utilizamos cuatro diferentes semáforos. Dos de ellos tienen el papel de un mutex, asegurándose de que solo un hilo de su tipo acceda a la vez a la sección crítica. En esta zona se lleva a cabo el aumento de la variable que indica el número de hilos que requieren de santa y se imprime un mensaje. Además, en el caso de los duendes, se añade el identificador a la lista de los que se encuentran en problemas.
+
+Los otros dos semáforos se utilizan para detener el funcionamiento de los hilos hasta que Santa los libera. Por otro lado, todos los hilos contienen un ciclo "while True", pues así se mantendrán trabajando hasta que se decida terminar con la ejecución.
