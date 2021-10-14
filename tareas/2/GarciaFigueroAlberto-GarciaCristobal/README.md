@@ -10,7 +10,8 @@ En este ejercicio, usamos el lenguaje de programación (`Python`), y el entorno
 que usamos para desarrollar fue Visual Studio Code y la terminal.
 Para ejecutar el programa, bastará con solo ir a la ruta de la [carpeta](./SantaProblem.py)
 y posteriormente ejecutar el comando 
-   $ python SantaProblem.py
+
+    $ python SantaProblem.py
 ## La estrategia de sincronización (mecanismo / patrón) que nos funcionó
 Para resolver el ejercicio, los mecanismos que se usaron fueron los Semáforos y el mutex. Esto debido
 a que la naturaleza del problema implicaba compartir recursos (en este caso contadores) para que
