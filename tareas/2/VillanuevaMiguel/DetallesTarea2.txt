@@ -1,0 +1,17 @@
+-El problema que decidieron resolver
+Santa Claus
+
+-El lenguaje y entorno en que lo desarrollaron.
+El programa está en Python y el entorno en el que lo desarrolle fue Spyder
+
+-¿Qué tengo que saber / tener / hacer para ejecutar su programa en mi computadora?
+Lo que necesita para ejecutar el programa es un IDE de Python o en su defecto ejecutarlo desde consola
+
+-La estrategia de sincronización (mecanismo / patrón) que les funcionó
+El mecanismo que implique fue el de semáforos y utilice la palabra restringida barrier
+
+-Si están implementando alguno de los refinamientos
+No realice refinamientos para el problema
+
+-Cualquier duda que tengan. Si notan que algún pedazo de la implementación podría mejorar, si algo no les terminó de quedar bien...
+Si me quedaron algunas dudas ya que en algunos hilos al momento de imprimir se juntan con la impresión de otro hilo
