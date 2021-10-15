@@ -1,0 +1,47 @@
+Jimenez Garcia Rodrigo Gaudencio
+
+-Problema: Santa Claus
+-Lenguaje: Python
+-Entorno: Spyder
+
+-Descripcion:
+ *Santa Claus duerme en el Polo Norte mientras sus elfos
+  trabajan frenéticamente en la construcción de millones de
+  nuevos juguetes.
+      A veces se topan con un problema — Pueden pedir ayuda a
+      Santa Claus, pero sólo de tres en tres.
+  *Sus nueve renos pasan todo el año de vacaciones en las playas
+   del Caribe.
+      Santa debe despertar a tiempo para iniciar su viaje anual.
+-Reglas:
+ *Si los nueve renos están de vuelta, es hora de despertar a
+   Santa Claus para que inicie su recorrido.
+  *Si los elfos tienen problemas construyendo algún juguete, le
+   piden ayuda a Santa Claus.
+      Pero para no darle demasiada lata, lo hacen sólo cuando hay
+      tres elfos que tienen un problema. Mientras tanto, lo dejan
+      dormir.
+      Puede haber cualquier cantidad de elfos.
+
+-Estretegia/Metodologia utilizada para resolver:
+ Revisé el repositorio de otro semestre, pero la verdad no queria perder horas 
+ analizando todos los codigos asi que decidi buscar la clase en en canal de youtube donde 
+ se explicase algun ejercicio, asi como lo hizo este semestre. Una vez encontrada, vi la explicacion 
+ y posteriormente hice el codigo un poco a mi estilo. Posteriormente pensé en una forma de darle
+ solución a los problemas que tenia el código del profesor. Despues de pensar, hacer prueba y error
+ , llegué a una posible solucíon. 
+
+ Santa Claus no solo tiene a los elfos y renos, él tambien cuenta con Mamá Claus, asi que era hora de  
+ ponerla a trabajar.
+
+ Con su ayuda se soluciona lo siguiente:
+ -Ya no se acumulan más de 3 elfos en busca de ayuda de Santa.
+ -Ya no se supera el numero de elfos iniciales.
+ -Santa ya sólo ayuda a 3 elfos cada que lo despiertan.
+
+ Mamá Claus sólo entra a ayudar cuando hay más de 3 elfos en la fila, pero siempre le deja trabajo a Santa.
+
+-Comentarios adicionales:
+ Es un código bastante sucio para lo que suelo hacer, pero siempre me ha costado la lógica que implica 
+ el trabajar con multihilos en paralelo. Estoy seguro que el código se puede refactorizar para que quede
+ con menos lineas, más limpio a la vista, pero por el momento considero que es mejor no moverle ya que asi funciona.  c:
