@@ -1,0 +1,9 @@
+-El problema que decidí resolver fue: "Santa Claus".
+
+-El lenguaje utilizado fue Python. El código lo desarrollé desde el sistema operativo Windows, pero considero que no existe consideración alguna para ejecutarlo en algun sistema operativo unix (espero no estar equivocado jeje).
+
+-El mecanismo principal que utilicé, fue el semáforo, ya que con este implementé mutex y una barrera para los renos. Durante el desarrollo del código, al leer la documentación de threading, ví que ya existía una implementación de una barrera (Barrier) y utilizarla era mucho más sencillo que su implementación con semáforos. Barrier fue utilizado para los elfos.
+Finalmente, en muchas ocasiones utilicé mutex para sincronizar impresiones, y que las impresiones no se mezlaran por estar n condición de carrera.
+
+-Para la solución de este problema, no realicé algún refinamiento.
+
