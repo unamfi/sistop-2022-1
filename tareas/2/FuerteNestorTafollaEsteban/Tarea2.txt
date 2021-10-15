@@ -1,0 +1,12 @@
+-Fuerte Martínez Nestor Enrique.
+-Tafolla Rosales Esteban.
+
+El problema que intentamos resolver se llama "D gatos y ratrones".
+El lenguje que usamos para sus desarrollo fue python3.10.0. Para poder ejecutar el programa necesita tenerlo descargado, para despues usar el 
+comando "py .\PruebaDeHilos.py" en el lugar donde guardo el archivo , el programa terminará cuando no se encuentren ratones vivos.
+La estrategia que utilizamos fue el uso de semaforos y candados(mutex).
+Nuestro problema no contenia refinamientos.
+Nuestra duda o problema que no pudimos resolver fue que en ocasiones el gato mataba un raton, pero este raton terminaba con su acción de
+comer y no podiamos cancelar-la y en otras ejecuciones terminaban de comerse al ultimo raton y acababa el programa, nuestra duda es ¿cómo
+podemos proteger los datos para que esto no ocurra y siempre acabe el programa cuando el gato termine de comerse al ultimo
+ratón?.
