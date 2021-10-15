@@ -1,3 +1,7 @@
+* Revisión de la tarea #1
+
+  [[README.md][Leer el planteamiento]]
+
 ** Santos Albañil
 - Archivos :: [[./AlbañilSantos/comentario.pdf][comentario.pdf]], [[./AlbañilSantos/diagrama basico.pdf][diagrama basico.pdf]], [[./AlbañilSantos/intento de mapa mental.pdf][intento de mapa mental.pdf]]
 - Comentarios ::
