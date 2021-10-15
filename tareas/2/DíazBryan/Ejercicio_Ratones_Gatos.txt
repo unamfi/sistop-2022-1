@@ -6,7 +6,7 @@ Consideraciones de ejecución: para poder ejecutar el programa es necesario tene
 poder ejecutarlo con el comando: python Gatos_Ratones.py, desde la ruta donde se guarda el archivo.
 
 Características de la implementación:
--Se implementa una torniquete que permite entrar a los gatos y ratones en cualquier orden, es decir, primero gatos o primero ratones. Una vez dentro el animal, este podrá
+-Se implementa un torniquete que permite entrar a los gatos y ratones en cualquier orden, es decir, primero gatos o primero ratones. Una vez dentro el animal, este podrá
  comer de un plato que le esta asignado de acuerdo al identificador que le corresponde al animal.
 -Los platos estan dentro de un arreglo donde cada localidad contiene una semaphore para que solo un animal pueda comer en ese plato.
 -Se utilizan contadores para los ratones y gatos, y mutex para las comprobaciones de las condiciones que dependen de la cantidad de gatos o ratones.
@@ -22,16 +22,7 @@ resulto que un gato puede estar comiendo por demasiado tiempo, en tiempo de oper
 Otra forma de implementación:
 gato_comiendo.release() 
 	Esta forma implica enviar una señal cuando un gato entra a comer pero el problema es que al poner un sleep se conserva este
-	estado por un tiempo random(), y por la cantidad de operaciones que se pueden realizar en un segundo se vuelve demasiado
-	tiempo en cual se conserva la notificacion de que existe un gato y todos los ratones mueren si entrar a comer. Por lo tanto sería el no colocar 
-	un sleep cuando come el gato sino con un print que permite que se se detenga por un momemento la ejecución para imprir. 
-
-
-	Si se implementa una señal es necesario el manejarla con cuidado debido a que si son varias los hilos el problema será mayor
-	ya que puede darse un caso donde el hilo termine esperando la señal con el acquire con un if gato_comiendo.acquire(), lo que podría
-	hacer que con una sola señal el mismo gato se comiera a todos los ratones
-
-
-sleep(random()) 
-	Si se implementa un sleep cuando el raton entra a comer, sucede los mismo que en el signal, se conserva la notificacion de que
-	hay un gato por demasiado tiempo :(
+	estado por un tiempo random(), si se implementa con un sleep(randon()) cuando entra a comer y por la cantidad de operaciones que se pueden 
+	realizar en un segundo se vuelve demasiado tiempo en el cual se conserva la notificacion de que existe un gato y todos los ratones mueren si entran a comer. 
+	Por lo tanto, lo mejor sería no colocar un sleep cuando come el gato, sino con un print que permite que se se detenga por un momemento 
+	la ejecución para imprimir.
