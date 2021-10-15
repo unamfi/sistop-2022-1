@@ -46,6 +46,27 @@
       es necesario especializarse para entender los detalles ☹
 - Calificación :: 10
 
+** Lucero de la Cruz
+- Archivos :: [[./DelaCruzLucero/ReadME.txt][ReadME.txt]], [[./DelaCruzLucero/Tarea-1-DelaCruzLucero.pdf][Tarea-1-DelaCruzLucero.pdf]]
+- Comentarios ::
+  - Respecto a dónde /está/ el sistema operativo: Bueno, en una
+    computadora /habitual/ está almacenado en un medio persistete
+    (¿disco?). Al iniciar la ejecución, las rutinas de arranque (que
+    están en ROM) hacen que el cpu lo lea y cargue a memoria. Y se
+    mantiene siempre en memoria — claro, ejecutándose en el CPU. Así
+    que tu apreciación es bastante correcta 😉
+  - Respecto a tu diagrama y opinión, muy buenos. ¿Por qué no nos
+    enfocamos más en toooooodo a lo que rodea al CPU hoy en día? Por
+    generalidad. Cada sistema de los que hablaron tiene un conjunto
+    de... llámale "coprocesadores" completamente distinto. Si nos
+    enfocamos en una máquina en especial, estamos ignorando por
+    completo a muchísimas otras. Y si bien hay muchos componentes que
+    aplican a una generalidad de dispositivos, la combinación de
+    arquitecturas diferentes podría convertirse en un absoluto dolor
+    de cabeza, aumentando la complejidad más allá de lo que cualquiera
+    pudiera asumir en un curso introductorio.
+- Calificación :: 10
+
 ** Bryan Díaz
 - Archivos :: [[./DíazBryan/Tarea1_DíazBryan.pdf][Tarea1_DíazBryan.pdf]]
 - Comentarios ::
@@ -123,6 +144,14 @@
   - Ya luego veremos... Yo espero que la materia te resulte
     interesante y útil, aunque no te lleve a lo último de lo último
     del desarrollo.
+- Calificación :: 10
+
+** Ricardo Juárez
+- Archivos :: [[./JuarezRicardo/juarezRicardo.pdf][juarezRicardo.pdf]]
+- Comentarios ::
+  - El texto que mencionas se ve que lo fuiste armando conforme veías
+    la charla. Está muy bien, sin embargo... Te faltó engranarla,
+    armar un discurso coherente más allá de puntos sueltos.
 - Calificación :: 10
 
 ** Jorge Manzanares y Jesus Salazar
