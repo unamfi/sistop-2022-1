@@ -1,0 +1,12 @@
+El problema que decidi resolver fue el de Santa Claus.
+El lenguaje que se ocupo fue python y el entorno en que se desarrollo fue el Spyder Anaconda. 
+
+¿Qué tengo que saber / tener / hacer para ejecutar su programa en mi computadora? 
+Tener instalado python, desde terminal o cualquier IDE compatible de python
+
+La estrategia de sincronización (mecanismo / patrón) que les funcionó fueron los siguiente: 
+barreras con el uso de Barrier, mutex con el uso de semaforos y threading para el uso de hilos.
+
+Si están implementando alguno de los refinamientos. 
+Por el momento, ya que se procuró entender el funcionamiento de la sincronización y poder aplicarlo al momento de programar.
+Espero que la tarea este bien realizado, sin embargo, tratare de seguir complementando con lo visto en clase, saludos:).
