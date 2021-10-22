@@ -1,0 +1,476 @@
+* Revisión de la tarea #2
+
+  [[./README.md][Leer el planteamiento]]
+
+** El profesor y los estudiantes
+
+*** Ricardo Carrillo
+ - Documentación :: [[./CarrilloRicardo/README_tarea2.txt][README_tarea2.txt]]
+ - Archivos :: [[./CarrilloRicardo/tarea2.py][tarea2.py]]
+ - Comentarios ::
+   - ¡Muy buena presentación! Se agradece encontrar un programa con
+     ejecución bonita y fácil de entender 😉
+   - Algunos alumnos (¿sólo al inicio de la ejecución?) se duermen y
+     nadie los vuelve a despertar ☹
+     [[./rev_img/cinco_dormiditos.png]]
+     Una vez que el profesor atendió a los alumnos despiertos,
+     puedes ver que /nadie despierta/ a 5, 6, 7.
+     [[./rev_img/no_se_despiertan.png]]
+     - (¡ojo!  El alumno 8 entró cuando el 4 iba saliendo, y de /puro
+      churro/ consiguió que lo atendieran de inmediato ☺ ¡Y eso es
+      correcto!)
+   - Cuando uno de tus =alumno()= se duerme, termina yéndose. Tal vez
+     podría formarse en una cola, tomando un semáforo
+     =alumno_dormido=; el =profesor()= lo despertaría después.
+   - Me quedé un rato rascándome la cabeza para comenzar por qué la
+     barrera del profesor es de a veces tres, a veces cinco alumnos
+     - Me parece que es por el del =time.sleep(5)= inicial, seguido de
+       =time.sleep(random.random())= en las otras vueltas, y la
+       frecuencia de llegada de alumnos.
+     - ¡Ojo! El planteamiento decía que /los alumnos pueden tocar la
+       puerta en cualquier momento/, no indica que tienen que pasar en
+       un mínimo de 3 en 3. Pero lo considero un /refinamiento/ 😉
+       (además, ¡lo documentas como definición propia! ¡Bien!)
+   - Código claro, simple de leer.
+     - Como única sugerencia, te recomendaría separar las secuencias
+       de color, no meterlas en cada uno de los =print()=. Algo como:
+       #+begin_src python
+	 colores = { 'amarillo': '\033[;33m',
+		     'violeta': '"\033[;35m',
+		     'verde': '\033[;32m',
+		     'rojo': '\033[;31m',
+		     'blanco': '\033[;37m',
+		     'cyan': '\033[;36m' }
+	 # (...)
+	 print(f'{colores["blanco"]}ATENDIENDO SU DUDA # {colores["rojo"]}{duda} {colores["blanco"]}ALUMNO {colores["cyan"]}{a}')
+       #+end_src
+       Puede no parecer mucho ahorro (en número de caracteres no lo
+       es), pero hace mucho más legible, depurable y extendible tu código.
+ - Calificación :: 10
+
+*** Iván Hernandez
+ - Documentación :: /No entregada/
+ - Archivos :: [[./HernandezIvan/alum_ase.py][alum_ase.py]]
+ - Comentarios ::
+   - No hay documentación ☹ Sólo un breve comentario al inicio del
+     programa
+     - Me dejas a mí la chamba de identificar los patrones de
+       sincronización que utilizaste. ¡Pero es parte importante del
+       objetivo de la tarea.
+     - No sólo es resolverla pasando mensajes a ver cómo funciona,
+       sino identificar qué construcciones y qué lógica empleas.
+   - Acceso concurrente no sincronizado: Proteges a =cuenta= con
+     =mutex= en =alumnos()=, pero no en =asesor()=. ¿Estás seguro de
+     que no hay posibilidad de condición de carrera?
+   - Cada alumno pide una única asesoría, no son varias
+     preguntas. Este punto es importante, porque permitiría observar
+     el cambio de atención entre varios alumnos que estén dentro del
+     cubículo
+   - No implementas capacidad máxima del cubículo (la primera regla
+     que se te pide implementar)
+   - El programa siempre termina en error, porque no existe =descansa=
+     (hay que reemplazar =descansa.asesor.acquire()= por
+     =descansa_asesor.acquire()=)
+     - Sí, es un mero dedazo...
+   - El asesor no está esperando a tener cero alumnos frente a sí para
+     echarse una siesta, sino a haber procesado a los nueve alumnos
+     que desde un principio sabía que iban a llegar. ¡Pero el asesor
+     no tiene /por qué saber/ cuántos alumnos vendrán!
+
+ - Calificación :: 6
+
+*** Santiago Diego y Armando Ugalde
+ - Documentación :: [[./SantiagoDiego-UgaldeArmando/README.md][README.md]]
+ - Archivos :: [[./SantiagoDiego-UgaldeArmando/los_alumnos_y_el_asesor.py][los_alumnos_y_el_asesor.py]]
+ - Comentarios ::
+   - ¡Muy bueno que encontraran similtud con otros problemas
+     abordados! En efecto, es un /productores/consumidores/ con
+     restricciones adicionales
+     - Si quieren leer más respecto a este problema, busquen al
+       /barbero dormilón/ (/sleeping barber/).
+   - Me parece curioso que hayan utilizado =eid_lock =
+     threading.Lock()= y, en la siguiente línea, =mutex =
+     threading.Semaphore(1)=.
+     - ¡Es absolutamente válido!
+     - Pero estilísticamente, no lo entiendo. Un =Lock()= es
+       exactamente igual que un mutex hecho con un =Semaphore(1)=.
+   - Muy bueno el uso de =queue.Queue()=, y muy bueno que viniera de
+     algo que yo no había enseñado expresamente.
+   - Cuando ví que definían una =class Estudiante=, creí que habían
+     implementado un monitor. ¡Habría estado muy bonito meter toda la
+     lógica de sincronización dentro de cada =Estudiante=!
+   - Me parece que lo que observan relativo al =profe_consumidor()= y
+     la necesidad de agregarle un =time.sleep(1.5)= es correcto
+     - El profesor es muy /ansioso/ y no se duerme cuando no tiene
+       nada que hacer (¡que es una de las reglas del planteamiento! ☹)
+     - Podrían resolver la necesidad del =sleep= poniendo al profesor
+       a dormir con un semáforo.
+     - Con un patrón similar (aunque parcial) al del apagador: Que los
+       alumnos verificaran cuántos alumnos hay al entrar al cubículo,
+       y si no había ninguno más, que /prendan la luz/ para que el
+       profesor se despierte.
+ - Calificación :: 9
+
+*** Alan Sánchez
+ - Documentación :: [[./SánchezAlan/Tarea2_SCA.pdf][Tarea2_SCA.pdf]]
+ - Archivos :: [[./SánchezAlan/Tarea2.py][Tarea2.py]]
+ - Comentarios ::
+   - Lástima que no pudiste terminar la implementación... ¡Pero qué
+     bueno que la enviaste!
+   - Comentas que no supiste cómo hacer que cada tanto llegaran
+     alumnos. Tu programa tiene un único alumno implementado: Hay un
+     único =threading.Thread(target=alumnos, args =[]).start()=
+     - Pero tu alumno tiene dudas infinitas: Dentro de un =while
+       True:= únicamente espera un momento, pregunta tres veces, y
+       vuelve a repetir
+     - yo te sugeriría cambiar a tu alumno por:
+       #+begin_src python
+	 def alumnos():
+	     global alumno
+	     for i in range(3):
+		 print('   A: Tengo dudas')
+		 alumno.release()
+
+	 # (...)
+	 while True:
+	     threading.Thread(target=alumnos, args=[]).start()
+	     time.sleep(random.random() / 3.0)
+       #+end_src
+     - Muy similar al código que tienes, pero con esto ya serían
+       alumnos diferentes (hilos concurrentes, no un alumno que vuelve
+       y vuelve y vuelve y vuelve a preguntar)
+   - El mutex =profeOcupado= es innecesario, porque sólo tienes un
+     profesor, no hay acceso concurrente.
+   - La razón por la que el profesor se queda /atorado/ es porque no
+     controlaste bien la lógica sobre =numIn=: Después de haber
+     atendido a seis alumnos, =numIn = 6=, y nunca entra a la
+     condicional que llamaría a =profesor()=
+     - (¿o será que tendrías que decrementar =numIn= al terminar la
+       atención de un alumno? Bueno, la implementación es cosa tuya)
+     - Si eliminamos tu línea 36, el flujo /me parece/ que funciona
+       correctamente.
+     - ¡Felicidades! Tu programa sí funciona, sólo le faltó ese
+       detalle
+ - Calificación :: 6
+
+** Santa Claus
+
+*** Raul Cruz
+  - Documentación :: [[./CruzRaul/DetallesDeLaEntrega.txt][DetallesDeLaEntrega.txt]]
+  - Archivos :: [[./CruzRaul/santa_claus.py][santa_claus.py]]
+  - Comentarios ::
+    - Me gusta tu implementación de probabilidad revisando el /tipo/
+      de =fallo= ☺
+    - ¡Funciona bien! ¡Buenísimo! Peroooo... Veo una ligera /trampita
+      lógica/
+    - Santa es únicamente un semáforo dormilón (me parece que el
+      =time.sleep(10)= sale sobrando)... ¿será que los renos existen,
+      pero Santa es efectivamente sólo un mito? ☹
+      - Los renos /personifican/ a Santa; el reno número 9 en llegar
+        es el que dice /Entregamos los regalos/
+      - El reno tendría que despertar a Santa, con un
+        =santa_despierto.release()=
+      - Mismo comentario respecto a los elfos: La función
+        =impresion()= contiene pedazos de lógica que deben pertenecer
+        a =elfos()= y pedazos que deben pertenecer a =santa()
+      - Y eso obligaría a que =santa()= tuviera que implementarse con
+        un poquito más de lógica:
+	#+begin_src python
+
+	  def santa():
+	      while True:
+		  # santa se duerme
+		  santa_despierto.acquire()
+		  mut_renos.acquire()
+		  if c_renos == 9:
+		      print('Entregamos los regalos Jo, jo, jo')
+		      #(...)
+		  mut_renos.release()
+		  mut_elfos.acquire()
+		  if num_elfos_con_broncas > 1: # Me la saqué de la manga
+		      print('Ayudando a los elfos')
+		      #(...)
+		  mut_elfos.release()
+		  print('Santa está dormido zzzz')
+		  time.sleep(10)
+        #+end_src
+  - Calificación :: 8
+
+*** Alberto García Figueroa y Cristobal García
+  - Documentación :: [[./GarciaFigueroAlberto-GarciaCristobal/README.md][README.md]]
+  - Archivos :: [[./GarciaFigueroAlberto-GarciaCristobal/SantaProblem.py][SantaProblem.py]]
+  - Comentarios ::
+    - Muy buena solución – limpia y fácil de entender
+    - Me gustó que separen todas las funciones que mandan mensajes,
+      pues la lógica de cada una de las funciones de ”trabajo real”
+      queda más clara
+    - me queda la duda — El programa no tiene previsto terminar
+      /jamás/ (¿alguna vez terminará la navidad?), así que... ¿Por qué
+      hacen =join()= sobre todos los hilos? (¿para mantener al hilo
+      iniciador vivo tal vez?)
+  - Calificación :: 10
+
+*** Rodrigo Jiménez
+ - Documentación :: [[./JimenezRodrigo/REEDME.txt][REEDME.txt]]
+ - Archivos :: [[./JimenezRodrigo/santa.py][santa.py]]
+ - Comentarios ::
+   - Le agregaste complejidad al problema, con tu planteamiento de
+     =mamá_Claus= para ayudar con el exceso de
+     solicitudes. ¡Buenísimo!
+     - Hay un detalle con tu implementación: La mamá no corre de forma
+       autónoma: Al inicio de tu ejecución aparece siempre una
+       excepción:
+       #+begin_src text
+	 $ python3 JimenezRodrigo/santa.py 
+	 Exception in thread Thread-2:
+	 Traceback (most recent call last):
+	   File "/usr/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+	     self.run()
+	   File "/usr/lib/python3.9/threading.py", line 910, in run
+	     self._target(*self._args, **self._kwargs)
+	 TypeError: mamá_Claus() missing 1 required positional argument: 'elfos_espera'
+       #+end_src
+       Porque intentaste lanzar a =mamá_Claus()= como un hilo sin
+       argumentos, y requiere un parámetro.
+     - =mamá_claus()= no tiene una lógica multihilos como los demás
+       actores, sólo atiende a los elfos que estén pendientes.
+     - Se nota que /intentaste/ hacer a la mamá también concurrente
+       (por el =d_mamá.release()=, aunque no hay ningún
+       =d_mamá.acquire()=).
+   - Tienes razón en tu comentario, hay que rascarse un poco la cabeza
+     para encontrar por dónde sigue el flujo de control ☺
+     - Pero está bien — modificaste el problema agregándole un poco de
+       complejidad a cambio.
+     - Me habría gustado más que =mamá_Claus()= fuera /verdaderamente/
+       un hilo, no una función ayudante llamada explícitamente por
+       =elfo()=.
+     - Mejor aún: Sería bueno que los elfos no tuvieran que elegir
+       quién les ayuda (¡ahí suena a una peligrosa oportunidad para
+       condiciones de carrera!), sino que simplemente hicieran un
+       =puerta_claus.acquire()=, y que la señal la atendiera =santa()=
+       o =mamá_Claus()= según conviniera...
+ - Calificación :: 10
+
+*** Jorge Manzanares y Jesus Salazar
+ - Documentación :: [[./ManzanaresJorge-SalazarJesus/SantaClausDoc.txt][SantaClausDoc.txt]]
+ - Archivos :: [[./ManzanaresJorge-SalazarJesus/santaClaus.py][santaClaus.py]]
+ - Comentarios ::
+   - El sistema funciona... Pero... =Santa()=, que es tan dormilón,
+     ¡no puede dormir jamás!
+     - Lo programaste con una horrible, horrible, horrible espera
+       activa:
+       #+begin_src python
+	 def Santa():
+	     global duendes_tristes, renos_puntuales
+	     while True:
+		 while(duendes_tristes < 3 and renos_puntuales < 9):
+		     pass
+       #+end_src
+     - Eso lleva el uso de CPU al 100%, en el ciclo cerrado =while= /
+       =pass=
+     - Se soluciona muy fácil: Deberías haber puesto un
+       =santa_despierto.acquire()= (con =santa_despierto=Semaphore(0)=
+       en la inicialización)
+     - Y tanto =Duende()= como =Reno()= tendrían que hacer un
+       =santa_despierto.release()= después de agregarse a su lista — y
+       verificar que fueran suficientes (no corresponde a Santa
+       determinar si son 3 y 9... los otros deben dejarlo dormir, y
+       autoorganizarse)
+   - Otro punto importante: Tanto en =Duende()= como en =Reno()=
+     proteges a las variables compartidas de acceso concurrente con un
+     mutex. Pero ese mutex debe también ser utilizado en =Santa()=
+     para la comparación y reasignación de =duendes_tristes=,
+     =lista_duendes_tristes= y =renos_puntuales=.
+ - Calificación :: 7
+
+*** Iñaky Ordiales
+ - Documentación :: [[./OrdialesIñaky/InfoSolucion.txt][InfoSolucion.txt]]
+ - Archivos :: [[./OrdialesIñaky/hiloSanta.c][hiloSanta.c]]
+ - Comentarios ::
+   - ¡Bien! Un bonito reto. ¡Resolviste con variables de condición! (y
+     barreras, y demás cosas más cercanas a lo que vimos...)
+   - Además te saliste de lo facilito,y lo hiciste en C. ¡Buenísimo! :-D
+     - Y programas cuidadosamente, a la defensiva, correctamente
+       verificando la creación de cada uno de los hilos. ¡Qué gusto
+       leer así!
+   - A nivel estilo: Te sugiero no hacer los comentarios /después/ del
+     código a que te refieres, sino que /arriba/ de éste. Aunque sea
+     una sóla línea, poner los comentarios como lo haces lleva a
+     código demasiado /ancho/.
+   - No había visto la solución que propones, de crear al ”paso del
+     tiempo” como un hilo expreso.
+     - ¿De cuándo acá el paso del tiempo espera a que ocurra
+       determinado evento? ¡ah, sí! Los renos son mágicos, lo
+       olvidaba. ¡Se vale! 😉
+   - /Me parece/ que tendrías que proteger con un mutex a
+     =esperaReno=, que decrementas y comparas en tus líneas 121,
+     123, 134.
+   - Llama a mi atención que en =elfo()= implementes una barrera
+     artesanalmente, en vez de usar una =pthread_barrier= como lo
+     hiciste con =reno()=.
+   - ¡Muy buena implementación!
+     - ¿Me pides una implementación /más limpia/? Bueno, puedes ver
+       las que he calificado mejor de entre las de tus
+       compañeros. Pero las soluciones son más /tradicionales/,
+       acotadas a lo que vimos en clase.
+ - Calificación :: 10
+
+*** Carlos Mendoza
+ - Documentación :: [[./MendozaCarlos/Descripcion_Tarea2.txt][Descripcion_Tarea2.txt]]
+ - Archivos :: [[./MendozaCarlos/Santa_Claus_Tarea2.py][Santa_Claus_Tarea2.py]]
+ - Comentarios ::
+   - Tus =renos()= y =elfos()= son eternos, viven dentro de un =while
+     True=. Pero... ¿Y =santa()=? ¡Sólo dice una vez que se va a
+     dormir y se muere! ¡Has matado al espíritu de la navidad! ☹
+   - Fuera de ese punto... tu implementación es casi idéntica a la de
+     Miguel Villanueva
+     - ¡No hay problema! yo les dije que podían trabajar en equipos de
+       dos personas
+     - Revisa los comentarios que hago a su entrega, aplican también a
+       la tuya.
+ - Calificación :: 6
+
+*** Miguel Villanueva
+ - Documentación :: [[./VillanuevaMiguel/DetallesTarea2.txt][DetallesTarea2.txt]]
+ - Archivos :: [[./VillanuevaMiguel/santa.py][santa.py]]
+ - Comentarios ::
+   - ¡Ojo con la ortografía, incluso en programitas tan chiquitos como
+     éste!
+     - No es /«A regresado el reno»/, sino /«Ha regresado el reno»/
+   - En =santa()=, no hace falta adquirir un mutex (tanto =muRenos=
+     como =muElfos=) para liberar una señal (=vacaciones.release()= o
+     =elfoProblemas.release()=: Estas son operaciones verdaderamente
+     atómicas. Usa los mutexes únicamente para controlar acceso a
+     datos.
+   - Tienes un /Santa hiperactivo/: ¡Nunca se detiene a descansar!
+     Vive en un ciclo eterno de mandar señales liberando a los renos y
+     elfos. Me parece que equivocaste el sentido de algunas de las
+     señales.
+     - =elfoProblemas= debería enviarse (=release()=) por =elfo()= y
+       recibirse por =santa()=
+     - Misma cosa para =vacaciones= en =renos()=
+   - En resumen... El programa va por el camino correcto, pero en
+     realidad no está haciendo la sincronización que requerimos
+     - Sólo lo que te dan las =Barrier=
+ - Calificación :: 6
+
+
+** Gatos y ratones
+
+*** Bryan Díaz
+ - Documentación :: [[./DíazBryan/Ejercicio_Ratones_Gatos.txt][Ejercicio_Ratones_Gatos.txt]]
+ - Archivos :: [[./DíazBryan/Gatos_Ratones.py][Gatos_Ratones.py]]
+ - Comentarios ::
+   - Detalle que simplemente me llamó la atención 😉 ¿A poco en tu
+     lenguaje diario dirías /Inserta la cantidad de
+     (gatos|ratones|platos)/? A veces usamos fórmulas que vimos en
+     algún lugar... pero no coresponden al lenguaje /natural/. ¡Busca
+     que los programas que desarrolles se comuniquen con su usuario
+     como lo harías tú!
+   - Planteas un punto importante: ¿Cómo matar a los hilos de los
+     ratones muertos?
+     - Se me ocurre que podrías tener un arreglo =estados_r= donde
+       representes el estado de cada ratón. Este arreglo está
+       inicializado con todos los valores a =1= (o =True=, como sea).
+     - Cuando un =gato()= se come a un =raton()=, actualiza su valor a
+       =0= (o =False=).
+     - Al inicio del cuerpo del =while=, cada =raton()= verifica si su
+       estado es falso. De ser así, termina su ejecución (=return=).
+     - Hay más estrategias... sigue leyendo la respuesta a Néstor y Estéban.
+   - Tienes razón, el tiempo que le toma comer a cada uno de los
+     animales es muy cortito. Tal vez por eso tuve que buscar con lupa
+     para encontrar mensajes de =se lo comieron= o =no se acerca por
+     ser un caballero=...
+   - ¡Buena implementación!
+ - Calificación :: 10
+
+*** Néstor Fuerte y Estéban Tafolla
+ - Documentación :: [[./FuerteNestorTafollaEsteban/Tarea2.txt][Tarea2.txt]]
+ - Archivos :: [[./FuerteNestorTafollaEsteban/PruebaDeHilos.py][PruebaDeHilos.py]]
+ - Comentarios ::
+   - Se quedaron con una duda muy similar a la de su compañero Bryan,
+     que resolvió este mismo problema, aunque más acotado (que el
+     ratón en cuestión /deje de comer/ al morirse)
+     - La respuesta... No es sencilla. En Python, no se puede
+       simplemente /matar/ a un hilo
+       - Podría dejar un estado corrupto, y el resto del proceso
+         avanzando, vivo, en memoria
+     - Pueden crear hilos creando una clase que herede de =Thread= e
+       implementar =stop()= como sugiere
+       https://www.geeksforgeeks.org/python-different-ways-to-kill-a-thread/
+     - Pueden usar =threading.Event()= para configurar una /pastilla
+       asesina/ (/pill to kill/):
+       https://stackoverflow.com/questions/18018033/how-to-stop-a-looping-thread-in-python
+   - Revisé brevemente la implementación. Me parece que hace todo lo
+     solicitado, incluyendo el dejar comer a los ratones ”por honor” y
+     comérselos cuando es necesario.
+   - Me llama la atención el /abuso de mutexes/ que hacen, por
+     ejemplo:
+     #+begin_src python
+       gatos.acquire()
+       gatos_en_plato -= 1
+       gatos.release()
+       ratones.acquire()
+       raton_en_plato -=1
+       ratones.release()
+       ratones.acquire()
+       ratones_numero-=1
+       ratones.release()
+     #+end_src
+     No tiene mucho sentido entregar y, de inmediato, readquirir
+     =ratones=. Podrías hacer los dos decrementos (operaciones muy
+     baratas/sencillas) /sosteniendo/ el mutex, y evitar dos llamadas
+     al sistema.
+ - Calificación ::  10
+
+** El cruce del río
+*** Eduardo Moreno
+ - Documentación :: [[./MorenoEduardo/readme.md][readme.md]]
+ - Archivos :: [[./MorenoEduardo/Tarea2.py][Tarea2.py]]
+ - Comentarios ::
+   - ¡Bien solucionado!
+   - Respecto a tus dudas, sí, noté también que hay que ”matarlo” dos
+     veces para recuperar el control. No te puedo dar una respuesta
+     rápida de por qué esto ocurre
+     - Puede ser que... tu =exit()= haga que se detenga el hilo
+       principal, pero Python mantiene vivo el programa hasta que
+       salgan los demás hilos
+     - Ya con el segundo ”Ctrl-C” mata también a los hilos activos. Si
+       le agrego un =print(threading.enumerate())= justo antes del
+       =sys.exit()=:
+       #+begin_src text
+	 ==== Momento de irnos ====
+	 ^C║║ Ya terminamos de pasar a todos ║║
+	 [<_MainThread(MainThread, started 140432593831744)>, <Thread(Thread-5, started 140432587900480)>, <Thread(Thread-6, started 140432579507776)>, <Thread(Thread-7, started 140432571115072)>]
+	 ^CException ignored in: <module 'threading' from '/usr/lib/python3.9/threading.py'>
+	 Traceback (most recent call last):
+	   File "/usr/lib/python3.9/threading.py", line 1448, in _shutdown
+	     lock.acquire()
+	 KeyboardInterrupt: 
+       #+end_src
+     - Supongo que se /porta/ diferente en Windows porque el manejo de
+       senales es diferente
+     - ¡Me parece curioso lo que mencionas respecto al uso de
+       =random()= en Windows! Me encantaría ver a qué te refieres...
+ - Calificación :: 10
+
+** El elevador
+
+*** Erick Vazquez
+ - Documentación :: [[./VazquezErick/Tarea2_VazquezErick.pdf][Tarea2_VazquezErick.pdf]]
+ - Archivos :: [[./VazquezErick/elevador.py][elevador.py]]
+ - Comentarios ::
+   - Me gusta tu implementación, es ingeniosa y distinta de lo que
+     acostumbro ver
+   - Ante tus preguntas:
+     - Me parece que tienes razón con la duda de las líneas 57
+       y 63. No puedo asegurarlo al 100%, pero me parece que tienes
+       razón ☺
+     - Respecto a tu pregunta relacionada con el =pop=, ya que tienes
+       todo tan avanzado en ese sentido, tal vez convendría almacenar
+       a los =Usuarios= en un diccionario y no en una lista. De este
+       modo, en vez de sacar a uno de los =Usuarios= (que tal vez no
+       quiere ir al piso donde lo estas dejando), sacas al =Usuario=
+       que corresponda por su nombre.
+     - Muy buen trabajo, incluyendo el refinamiento propuesto.
+ - Calificación :: 10
