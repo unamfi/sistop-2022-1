@@ -218,6 +218,21 @@
     mental.
 - Calificación :: 10
 
+
+** Diego Santiago y Armando Ugalde
+- Archivos :: [[./Santiago_Gutierrez_Diego-Ugalde_Velasco_Armando/T1_Santiago-Gutierrez-Diego-Ugalde-Armando-Velasco.pdf][T1_Santiago-Gutierrez-Diego-Ugalde-Armando-Velasco.pdf]]
+- Comentarios ::
+  - Es un tanto difícil leer el trabajo ☹ Les indiqué que fueran
+    fotografías de hojas garabateadas /siempre y cuando fueran claras
+    y legibles/. Sí, sé que cuando ven cómo escribo yo, más de uno
+    querrá llorar... Pero son meros ejemplos, siempre
+    explicados. ¡Cuiden un poco más sus entregas!
+  - Es un buen trabajo en líneas generales. Como saben, la entrega fue
+    un poco tarde (por error en el manejo de Git). Mis comentarios en
+    general son consistentes con los que hice al resto de las entregas
+    ☺
+- Calificación :: 8
+
 ** Erick Vazquez
 - Archivos :: [[./VazquezErick/VazquezErick.pdf][VazquezErick.pdf]]
 - Comentarios ::
