@@ -22,14 +22,14 @@ def ingresos(num):
         #mut_ingreso.release()
         mut_ingreso.acquire() #nuevoIngt.acquire() 
         #numllamadas.append(1)
-        print("Sonando el telefono, Rinrinrin")
-        time.sleep(10)#Disminuir como a 1 o 2 
+        print("  Sonando el telefono, Rinrinrin")
+        time.sleep(5)#Disminuir como a 1 o 2 
         print("Llegando la llamada")
         #telefonos.append(1)
         time.sleep(10)
         mut_ingreso.release()#nuevoIngt.release()
         mut_ingreso.acquire()#nuevoIngt.acquire() #mut_ingreso.acquire() 
-        print("Atendiendo una llamada en el telefono num.",num-1)
+        print("Atendiendo una llamada en el telefono num.",num)
         telefonos.append(1)
         time.sleep(5)
         #mut_ingreso.acquire()
@@ -75,35 +75,38 @@ def ingresos(num):
 
 def saturacion():
     global mut_ingreso
-    mut_ingreso.acquire()
+    mut_ingreso.release()
     print("Llamadas en espera, por el momento no se puede atender mas")#llamadas
     time.sleep(4)
     del telefonos[:]
    # time.sleep(2)
     print("Por ahora no tenemos llamadas", llamadas)
     time.sleep(3)
-    mut_ingreso.release()
+    mut_ingreso.acquire()
 def egreso(num):#Idea, cambiar lo de egreso por lo de policia, bombero o ambulancia
     global nuevoEgr,mut_egreso,ayuda,mut_ingreso
     while True:
         #nuevoEgr.acquire() Se cambio a mut_egreso
         mut_ingreso.acquire()
-        if ayuda==random.randint(3,7):
+        if ayuda==random.randint(4,7):
              #mut_ingreso.acquire()
              mut_egreso.acquire()
-             print("Llamando a ",random.choice(servicios))
+             print("Llamando a" ,str(random.choice(servicios)))
+             print("Va en camino, a rescate")
              time.sleep(3)
              mut_egreso.release()
              #mut_egreso.acquire()
-             #print("Va en camnino, a rescate")
+            
              #time.sleep(3)
-             # mut_egreso.release()
+             #mut_egreso.release()
              #mut_ingreso.release()
         mut_ingreso.release()
         mut_egreso.acquire()
-        print("Todo listo, atendiendo")
-        time.sleep(random.randint(5,7))
+        print("Se sigue atendiendo la llamada entrante ")
+        time.sleep(random.randint(4,7))
         mut_egreso.release()
+        #mut_ingreso.release()
+        llamadasEntrante.release()
         '''nuevoEgr.acquire()
         time.sleep(5)
         nuevoEgr.release()
@@ -127,10 +130,13 @@ def main():
         print("Los telefonos disponibles son ",telefonosDisp)
         print("Telefonos ", telefonos, "longitud ", len(telefonos))
        # print(telefonosDisp)
+        #llamadasEntrante.release()
         if len(telefonos)==10:
+            #llamadasEntrante.acquire()
             mut_ocupa.acquire()
             print("No hay disponibilidad", telefonos)
-            time.sleep(10)
+            time.sleep(5)
+            #llamadasEntrante.acquire()
            # print("Se tienen atendiendo ",max_ingreso.n_waiting, "llamadas en este momento")#NOs da el numero de hilos
             #time.sleep(5)
             #mut_ingreso.release()
