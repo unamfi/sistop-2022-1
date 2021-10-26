@@ -20,6 +20,7 @@ public class Calle {
         Calle calle = new Calle(fila);
         imprimirMensaje("Iniciando...");
         new Thread(calle::generarClientesPeriodicamente).start();
+        imprimirMensaje("Lista");
     }
 
     private void generarClientesPeriodicamente() {
