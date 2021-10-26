@@ -5,11 +5,11 @@ public class Fila {
         this.cola = new ColaSegura<>(Integer.MAX_VALUE);
     }
 
-    private void formarCliente(Cliente cliente) {
+    public void formarCliente(Cliente cliente) {
         this.cola.encolar(cliente);
     }
 
-    private Cliente llamarAlPrimero() {
+    public Cliente llamarAlPrimero() {
         return this.cola.desencolar();
     }
 }
