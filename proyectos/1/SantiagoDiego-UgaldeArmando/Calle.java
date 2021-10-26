@@ -13,7 +13,7 @@ public class Calle {
     }
 
     private static void imprimirMensaje(String mensaje) {
-        Impresor.imprimirAzul("Calle", mensaje);
+        Impresor.imprimirBlanco("Calle", mensaje);
     }
 
     public static void iniciar(Fila fila) {

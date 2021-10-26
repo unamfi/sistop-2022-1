@@ -13,7 +13,7 @@ public class Pizzero implements Runnable {
     }
 
     private static void imprimirMensaje(int id, String mensaje) {
-        Impresor.imprimirBlanco("Pizzero " + id, mensaje);
+        Impresor.imprimirAzul("Pizzero " + id, mensaje);
     }
 
     private Pizza prepararPizza() {

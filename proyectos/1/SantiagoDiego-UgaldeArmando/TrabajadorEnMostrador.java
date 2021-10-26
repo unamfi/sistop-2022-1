@@ -11,7 +11,7 @@ public class TrabajadorEnMostrador implements Runnable {
     }
 
     private static void imprimirMensaje(int id, String mensaje) {
-        Impresor.imprimirBlanco("Trabajador en mostrador " + id, mensaje);
+        Impresor.imprimirAzul("Trabajador en mostrador " + id, mensaje);
     }
 
     @Override
