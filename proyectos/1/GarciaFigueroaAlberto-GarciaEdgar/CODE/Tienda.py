@@ -9,13 +9,15 @@ class Tienda(object):
     def __init__(self,nombre,aforo):
         self.nombre = nombre
         self.aforo = aforo
+        self.estante=14
 
     #Dejamos pasar al cliente en cola
     def pass_client(self, cliente):
         if self.aforo<11:
             print("Bienvenido a la tienda cliente numero"+self.visita+" a la tienda")
             aforo =  self.aforo + 1
-    
+        else:
+            print("Por restricciones sanitarias, deberá esperar a que salga un cliente")
 
 
     

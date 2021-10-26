@@ -1,22 +1,22 @@
 import sys
 import time
 import random
-from CODE.Cliente import Cliente
 from CODE.Tienda import Tienda
 from CODE.Proveedor import Proveedor
 
 class Empleado(object):
-    def __init__(self,id):
+    def __init__(self,id,tienda):
         self.id = id
+        self.tienda=tienda
     def vender(self, cliente):
-        print("Empleado "+self.id+" entrega ticket y producto a "+cliente.numero)
+        print("Empleado "+self.id+" entrega ticket y producto a ")
     
     def checarEstante(self):
-        if Tienda.estante<15:
+        if self.tienda.estante<15:
             self.llamarProveedor()
     
     def llamarProveedor(self):
-        print("Empleado "+self.id+" solicita a un proovedor")
-        Proveedor.suministrar()
+        print("Empleado "+str(self.id)+" solicita a un proovedor")
+        Proveedor.suministrar(self.tienda)
         print()
     
