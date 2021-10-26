@@ -15,7 +15,7 @@ public class ColaSegura<T> {
     public ColaSegura(int maximaCapacidad) {
         this.vacios = new Semaphore(maximaCapacidad);
         this.llenos = new Semaphore(0);
-        this.cola = new ArrayDeque<>(maximaCapacidad);
+        this.cola = new ArrayDeque<>();
     }
 
     public void encolar(T elemento) {
