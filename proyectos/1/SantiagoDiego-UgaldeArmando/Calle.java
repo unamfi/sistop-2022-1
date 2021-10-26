@@ -1,16 +1,20 @@
 import java.util.concurrent.TimeUnit;
 
-public class Calle implements Runnable {
+public class Calle {
     public static int MAX_CLIENTES_EN_PERIODO = 5;
     public static int TIEMPO_ENTRE_LLEGADAS = 5;
     private final Fila fila;
 
-    public Calle(Fila fila) {
+    private Calle(Fila fila) {
         this.fila = fila;
     }
 
-    @Override
-    public void run() {
+    public static void iniciarCalle(Fila fila) {
+        Calle calle = new Calle(fila);
+        new Thread(calle::generarClientesPeriodicamente).start();
+    }
+
+    private void generarClientesPeriodicamente() {
         while (true) {
             int clientesPorAgregar = Utilidades.obtenerEnteroPositivoAleatorio(MAX_CLIENTES_EN_PERIODO);
 
@@ -20,10 +24,8 @@ public class Calle implements Runnable {
             try {
                 TimeUnit.SECONDS.sleep(TIEMPO_ENTRE_LLEGADAS);
             } catch (InterruptedException e) {
-                throw new RuntimeException("CALLE FUE INTERRUMPIDO");
+                throw new RuntimeException("CALLE FUE INTERRUMPIDA");
             }
         }
     }
 }
-
-// TODO: Añadir runnable para clases que son hilos.
