@@ -2,7 +2,6 @@ import utilidades.Impresor;
 import utilidades.Logger;
 
 public class TrabajadorEnMostrador implements Runnable, Logger {
-
     private final Mostrador mostrador;
     private final int id;
 
@@ -19,7 +18,8 @@ public class TrabajadorEnMostrador implements Runnable, Logger {
     public void run() {
         while (true) {
             Cliente clientePorAtender = mostrador.llamarCliente();
-            this.imprimirMensaje("Atendiendo " + clientePorAtender);
+            this.imprimirMensaje("Atendiendo " + clientePorAtender
+                    + " (" + clientePorAtender.obtenerPizzasDeseadas() + " pizzas)");
             for (int i = 0; i < clientePorAtender.obtenerPizzasDeseadas(); i++) {
                 Pizza pizza = mostrador.sacarPizzaListaDelHorno();
                 imprimirMensaje("Dándole la " + pizza + " al " + clientePorAtender);
