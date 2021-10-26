@@ -12,6 +12,6 @@ public class Pizza {
 
     @Override
     public String toString() {
-        return "Pizza número " + id;
+        return "pizza " + id;
     }
 }
