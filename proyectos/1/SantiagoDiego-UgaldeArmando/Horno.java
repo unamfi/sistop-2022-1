@@ -34,7 +34,7 @@ public class Horno {
         this.pizzasListas.encolar(pizza);
     }
 
-    public Pizza sacarPizza() {
+    public Pizza sacarPizzaLista() {
         Pizza pizza = this.pizzasListas.desencolar();
         imprimirMensaje("Se sacó la " + pizza + " del horno");
         return pizza;

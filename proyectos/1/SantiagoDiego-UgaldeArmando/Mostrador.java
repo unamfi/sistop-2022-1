@@ -32,7 +32,7 @@ public class Mostrador {
 
     public Pizza sacarPizzaDelHorno() {
         imprimirMensaje("Sacando pizza del horno...");
-        return horno.sacarPizza();
+        return horno.sacarPizzaLista();
     }
 }
 
