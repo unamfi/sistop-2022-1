@@ -1,3 +1,5 @@
+import utilidades.Impresor;
+
 public class Mostrador {
     private static final int TRABAJADORES_EN_MOSTRADOR = 3;
     private final Fila fila;
@@ -8,18 +10,30 @@ public class Mostrador {
         this.horno = horno;
     }
 
+    private static void imprimirMensaje(String mensaje) {
+        Impresor.imprimirRojo("Mostrador", mensaje);
+    }
+
     public static void iniciar(Fila fila, Horno horno) {
+        imprimirMensaje("Iniciando...");
         Mostrador mostrador = new Mostrador(fila, horno);
         for (int i = 0; i < TRABAJADORES_EN_MOSTRADOR; i++) {
-            new Thread(new TrabajadorEnMostrador(mostrador)).start();
+            int id = i + 1;
+            imprimirMensaje("Creando e iniciando TrabajadorEnMostrador " + id + "...");
+            new Thread(new TrabajadorEnMostrador(id, mostrador)).start();
         }
+        imprimirMensaje("Listo");
     }
 
     public Cliente llamarCliente() {
+        imprimirMensaje("Llamando al siguiente cliente en la fila");
         return fila.llamarAlPrimero();
     }
 
     public Pizza sacarPizzaDelHorno() {
+        imprimirMensaje("Sacando pizza del horno...");
         return horno.sacarPizza();
     }
 }
+
+// TODO: Añadir documentación y comentarios
