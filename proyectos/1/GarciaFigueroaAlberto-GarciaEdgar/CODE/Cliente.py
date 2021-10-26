@@ -1,11 +1,10 @@
-from CODE.Tienda import Tienda
-from CODE.Empleado import Empleado
+#from CODE.Empleado import Empleado
 
 class Cliente(object):
-    def __init__(self,id,tienda,empleado):
+    def __init__(self,id,tienda):
         self.numero = id
         self.tienda = tienda
-        self.empleado = empleado
+        #self.empleado = empleado
 
     def entrar(self):
         print("El cliente "+str(self.numero)+" ha entrado a la tienda")

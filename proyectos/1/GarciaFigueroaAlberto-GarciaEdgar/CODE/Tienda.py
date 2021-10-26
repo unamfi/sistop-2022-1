@@ -3,10 +3,11 @@ import sys
 import time
 import random
 from CODE.Cliente import Cliente
-
+from CODE.Empleado import Empleado
 class Tienda(object):
     #Declaramos los productos que se venden en la tienda
     productos = {1:["disfraz de Dracula","Disfraz de zombie","disfraz de hombre lobo","disfraz de momia"], 2:["chocolate","caramelo","milkyway","pikafresas"]}
+    
     def __init__(self,nombre,aforo):
         global estante
         self.nombre = nombre
@@ -27,7 +28,15 @@ class Tienda(object):
     
     
     def abrir(self):
+        listaClientes=[]
+        listaEmpleados=[]
         print("La tienda ha abierto")
         visitas= random.randint(4,20)
-        for i in visitas:
-            threading.Thread(target=Cliente, args=[i,self]).start()
+        empleados= random.randint(3,20)
+        for j in range (empleados):
+            listaEmpleados.append(Empleado(j,self))
+            threading.Thread(target=listaEmpleados[j].run).start()
+        for i in range(visitas):
+            listaClientes.append(Cliente(i,self))
+            threading.Thread(target=listaClientes[i].entrar).start()
+            print("Ingresa cliente"+str(i))
