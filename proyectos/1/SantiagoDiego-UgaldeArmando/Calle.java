@@ -13,15 +13,18 @@ public class Calle {
 
     public static void iniciar(Fila fila) {
         Calle calle = new Calle(fila);
+        System.out.println("Iniciando Calle...");
         new Thread(calle::generarClientesPeriodicamente).start();
     }
 
     private void generarClientesPeriodicamente() {
+        System.out.println("Calle empezará a generar clientes cada " + TIEMPO_ENTRE_LLEGADAS + " segundos");
         while (true) {
             int clientesPorAgregar = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(MAX_CLIENTES_EN_PERIODO);
 
             for (int i = 0; i < clientesPorAgregar; i++)
                 this.fila.formarCliente(new Cliente());
+            System.out.println("Se agregaron " + clientesPorAgregar + " clientes");
 
             try {
                 TimeUnit.SECONDS.sleep(TIEMPO_ENTRE_LLEGADAS);
