@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 public class Pizzero implements Runnable, Logger {
     private final Cocina cocina;
     private final int id;
-    private final int TIEMPO_DE_PREPARACION = 5;
+    private static final int TIEMPO_DE_PREPARACION = 5;
 
     public Pizzero(Cocina cocina, int id) {
         this.cocina = cocina;
@@ -42,5 +42,4 @@ public class Pizzero implements Runnable, Logger {
     }
 }
 
-// TODO: Modificar constantes de tiempo públicas
 // TODO: Refactorizar nombres de métodos

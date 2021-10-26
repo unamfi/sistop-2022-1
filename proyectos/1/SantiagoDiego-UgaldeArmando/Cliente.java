@@ -3,7 +3,7 @@ import utilidades.UtilidadesNumericas;
 
 public class Cliente {
     private static final AcumuladorSeguro clientesGenerados = new AcumuladorSeguro();
-    public static int MAX_PIZZAS = 10;
+    private static final int MAX_PIZZAS = 5;
     private final int id;
     private int pizzasDeseadas;
 

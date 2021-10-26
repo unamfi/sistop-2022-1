@@ -6,9 +6,9 @@ import utilidades.Logger;
 import java.util.concurrent.TimeUnit;
 
 public class Horno implements Logger {
-    public static int MAX_PIZZAS_LISTAS = 15;
-    public static int MAX_PIZZAS_HORNEANDOSE = 30;
-    public static int TIEMPO_DE_HORNEADO = 10;
+    private static final int MAX_PIZZAS_LISTAS = 15;
+    private static final int MAX_PIZZAS_HORNEANDOSE = 15;
+    private static final int TIEMPO_DE_HORNEADO = 10;
     private final ColaSegura<Pizza> pizzasListas;
     private final ConjuntoSeguro<Pizza> pizzasHorneandose;
 

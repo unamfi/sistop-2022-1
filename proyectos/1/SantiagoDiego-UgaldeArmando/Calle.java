@@ -5,8 +5,8 @@ import utilidades.UtilidadesNumericas;
 import java.util.concurrent.TimeUnit;
 
 public class Calle implements Logger {
-    public static int MAX_CLIENTES_EN_PERIODO = 5;
-    public static int TIEMPO_ENTRE_LLEGADAS = 5;
+    private static final int MAX_CLIENTES_EN_PERIODO = 5;
+    private static final int TIEMPO_ENTRE_LLEGADAS = 15;
     private final Fila fila;
 
     private Calle(Fila fila) {

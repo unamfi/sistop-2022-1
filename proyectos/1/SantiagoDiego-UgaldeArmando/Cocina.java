@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Cocina implements Logger {
     //public static int MAX_PIZZAS_EN_INVENTARIO = 1000;
-    public static int PIZZEROS = 3;
-    public static int TIEMPO_PARA_PONER_PIZZA_EN_HORNO = 2;
+    private static final int PIZZEROS = 3;
+    private static final int TIEMPO_PARA_PONER_PIZZA_EN_HORNO = 1;
     //private boolean trabajando = true;
     private final AcumuladorSeguro pizzasProducidas = new AcumuladorSeguro();
     private final Horno horno;
