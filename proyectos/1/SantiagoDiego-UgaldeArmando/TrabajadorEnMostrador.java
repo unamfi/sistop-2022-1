@@ -1,9 +1,11 @@
 public class TrabajadorEnMostrador implements Runnable {
 
     private final Mostrador mostrador;
+    private final int id;
 
-    public TrabajadorEnMostrador(Mostrador mostrador) {
+    public TrabajadorEnMostrador(int id, Mostrador mostrador) {
         this.mostrador = mostrador;
+        this.id = id;
     }
 
     @Override
