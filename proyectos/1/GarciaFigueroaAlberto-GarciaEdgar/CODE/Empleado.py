@@ -1,8 +1,11 @@
 import sys
 import time
 import random
-import Cliente, Proveedor, Tienda
-class Empleado:
+from CODE.Cliente import Cliente
+from CODE.Tienda import Tienda
+from CODE.Proveedor import Proveedor
+
+class Empleado(object):
     def __init__(self,id):
         self.id = id
     def vender(self, cliente):

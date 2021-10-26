@@ -3,7 +3,7 @@ import sys
 import time
 import random
 
-class Tienda:
+class Tienda(object):
     #Declaramos los productos que se venden en la tienda
     productos = {1:["disfraz de Dracula","Disfraz de zombie","disfraz de hombre lobo","disfraz de momia"], 2:["chocolate","caramelo","milkyway","pikafresas"]}
     def __init__(self,nombre,aforo):

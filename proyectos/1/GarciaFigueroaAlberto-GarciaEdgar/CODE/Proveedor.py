@@ -1,5 +1,5 @@
-import Tienda
-class Proveedor:
+from CODE.Tienda import Tienda
+class Proveedor(object):
     def __init__(self,id):
         self.id = id
     def suministrar(productos):
