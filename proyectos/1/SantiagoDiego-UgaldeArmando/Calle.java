@@ -1,3 +1,5 @@
+import utilidades.Utilidades;
+
 import java.util.concurrent.TimeUnit;
 
 public class Calle {
@@ -9,7 +11,7 @@ public class Calle {
         this.fila = fila;
     }
 
-    public static void iniciarCalle(Fila fila) {
+    public static void iniciar(Fila fila) {
         Calle calle = new Calle(fila);
         new Thread(calle::generarClientesPeriodicamente).start();
     }

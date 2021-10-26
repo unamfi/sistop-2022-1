@@ -1,3 +1,5 @@
+import utilidades.Utilidades;
+
 public class Cliente {
     public static int MAX_PIZZAS = 10;
     private int pizzasDeseadas;

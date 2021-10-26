@@ -1,3 +1,5 @@
+import utilidades.ColaSegura;
+
 import java.util.concurrent.TimeUnit;
 
 public class Horno {

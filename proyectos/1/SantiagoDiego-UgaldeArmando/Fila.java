@@ -1,3 +1,5 @@
+import utilidades.ColaSegura;
+
 public class Fila {
     private final ColaSegura<Cliente> cola;
 
