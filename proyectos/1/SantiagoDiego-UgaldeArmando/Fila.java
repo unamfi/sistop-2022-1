@@ -4,7 +4,7 @@ public class Fila {
     private final ColaSegura<Cliente> cola;
 
     public Fila() {
-        this.cola = new ColaSegura<>(Integer.MAX_VALUE);
+        this.cola = new ColaSegura<>(1000);
     }
 
     public void formarCliente(Cliente cliente) {
