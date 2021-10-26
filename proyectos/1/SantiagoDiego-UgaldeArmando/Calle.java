@@ -1,4 +1,4 @@
-import utilidades.Utilidades;
+import utilidades.UtilidadesNumericas;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +18,7 @@ public class Calle {
 
     private void generarClientesPeriodicamente() {
         while (true) {
-            int clientesPorAgregar = Utilidades.obtenerEnteroPositivoAleatorio(MAX_CLIENTES_EN_PERIODO);
+            int clientesPorAgregar = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(MAX_CLIENTES_EN_PERIODO);
 
             for (int i = 0; i < clientesPorAgregar; i++)
                 this.fila.formarCliente(new Cliente());
