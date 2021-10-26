@@ -1,15 +1,19 @@
 import utilidades.ColaSegura;
+import utilidades.ConjuntoSeguro;
 import utilidades.Impresor;
 
 import java.util.concurrent.TimeUnit;
 
 public class Horno {
-    public static int MAX_PIZZAS = 15;
+    public static int MAX_PIZZAS_LISTAS = 15;
+    public static int MAX_PIZZAS_HORNEANDOSE = 30;
     public static int TIEMPO_DE_HORNEADO = 10;
     private final ColaSegura<Pizza> pizzasListas;
+    private final ConjuntoSeguro<Pizza> pizzasHorneandose;
 
     public Horno() {
-        this.pizzasListas = new ColaSegura<>(MAX_PIZZAS);
+        this.pizzasListas = new ColaSegura<>(MAX_PIZZAS_LISTAS);
+        this.pizzasHorneandose = new ConjuntoSeguro<>(MAX_PIZZAS_HORNEANDOSE);
     }
 
     private static void imprimirMensaje(String mensaje) {
@@ -17,6 +21,7 @@ public class Horno {
     }
 
     public void hornearPizza(Pizza pizza) {
+        pizzasHorneandose.agregar(pizza);
         imprimirMensaje("Horneando " + pizza);
         try {
             TimeUnit.SECONDS.sleep(TIEMPO_DE_HORNEADO);
@@ -24,6 +29,7 @@ public class Horno {
             throw new RuntimeException("HORNO FUE INTERRUMPIDO");
         }
         pizza.marcarComoHorneada();
+        pizzasHorneandose.eliminar(pizza);
         imprimirMensaje("La " + pizza + " está horneada");
         this.pizzasListas.encolar(pizza);
     }
@@ -35,3 +41,4 @@ public class Horno {
     }
 }
 // TODO: Agregar mensajes de creación de objetos
+// TODO: Implementar dejar pizza hornéandose
