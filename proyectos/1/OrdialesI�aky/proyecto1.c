@@ -30,16 +30,14 @@
  */
 
 
+// Declaración de bibliotecas necesarias
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <time.h>
 #include <unistd.h>
-#include <string.h>
-#include <pthread.h>
-#include <semaphore.h>
-#include <ncurses.h>
-
+#include <pthread.h>    // hilos
+#include <semaphore.h>  // semaforos
+#include <ncurses.h>    // graficos
 
 // Declaración funciones prototipo
 void* hiloCliente(void* args);
@@ -50,7 +48,7 @@ void ropa(int);
 void tecnologia(int);
 void kiosko(int);
 
-// Declaración semáforos (torniquetes y mutex) globales
+// Declaración semáforos (torniquetes, mutex y multiplex) globales
 sem_t torniqueteLlegada;
 sem_t multiplexSeguridad;
 sem_t multiplexDepaEntrada;
@@ -68,42 +66,35 @@ sem_t mutexTecnoVentas;
 sem_t multiplexKioskoEntrada;
 sem_t mutexKioskoCajero;
 sem_t mutexKioskoVentas;
-sem_t mutexClientesFuera;
-sem_t mutexClientesDentro;
+sem_t mutexAdentro;
 
 // Declaración e inicialización de variables de condición
 pthread_mutex_t mutexAbrirCerrar = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cvAbrirCerrar = PTHREAD_COND_INITIALIZER;
 
-
 // Declaración variables globales
 bool abierto;
-int capPlaza;
-int dentroPlaza;
-int capDepa;
-int dentroDepa;
-int capSuper;
-int dentroSuper;
-int capRopa;
-int dentroRopa;
-int capTecno;
-int dentroTecno;
-int capKiosko;
-int dentroKiosko;
-
 int numCliente = 1;
-int clientesFuera = 0;
-int clientesDentro = 0;
-int ventasDepa=0;
-int ventasSuper=0;
-int ventasRopa=0;
-int ventasTecno=0;
-int ventasKiosko=0;
+int ventasDepa = 0;
+int ventasSuper = 0;
+int ventasRopa = 0;
+int ventasTecno = 0;
+int ventasKiosko = 0;
+int clientesAdentro = 0;
+
 
 // Hilo cliente
+/*
+    Es nuestro actor de la simulación, a través de un torniquete se forma para
+    entrar a la plaza, tomando su número en la fila que será su número de 
+    cliente. Mientras la plaza esté abierta entrará al área de compras, sino
+    sólo se irá (recorre sin comprar). Cada hilo hace entre 1 y 3 compras.
+    Para entrar a cada tienda debe esperar que no esté llena.
+*/
 void* hiloCliente(void* args) {
   int cliente;
   int tienda;
+  int compras = 0;
   
   sem_wait(&torniqueteLlegada);
   cliente = numCliente;
@@ -117,37 +108,46 @@ void* hiloCliente(void* args) {
   if(abierto){
     printf(" Entré a la plaza, con el número de cliente %d\n", cliente);
 
+    sem_wait(&mutexAdentro);
+    clientesAdentro++;
+    sem_post(&mutexAdentro);
+    
     srand(time(NULL));
+    
+    // como la semilla del tiempo no cambia lo suficiente se hizo una operación.
+    compras=(rand()+cliente*(cliente-1))%3+1;
+    
+    while(compras--){
+      sleep((rand()-cliente)%2+0.6);
+      tienda = rand()%100;
 
-    sleep((rand()-cliente)%2+0.6);
-    tienda = rand()%100;
+      if(tienda<=32){
+	sem_wait(&multiplexDepaEntrada);
+	departamental(cliente);
+	sem_post(&multiplexDepaEntrada);
+	
+      }else if(tienda<=58){
+	sem_wait(&multiplexSuperEntrada);
+	supermercado(cliente);
+	sem_post(&multiplexSuperEntrada);
+	
+      }else if(tienda<=79){
+	sem_wait(&multiplexRopaEntrada);
+	ropa(cliente);
+	sem_post(&multiplexRopaEntrada);
+	
+      }else if(tienda<=89){
+	sem_wait(&multiplexTecnoEntrada);
+	tecnologia(cliente);
+	sem_post(&multiplexTecnoEntrada);
+	
+      }else{
+	sem_wait(&multiplexKioskoEntrada);
+	kiosko(cliente);
+	sem_post(&multiplexKioskoEntrada);
+      }      
 
-    if(tienda<=32){
-      sem_wait(&multiplexDepaEntrada);
-      departamental(cliente);
-      sem_post(&multiplexDepaEntrada);
-	
-    }else if(tienda<=58){
-      sem_wait(&multiplexSuperEntrada);
-      supermercado(cliente);
-      sem_post(&multiplexSuperEntrada);
-	
-    }else if(tienda<=79){
-      sem_wait(&multiplexRopaEntrada);
-      ropa(cliente);
-      sem_post(&multiplexRopaEntrada);
-	
-    }else if(tienda<=89){
-      sem_wait(&multiplexTecnoEntrada);
-      tecnologia(cliente);
-      sem_post(&multiplexTecnoEntrada);
-	
-    }else{
-      sem_wait(&multiplexKioskoEntrada);
-      kiosko(cliente);
-      sem_post(&multiplexKioskoEntrada);
-    }      
-
+    }
     printf(" He acabado mis compras, me voy :), fui el cliente %d\n\n", cliente);
 
   }else{
@@ -161,6 +161,12 @@ void* hiloCliente(void* args) {
 
   
 // Hilo seguridad
+/*
+    Este hilo representa la seguridad del centro comercial. Sólo habrá uno de este
+    tipo en el programa, si no se inicializa bien el main regresa -1 y termina.
+    Su función es estar dormido hasta que le indiquen que debe abrir o que debe
+    hacer el anuncio de cierre y cerrar. Se entera por variables de condición.
+ */
 void* agenteSeguridad(void* args){
 
   while(!abierto){
@@ -171,13 +177,20 @@ void* agenteSeguridad(void* args){
   while(abierto){
     pthread_cond_wait(&cvAbrirCerrar, &mutexAbrirCerrar);
   }
+  sem_wait(&torniqueteLlegada);
   printf("\n\n\n ************************************************************************\n \n La entrada a la plaza y a las tiendas se han CERRADO.\n Acabe sus compras y retirese.\n\n ************************************************************************\n\n\n");
 
   pthread_exit(NULL);
 
 }
 
- 
+/*
+      Las siguientes 5 funciones representan las tiendas, está protegida su entrada
+      desde el hilo cliente, pero también por dentro el cliente debe esperar a un 
+      cajero libre representado por el multiplex. Cada tienda lleva su cuenta de
+      transacciones.
+ */
+
 // Tienda departamental
 void departamental(int cliente){
   printf(" -Ding- El cliente %d ha entrado a la tienda departamental.\n", cliente);
@@ -248,20 +261,38 @@ void kiosko(int cliente){
 }
 
 
- 
+
+/*
+    En la función main se piden datos al usuario y arranca la simulación al 
+    señalizarle al guardia de seguridad que ya debe de abrir la entrada. Se duerme
+    los segundos indicados por el usuario y vuelve a avisar al guardia para cerrar.
+    Recopila información de las variables globales y muestra los resultados.
+
+    Buena parte de las líneas de código del main son para la interfaz grafica, 
+    esta estará en funcionamiento en la introducción de datos y en los resultados. 
+    Para la simulación imprime en terminal y no en la "ventana gráfica".
+*/
 
 int main() {
 
+  // process ID de los hilos creados.
   pthread_t *pidClientes;
   pthread_t pidSeguridad;
   
   int capacidad;
+  int capPlaza;
+  int capDepa;
+  int capSuper;
+  int capRopa;
+  int capTecno;
+  int capKiosko;
   int semaforoPandemia;
   int clientes;
   int tiempo;
   int aux;
   abierto = 0;
 
+  // Se inicializan los torniquetes con 0, mutex con 1 y multiplex con n
   sem_init(&torniqueteLlegada,0,0);
   sem_init(&multiplexDepaCajero,0,5);
   sem_init(&multiplexSuperCajero,0,4);
@@ -273,8 +304,9 @@ int main() {
   sem_init(&mutexRopaVentas,0,1);
   sem_init(&mutexTecnoVentas,0,1);
   sem_init(&mutexKioskoVentas,0,1);
-  sem_init(&mutexClientesFuera,0,1);
+  sem_init(&mutexAdentro,0,1);
 
+  // inicia ventan grafica y declaración de 4 ventanas para utilizar.
   initscr();
   cbreak();
   noecho();
@@ -282,12 +314,14 @@ int main() {
   WINDOW * instrucciones = newwin(34, 80, 3, 7);
   WINDOW * datos = newwin(34, 80, 3, 7);
   WINDOW * iniciar = newwin(34, 80, 3, 7);
-  
+
+  // colores para el texto de las ventanas.
   start_color();
   init_pair(1, COLOR_CYAN, COLOR_BLACK);
   init_pair(2, COLOR_BLACK, COLOR_CYAN);
   init_pair(3, COLOR_BLACK, COLOR_WHITE);
-  
+
+  // Impresión ventana portada (no cambia hasta el ENTER).
   wbkgd(portada, COLOR_PAIR(2));
   wborder(portada, '|', '|', '_', '_', '|', '|', '_', '_');
   mvwprintw(portada, 3, 12, "*** SIMULADOR del Centro Comercial SISTOP ***");
@@ -313,8 +347,11 @@ int main() {
     c = wgetch(portada);
   }
 
+  // limpia ventana
   clear();
   refresh();
+  
+  // Impresión ventana de instrucciones  (no cambia hasta el ENTER).
   wbkgd(instrucciones, COLOR_PAIR(3));
   wborder(instrucciones, '|', '|', '=', '=', '=', '=', '=', '=');
   wprintw(instrucciones, "\n\n       *** Bienvenido al simulador de Centro Comercial SISTOP ***\n\n\n");
@@ -354,6 +391,11 @@ int main() {
   clear();
   curs_set(0);
   refresh();
+
+  // Impresión ventana datos (no cambia hasta el ENTER después de llenar todos los datos).
+  // Aquí el usuario selecciona los valores de la simulación mediante el teclado.
+  // Sólo puede escoger entre las opciones, no meter su propio dato.
+  // Selecciona con las flechas -> y <-
   wbkgd(datos, COLOR_PAIR(3));
   wborder(datos, '|', '|', '=', '=', '=', '=', '=', '=');
   wprintw(datos, "\n\n                          ~ ~ SELECCIONA LOS VALORES ~ ~\n\n");
@@ -425,7 +467,7 @@ int main() {
     
   }
 
-  
+  // asginación valor seleccionado para capacidad del centro comercial
   switch(auxFlecha){
     case 0:
       capacidad=20;
@@ -501,6 +543,7 @@ int main() {
     refresh();
   }
 
+  // Asignación valor seleccionado para semaforo epidemiologico.
   semaforoPandemia=auxFlecha+1;
 
 
@@ -569,6 +612,7 @@ int main() {
     
   }
 
+  // Asignación del tiempo de simulación seleccionado
   tiempo=2*(auxFlecha+1);
 
   wprintw(datos, "\n\n  - ¿Cuántas personas querrán entrar a la plaza durante el día?\n");
@@ -635,6 +679,7 @@ int main() {
     
   }
 
+  // Asignación del número de clientes seleccionado.
   switch(auxFlecha){
     case 0:
       clientes=50;
@@ -663,7 +708,7 @@ int main() {
     c = wgetch(datos);
   }
   
-  
+  // calculo para aforo máximo plaza
   switch (semaforoPandemia){
     case 1:
       capPlaza=capacidad*0.8;
@@ -680,7 +725,8 @@ int main() {
     default:
       break;
   }
-  
+
+  // calculo aforo tiendas y aforo mínimo = 1
   capDepa = 0.4*capPlaza;
   capSuper = 0.2*capPlaza;
   capRopa = 0.1*capPlaza;
@@ -692,6 +738,7 @@ int main() {
   if(!capTecno) capTecno++;
   if(!capKiosko) capKiosko++;
 
+  // con los valores de capacidad se inician multiplexores.
   sem_init(&multiplexSeguridad, 0, capPlaza);
   sem_init(&multiplexDepaEntrada, 0, capDepa);
   sem_init(&multiplexSuperEntrada, 0, capSuper);
@@ -702,6 +749,8 @@ int main() {
 
   clear();
   refresh();
+
+  // Impresión ventana datos ingresados e iniciar simulación (no cambia hasta el ENTER).
   wbkgd(iniciar, COLOR_PAIR(2));
   wborder(iniciar, '|', '|', '_', '_', '|', '|', '_', '_');
 
@@ -753,17 +802,21 @@ int main() {
   clear();
   refresh();
 
+  // !!! Se cierra vetana gráfica para imprimir la simulación en la terminal
   endwin();
 
+  // Se limpia la terminal
   system("clear");
 
+  // Si no se crea seguridad finaliza el programa -> nadie puede abrir.
   if(pthread_create(&pidSeguridad, NULL, &agenteSeguridad, NULL)){
     printf(" ERROR al crear hilo del agente de seguridad !!!!\n\n");
     return -1;
   }
   
   sleep(1);
-  
+
+  // Si se falla creando un cliente, avisa pero continua la simulación
   pidClientes=malloc(clientes*sizeof(pthread_t));
   aux=clientes;
   for(int i=0; i<clientes; i++){
@@ -773,16 +826,21 @@ int main() {
     }
   }
   c=0;
+
+  // Pide al usuario ENTER para comenzar
   printf("\n\n   Presione ENTER para abrir la plaza  ... \n\n");
   while(c != 10){
     c = getchar();
   }
 
+  
   printf("\n\n Se abren las puertas...\n\n");
   abierto = 1;
+  // avisa a seguridad para abrir
   pthread_cond_signal(&cvAbrirCerrar);
   sleep(tiempo*3);
   abierto = 0;
+  // avisa a seguridad para cerrar
   pthread_cond_signal(&cvAbrirCerrar);
   sleep(1);
 
@@ -793,20 +851,20 @@ int main() {
     c = getchar();
   }
 
-  
+  // crea la última ventana gráfica para resultados y la inicia.
   WINDOW * resultados = newwin(28, 70, 2, 5);
   initscr();
 
   start_color();
   init_pair(2, COLOR_BLACK, COLOR_CYAN);
-  
+
+  // Impresión ventana resultados (no cambia hasta el ENTER).
   wbkgd(resultados, COLOR_PAIR(2));
   wborder(resultados, '|', '|', '_', '_', '|', '|', '_', '_');
-  
   int total = ventasDepa+ventasSuper+ventasRopa+ventasTecno+ventasKiosko;
   wprintw(resultados, "\n\n\n                        ~ ~ ~ RESULTADOS ~ ~ ~ \n");
   wprintw(resultados, "\n\n   Los resultados de la simulación fueron los siguientes:\n\n");
-  wprintw(resultados, "   - Entraron %d de %d, faltaron %d personas de entrar a la plaza.\n",total, clientes, clientes-total );
+  wprintw(resultados, "   - Entraron %d de %d, faltaron %d personas de entrar a la plaza.\n",clientesAdentro, clientes,clientes-clientesAdentro );
   wprintw(resultados, "\n     -- La tienda departamental hizo %d ventas.\n", ventasDepa);
   wprintw(resultados, "     -- El supermercado hizo %d ventas.\n", ventasSuper);
   wprintw(resultados, "     -- La tienda de ropa hizo %d ventas.\n", ventasRopa);
@@ -827,7 +885,7 @@ int main() {
     c = wgetch(resultados);
   }
 
+  // CIERRA ventana y TERMINA programa.
   endwin();
-  
   return 0;
 }
