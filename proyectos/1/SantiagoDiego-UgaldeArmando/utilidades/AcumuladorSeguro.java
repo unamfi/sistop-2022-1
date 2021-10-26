@@ -1,3 +1,5 @@
+package utilidades;
+
 public class AcumuladorSeguro {
     private int valor = 0;
 
