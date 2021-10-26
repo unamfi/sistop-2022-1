@@ -1,0 +1,53 @@
+Ordiales Caballero, Iñaky			Octubre del 2021.
+
+
+Información de la solución de la tarea 2:
+
+Problema resuelto: "Santa Claus"
+
+Planteamiento del problema (según lo entendí):
+	El problema consistía en que Santa Claus dormía siempre y cuando no hubiera tres elfos que
+	necesitaran su ayuda, o no estuvieran todos los renos para salir a repartir los regalos.
+	Para esto los renos se iban de vacaciones después de entregar regalos y regresaban para 
+	Navidad. Los elfos trabajaban todo el año sin parar, excepto cuando Santa salía a repartir
+	los regalos.
+
+Lenguaje y entorno de desarrollo:
+	El programa fue escrito en lenguaje C utilizando las bilbiotecas de pthreads de POSIX.
+	Lo desarrollé en una computadora que corre Linux, pero que tiene por default el idioma español, 
+	al ejecutar el comando '$LANG' en la terminal me devuelve es_MX.
+	El programa creo que está codificado en ISO-8859-1, pero no estoy del todo seguro. Tuve
+	problemas al abrirlo en la terminal del IDE y la terminal del SO, ya que los acentos y símbolos
+	especiales no coincidían, por lo que espero a usted sí le funcione.
+
+¿Como ejecutar?:
+	Para ejecutar se necesita tener instalado gcc y las bilbiotecas de POSIX, poner los siguientes
+	comandos en la terminal:
+
+		gcc -o Santa hiloSanta.c -lpthread -lrt -Wall
+		./Santa
+
+Estrategia de sincronización:
+	Como visualicé el programa fue de la siguiente forma: tenía cuatro grupos de hilos, el de Santa,
+	el de los renos, el de los elfos y el del tiempo del año (los meses avanzaban). Por lo que tuve
+	que lograr que los elfos y renos despertaran a Santa en ciertas condiciones y que a su vez, el 
+	tiempo llamara a los renos para regresar o irse según el mes. 
+	Las estrategias que utilicé y me funcionaron a lo largo del programa fueron:
+	- Torniquetes: tanto para controlar y contar un flujo de hilos, como para cerrarlo o abrirlo desde otro.
+	- Variables de condición: para la comunicación entre el despertar a Santa o volver a despertar un grupo de elfos o renos.
+	- Mutex: para proteger áreas críticas y contar hilos.
+	- Barreras: para detener el flujo de renos hasta ser 9 y ya después avisaran a Santa.
+	- Multiplex: para darme cuenta de que no necesitaba un multiplex jajaja.
+
+
+Dudas y comentarios finales:
+	En general siento que no fue la implementación más limpia. Me pasaba mucho que no sabía cuál de
+	los métodos de sincronización utilizar, y cambiab mucho entre ellos.
+	Creo que debe de haber una solución mucho más limpia, sobretodo en la parte de los elfos y agruparse
+	de 3 en 3 para despertar a Santa. 
+	Lo que creo que sí estaba bien pensado fue la variable condición para despertar a Santa Claus desde 
+	los otros grupos de hilos. 
+	Una duda con la que me quedé fue: "¿Es correcto tener que meter un mutex para contar los hilos y así
+	saber cuando entra el último de un grupo y realizar sólo con ese una acción específica?, lo digo en el
+	contexto de mis renos que hasta el 9 llamaba a Santa y en los elfos hasta el Tercero."
+	Apreciaría cualquier comentario y si me pudiera compartir una solución limpia para verla.
