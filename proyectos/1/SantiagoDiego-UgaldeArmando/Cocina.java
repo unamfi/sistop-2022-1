@@ -1,4 +1,5 @@
 import utilidades.AcumuladorSeguro;
+import utilidades.Impresor;
 
 public class Cocina {
     //public static int MAX_PIZZAS_EN_INVENTARIO = 1000;
@@ -11,11 +12,19 @@ public class Cocina {
         this.horno = horno;
     }
 
+    private static void imprimirMensaje(String mensaje) {
+        Impresor.imprimirAmarillo("Cocina", mensaje);
+    }
+
     public static void iniciar(Horno horno) {
         Cocina cocina = new Cocina(horno);
+        imprimirMensaje("Iniciando...");
         for (int i = 0; i < PIZZEROS; i++) {
-            new Thread(new Pizzero(cocina)).start();
+            int id = i + 1;
+            imprimirMensaje("Creando e iniciando Pizzero " + id + "...");
+            new Thread(new Pizzero(cocina, id)).start();
         }
+        imprimirMensaje("Lista");
     }
 
     public int obtenerNumeroDePizza() {
@@ -23,6 +32,7 @@ public class Cocina {
     }
 
     public void ponerEnHorno(Pizza pizzaCruda) {
+        imprimirMensaje("Poniendo " + pizzaCruda + " en el horno");
         horno.hornearPizza(pizzaCruda);
     }
 }
