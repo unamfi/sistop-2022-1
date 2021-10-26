@@ -1,14 +1,15 @@
 import utilidades.ColaSegura;
 import utilidades.Impresor;
+import utilidades.Logger;
 
-public class Fila {
+public class Fila implements Logger {
     private final ColaSegura<Cliente> cola;
 
     public Fila() {
         this.cola = new ColaSegura<>(1000);
     }
 
-    private static void imprimirMensaje(String mensaje) {
+    public void imprimirMensaje(String mensaje) {
         Impresor.imprimirCian("Fila", mensaje);
     }
 
@@ -23,4 +24,3 @@ public class Fila {
         return cliente;
     }
 }
-// TODO: Agregar interfaz para imprimirMensaje

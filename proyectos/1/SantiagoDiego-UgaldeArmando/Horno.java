@@ -1,10 +1,11 @@
 import utilidades.ColaSegura;
 import utilidades.ConjuntoSeguro;
 import utilidades.Impresor;
+import utilidades.Logger;
 
 import java.util.concurrent.TimeUnit;
 
-public class Horno {
+public class Horno implements Logger {
     public static int MAX_PIZZAS_LISTAS = 15;
     public static int MAX_PIZZAS_HORNEANDOSE = 30;
     public static int TIEMPO_DE_HORNEADO = 10;
@@ -16,7 +17,7 @@ public class Horno {
         this.pizzasHorneandose = new ConjuntoSeguro<>(MAX_PIZZAS_HORNEANDOSE);
     }
 
-    private static void imprimirMensaje(String mensaje) {
+    public void imprimirMensaje(String mensaje) {
         Impresor.imprimirMorado("Horno", mensaje);
     }
 

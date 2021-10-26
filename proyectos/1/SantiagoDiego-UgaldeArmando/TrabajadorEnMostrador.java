@@ -1,6 +1,7 @@
 import utilidades.Impresor;
+import utilidades.Logger;
 
-public class TrabajadorEnMostrador implements Runnable {
+public class TrabajadorEnMostrador implements Runnable, Logger {
 
     private final Mostrador mostrador;
     private final int id;
@@ -10,20 +11,20 @@ public class TrabajadorEnMostrador implements Runnable {
         this.id = id;
     }
 
-    private static void imprimirMensaje(int id, String mensaje) {
-        Impresor.imprimirAzul("Trabajador en mostrador " + id, mensaje);
+    public void imprimirMensaje(String mensaje) {
+        Impresor.imprimirAzul("Trabajador en mostrador " + this.id, mensaje);
     }
 
     @Override
     public void run() {
         while (true) {
             Cliente clientePorAtender = mostrador.llamarCliente();
-            imprimirMensaje(id, "Atendiendo " + clientePorAtender);
+            this.imprimirMensaje("Atendiendo " + clientePorAtender);
             for (int i = 0; i < clientePorAtender.obtenerPizzasDeseadas(); i++) {
                 Pizza pizza = mostrador.sacarPizzaListaDelHorno();
-                imprimirMensaje(id, "Dándole la " + pizza + " al " + clientePorAtender);
+                imprimirMensaje("Dándole la " + pizza + " al " + clientePorAtender);
             }
-            imprimirMensaje(id, "El " + clientePorAtender + " ha sido atendido");
+            imprimirMensaje("El " + clientePorAtender + " ha sido atendido");
         }
     }
 }

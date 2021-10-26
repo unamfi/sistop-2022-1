@@ -1,9 +1,10 @@
 import utilidades.Impresor;
+import utilidades.Logger;
 import utilidades.UtilidadesNumericas;
 
 import java.util.concurrent.TimeUnit;
 
-public class Calle {
+public class Calle implements Logger {
     public static int MAX_CLIENTES_EN_PERIODO = 5;
     public static int TIEMPO_ENTRE_LLEGADAS = 5;
     private final Fila fila;
@@ -12,15 +13,15 @@ public class Calle {
         this.fila = fila;
     }
 
-    private static void imprimirMensaje(String mensaje) {
-        Impresor.imprimirBlanco("Calle", mensaje);
-    }
-
     public static void iniciar(Fila fila) {
         Calle calle = new Calle(fila);
-        imprimirMensaje("Iniciando...");
+        calle.imprimirMensaje("Iniciando...");
         new Thread(calle::generarClientesPeriodicamente).start();
-        imprimirMensaje("Lista");
+        calle.imprimirMensaje("Lista");
+    }
+
+    public void imprimirMensaje(String mensaje) {
+        Impresor.imprimirBlanco("Calle", mensaje);
     }
 
     private void generarClientesPeriodicamente() {
