@@ -30,7 +30,7 @@ public class Mostrador {
         return fila.llamarAlPrimero();
     }
 
-    public Pizza sacarPizzaDelHorno() {
+    public Pizza sacarPizzaListaDelHorno() {
         imprimirMensaje("Sacando pizza del horno...");
         return horno.sacarPizzaLista();
     }

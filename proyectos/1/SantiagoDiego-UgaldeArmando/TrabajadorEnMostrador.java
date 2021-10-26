@@ -13,7 +13,7 @@ public class TrabajadorEnMostrador implements Runnable {
         while (true) {
             Cliente clientePorAtender = mostrador.llamarCliente();
             for (int i = 0; i < clientePorAtender.obtenerPizzasDeseadas(); i++)
-                mostrador.sacarPizzaDelHorno();
+                mostrador.sacarPizzaListaDelHorno();
         }
     }
 }
