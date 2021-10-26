@@ -1,3 +1,4 @@
+import utilidades.Impresor;
 import utilidades.UtilidadesNumericas;
 
 import java.util.concurrent.TimeUnit;
@@ -11,20 +12,24 @@ public class Calle {
         this.fila = fila;
     }
 
+    private static void imprimirMensaje(String mensaje) {
+        Impresor.imprimirAzul("Calle", mensaje);
+    }
+
     public static void iniciar(Fila fila) {
         Calle calle = new Calle(fila);
-        System.out.println("Iniciando Calle...");
+        imprimirMensaje("Iniciando...");
         new Thread(calle::generarClientesPeriodicamente).start();
     }
 
     private void generarClientesPeriodicamente() {
-        System.out.println("Calle empezará a generar clientes cada " + TIEMPO_ENTRE_LLEGADAS + " segundos");
+        imprimirMensaje("Empezará a generar clientes cada " + TIEMPO_ENTRE_LLEGADAS + " segundos");
         while (true) {
             int clientesPorAgregar = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(MAX_CLIENTES_EN_PERIODO);
 
             for (int i = 0; i < clientesPorAgregar; i++)
                 this.fila.formarCliente(new Cliente());
-            System.out.println("Se agregaron " + clientesPorAgregar + " clientes");
+            imprimirMensaje("Se agregaron " + clientesPorAgregar + " clientes a la fila");
 
             try {
                 TimeUnit.SECONDS.sleep(TIEMPO_ENTRE_LLEGADAS);
