@@ -5,7 +5,7 @@ public class Cliente {
     private int pizzasDeseadas;
 
     public Cliente() {
-        this.pizzasDeseadas = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(10);
+        this.pizzasDeseadas = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(MAX_PIZZAS);
     }
 
     public int obtenerPizzasDeseadas() {
