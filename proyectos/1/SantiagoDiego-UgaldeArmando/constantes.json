@@ -1,12 +1,12 @@
 {
-    "MAX_CLIENTES_EN_PERIODO": 5,
-    "TIEMPO_ENTRE_LLEGADA_DE_CLIENTES": 15,
-    "MAX_PIZZAS_POR_CLIENTE": 5,
-    "PIZZEROS": 3,
-    "TIEMPO_PARA_PONER_PIZZA_EN_HORNO": 1,
-    "MAX_PIZZAS_LISTAS": 15,
-    "MAX_PIZZAS_HORNEANDOSE": 15,
-    "TIEMPO_DE_HORNEADO": 10,
-    "TRABAJADORES_EN_MOSTRADOR": 3,
-    "TIEMPO_DE_PREPARACION_DE_PIZZA": 5
+    "max_clientes_en_periodo": 4,
+    "tiempo_entre_llegada_de_clientes": 15,
+    "max_pizzas_por_cliente": 5,
+    "pizzeros": 3,
+    "tiempo_para_poner_pizza_en_horno": 1,
+    "max_pizzas_listas": 15,
+    "max_pizzas_horneandose": 15,
+    "tiempo_de_horneado": 10,
+    "trabajadores_en_mostrador": 3,
+    "tiempo_de_preparacion_de_pizza": 5
 }

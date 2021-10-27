@@ -28,5 +28,3 @@ public class TrabajadorEnMostrador implements Runnable, Logger {
         }
     }
 }
-
-// TODO: Añadir argumentos de línea de comandos
