@@ -16,7 +16,7 @@ class Memoria(threading.Thread):
     cuando haya algun pedido nuevo y cuando este saturado de pedidos olvidara alguno"""
 
     # variable para determinar cual es el limite de pedidos que un taquero puede recordar
-    __LIMITE_DE_PEDIDOS_RECORDADOS = 5
+    __LIMITE_DE_PEDIDOS_RECORDADOS = 8
 
     def __init__(self):
         super().__init__(target=self.saturacion_de_pedidos)
@@ -39,6 +39,7 @@ class Memoria(threading.Thread):
     # metodo siempre activo que se encargara de olvidar los pedidos al sobresaturarse
     def saturacion_de_pedidos(self):
         while True:
+            time.sleep(random.random())
             if len(self.pedidos) > self.__LIMITE_DE_PEDIDOS_RECORDADOS:
                 
                 # se escoge aleatoriamente un pedido para olvidar
@@ -53,6 +54,14 @@ class Memoria(threading.Thread):
                 
                 # al olvidar el pedido lo quitamos del trabajo que teniamos
                 self.hay_pedido.acquire()
+    
+    def quitar_pedido(self, id):
+        self.mutex_pedidos.acquire()
+        for p in self.pedidos:
+            if p.cliente.id == id:
+                self.pedidos.remove(p)
+                break
+        self.mutex_pedidos.release()
                 
 class Taquero(threading.Thread):
     
@@ -106,8 +115,8 @@ class Cliente:
     # saber que va a pedir de comer al taquero entre las opciones de
     # las ordenes y espera en lo que su pedido esta lista. 
     def ordenar(self):
-        #Se queda pensando en lo que decide que comer
-        time.sleep(random.random())
+        # se duerme en lo que piensa que ordenar
+        time.sleep(random.randint(1, 3))
         self.solicitar_orden()
         print("     C%d: Esperando pedido" % self.id)
 
@@ -117,7 +126,7 @@ class Cliente:
         if self.enojometro < 3:
             
             print("     C%d: Gracias :D" % self.id)
-            
+
             # si recibio su pedido detiene el proceso de espera para irse a comer sus tacos
             self.do_run = False
 
@@ -130,7 +139,7 @@ class Cliente:
             if self.enojometro == 3:
                 print("     C%d: ya no quiero mis tacos, ya me voy" % self.id)
             self.enojometro += 1
-        
+        self.mi_taquero.memoria.quitar_pedido(self.id)
 
 class Pedido:
     
