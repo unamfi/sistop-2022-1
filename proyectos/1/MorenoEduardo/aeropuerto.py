@@ -4,12 +4,13 @@
 # Problema
 
 #El problema del aeropuerto, o mas bien el problema de la cinta transportado de maletas.
+
 import threading
 import time
 import random
 import sys
 import os 
-#Variables:
+
 
 num_maletas = 0
 limite_maletas = False
@@ -27,7 +28,7 @@ mutex_pasajeros = threading.Semaphore(2)
 mutex_recoger = threading.Semaphore(2)
 
 
-def maletas():
+def maletas():                  #maletas es la función que permite ingresar maletas a la banda, no recibe un argumento.
     global num_maletas
     global mutex_maletas
     global limite_pasajeros
@@ -64,8 +65,8 @@ def maletas():
             mutex_maletas.release()
             print("¡No hay espacio en la cinta!")
 
-def pasajeros(recoge):
-    global num_pasajeros
+def pasajeros(recoge):          # Pasajeros es la función que permite ingresar pasajeros alrededor de la banda, como tal recibe el argumento
+    global num_pasajeros        # recoge, el cual le indica si va a recoger una maleta o no, con esta información libera pasajero y maleta.
     global limite_maletas
     global limite_pasajeros
     global mutex_pasajeros
@@ -102,7 +103,7 @@ def pasajeros(recoge):
         
     
 
-def ingresa(tipo):
+def ingresa(tipo):                  # Esta función imprime una maleta o un pasajero dependiendo de lo que se le mande en su argumento de entrada
     
     if(tipo == "maleta"):
         print("💼", end="")
@@ -110,21 +111,15 @@ def ingresa(tipo):
         print("👤", end="")
     
 
-def borrarPantalla(): #Borra pantalla dependiendo del sistema operativo
-    if os.name == "posix":
-        os.system ("clear")
-    elif os.name == "ce" or os.name == "nt" or os.name == "dos":
-        os.system ("cls")
-
-def imprimirProblema():
-    print("                         ======== La cinta del aeropuerto ========               ")
+def imprimirProblema():                 # Es el encargado de imprimir el enunciado inicial.
+    print("             ✈️  🌎          ======== La cinta del aeropuerto ========        ✈️   🌎    ")
     print("Nos encontramos en un aeropuerto, en el aeropuerto tenemos una cinta que trae el equipaje,"
     + " alrededor de ella hay gente esperando para recogerlo, pasa el tiempo, entra y sale equipaje, así como personas, no todo" +
     " el equipaje saldrá, pero observemos como se mueve el ritmo de maletas en el aeropuerto")
 
-def recoger():
-    global num_maletas
-    global num_pasajeros
+def recoger():                      # Recoger es la función encargada de que el pasajero recoja la maleta, de esta manera se eliminan
+    global num_maletas              # los hilos de una maleta y un pasajero.
+    global num_pasajeros            # No necesita de ninguna entrada y no devuelve nada.
     global limite_maletas
     global limite_pasajeros
     mutex_recoger.acquire()
@@ -144,17 +139,17 @@ def recoger():
         print("Todo mal")
     mutex_recoger.release()
 
-def pantalla():
-    global num_pasajeros
+def pantalla():                     # Se imprimen las maletas y los pasajeros existentes alrededor y encima de la cinta.
+    global num_pasajeros            # No es necesario un argumento, y tampoco tiene una salida 
     global num_maletas
     a = 0
     b = 0
     mutex_ingreso.acquire()
-    while a < num_maletas: 
+    while a < num_maletas:          #Impresión de las maletas en la banda
         ingresa("maleta")
         a += 1
     print(" ")
-    while b < num_pasajeros:
+    while b < num_pasajeros:        #Impresión de los pasajeros alrededor de la banda
         ingresa("pasajero")
         b += 1 
     
@@ -163,12 +158,9 @@ def pantalla():
 
 
 try:
+    imprimirProblema()
     while True:
-        #
-        #borrarPantalla()
-        #
-        #imprimirProblema()
-        #
+
         if round(random.choice([0,1])) == 0:
             threading.Thread(target = maletas, args = []).start()
             time.sleep(2)
@@ -178,10 +170,9 @@ try:
             threading.Thread(target = pasajeros, args = [round(random.choice([0,1]))]).start()
             time.sleep(2)
             pantalla()
-            #time.sleep(2)
             print(threading.active_count())
 
-        #
+
 except KeyboardInterrupt:
     print("             ║║ Vámonos a casa ║║               ")
     
