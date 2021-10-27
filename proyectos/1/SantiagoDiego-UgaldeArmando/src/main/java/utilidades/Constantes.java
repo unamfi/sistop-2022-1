@@ -6,6 +6,12 @@ import lombok.Data;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Parámetros importantes del programa. Los valores se obtienen de un archivo JSON con los nombres de los parámetros en
+ * minúsculas, como se muestra en los atributos de la clase. Si este archivo no se encuentra o no es posible abrirlo, se
+ * utilizarán los valores por default. Además, todos los atributos son opcionales en el archivo, por lo que, de no
+ * encontrarse alguno, se utilizará también su valor por default.
+ */
 @Data
 public class Constantes {
     public static int MAX_CLIENTES_EN_PERIODO = 4;
@@ -37,10 +43,12 @@ public class Constantes {
         try {
             constantes = objectMapper.readValue(new File("constantes.json"), Constantes.class);
         } catch (IOException e) {
-            throw new RuntimeException("No se pudo abrir el archivo de constantes", e);
+            System.out.println("No se pudo abrir el archivo de constantes, utilizando valores por default.");
+            Constantes.imprimir();
+            return;
         }
 
-        MAX_CLIENTES_EN_PERIODO = constantes.max_clientes_en_periodo;
+        MAX_CLIENTES_EN_PERIODO = constantes.getMax_clientes_en_periodo();
         TIEMPO_ENTRE_LLEGADA_DE_CLIENTES = constantes.getTiempo_entre_llegada_de_clientes();
         MAX_PIZZAS_POR_CLIENTE = constantes.getMax_pizzas_por_cliente();
         PIZZEROS = constantes.getPizzeros();

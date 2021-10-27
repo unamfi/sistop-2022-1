@@ -1,5 +1,8 @@
 package utilidades;
 
+/**
+ * Imprime mensajes de un actor, coloreando su nombre únicamente.
+ */
 public class Impresor {
 
     private static final String ANSI_RESET = "\u001B[0m";

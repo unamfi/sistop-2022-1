@@ -1,5 +1,8 @@
 package utilidades;
 
+/**
+ * Acumulador thread-safe.
+ */
 public class AcumuladorSeguro {
     private int valor = 0;
 
