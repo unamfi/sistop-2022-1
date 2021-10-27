@@ -44,13 +44,8 @@ def maletas():                  #maletas es la función que permite ingresar mal
         num_maletas += 1
         print("Ha llegado ", end="")
         ingresa("maleta")
-        print("")
-        
-        #ingresa("maleta")
-        #pantalla()
-        
+        print("")       
         mutex_maletas.release()
-        #
     else:
         if(limite_maletas == False):
             num_maletas += 1
@@ -165,12 +160,14 @@ try:
             threading.Thread(target = maletas, args = []).start()
             time.sleep(2)
             pantalla()
-            print(threading.active_count())
+            print("")
+
         else:
             threading.Thread(target = pasajeros, args = [round(random.choice([0,1]))]).start()
             time.sleep(2)
             pantalla()
-            print(threading.active_count())
+            print("")
+
 
 
 except KeyboardInterrupt:
