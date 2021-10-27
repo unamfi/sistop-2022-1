@@ -83,6 +83,7 @@ def agarrar(num):
     estante_mutex.acquire()
     mercancia=mercancia-despensa
     if mercancia<20:
+        print(" *** El inventario esta acabandose, el empleado debe llamar al provedor  *** ")
         suministro.set()
     estante_mutex.release()
     pagar(num)
@@ -120,6 +121,8 @@ def main():
     print("     ║ TIENDA DE DISFRACES ║")
     print("     ╚"+"═"*21+"╝")
 
+    numClientes = int(input(" - ¿Cuántos clientes llegarán a la tienda?"))
+
     for k in range (1):
         hilos_proveedores.append(threading.Thread(target=Proveedor, args=[k])) #Creamos los hilos de los proovedores
         hilos_proveedores[k].start()
@@ -128,7 +131,7 @@ def main():
         hilos_empleados.append(threading.Thread(target=Empleado, args=[j]))
         hilos_empleados[j].start()
         time.sleep(1.5)
-    for i in range(10):
+    for i in range(numClientes):
         hilos_clientes.append(threading.Thread(target=Cliente, args=[i]))
         hilos_clientes[i].start()
         time.sleep(0.5)
