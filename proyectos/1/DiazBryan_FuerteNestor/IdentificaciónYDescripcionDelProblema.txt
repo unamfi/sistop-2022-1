@@ -1,0 +1,30 @@
+------------------------------------------Ruta de Micros.-------------------------------------------------------
+Elegimos modelar el sistema que deberia llevar un microbus debido a que ambos los utilizamos para poder llegar a 
+nuestros destinos antes de la pandemia.
+La situación que modelamos por medio del programa, es el comportamiento de un conjunto de microbuses a través de una
+ruta, donde en la mayoría de los casos los microbuseros compiten entre sí por el pasaje, lo que genera nuestra situación
+problema que es la concurrencia de varios microbuseros en una parada.
+
+Nuestra propuesta plantea el uso de los semáforos para poder limitar la cantidad de microbuseros en las paradas de una 
+ruta, de tal forma que solo un microbusero pueda subir pasaje en una parada, y así poder subir y bajar mas gente, y dadas 
+las condiciones actuales de pandemia, se limita a una capacidad máxima personas que pueden subir al microbus. Debido a que
+son microbuses de ruta tienen la posibilidad de rebasarse entre paradas como lo harían en la vida real. 
+
+Además de agregar un checador que pueda verificar la bajada y subida segura de las personas, debido a que los microbuses
+son conocidos por arrancar de golpe. 
+
+¿Dónde pueden verse las consecuencias nocivas de la concurrencia?:
+Es muy común ver como microbuses pierden la oportunidad de llevar personas cuando mas de uno llega a la parada, 
+ocasionando que solo uno de ellos se llene o que entre los dos lleven muy pocas personas, provocando que más gente 
+se forme esperando, probablemente, mucho tiempo a otro microbus.
+
+¿Qué eventos pueden ocurrir que queramos controlar?:
+Lo que queremos controlar con esto es que solamente un microbus llegue a una parada distinta, para que así no haya
+ese tipo de desperdicio de espacio y se pueda transportar más personas. Y con los conductores no compitan por el 
+pasaje. También que se de tiempo de bajada y subida de los usuarios del microbus. También se quiere controlar
+el echo de que los microbuses lleguen en orden a la base y salgan de esta sin arrebasarse.
+
+¿Hay eventos concurrentes para los cuales el ordenamiento relativo no resulta importante?:
+Para esta situación no es necesario que las personas se formen o lleguen de un orden determinado para poder subir 
+al microbus, la unica condición para que puedan usarlo es que este tenga espacio, sino las personas que no hayan
+alcanzado a subir tendran que esperar en la parada hasta que llegue otro microbus. 
