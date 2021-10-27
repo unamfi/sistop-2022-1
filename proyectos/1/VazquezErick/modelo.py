@@ -62,6 +62,9 @@ class Memoria(threading.Thread):
                 self.pedidos.remove(p)
                 break
         self.mutex_pedidos.release()
+
+        # al quitar el pedido le quitamos al taquero el trabajo que tenia
+        self.hay_pedido.acquire()
                 
 class Taquero(threading.Thread):
     
@@ -123,10 +126,12 @@ class Cliente:
         self.hilo_espera.start()
         self.esperando_pedido.acquire()
 
-        if self.enojometro < 3:
+        if self.enojometro < 6:
             
-            print("     C%d: Gracias :D" % self.id)
-
+            if self.enojometro < 3:
+                print("     C%d: Gracias :D" % self.id)
+            else: 
+                print("     C%d: Pesimo servivio" % self.id)
             # si recibio su pedido detiene el proceso de espera para irse a comer sus tacos
             self.do_run = False
 
@@ -137,9 +142,12 @@ class Cliente:
         while getattr(self, "do_run", True):
             time.sleep(random.randint(1, 3))
             if self.enojometro == 3:
+                print("     C%d: me haras mis tacos o no?" % self.id)
+            elif self.enojometro == 6:
                 print("     C%d: ya no quiero mis tacos, ya me voy" % self.id)
+                self.mi_taquero.memoria.quitar_pedido(self.id)
+                break
             self.enojometro += 1
-        self.mi_taquero.memoria.quitar_pedido(self.id)
 
 class Pedido:
     
