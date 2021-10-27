@@ -203,5 +203,25 @@ Y eso debería ejecutarlo exitosamente. Para lograr usar la simulación el mismo
 ## Ejemplos de ejecución
 
 ![](compilacion.png)
+**Muestra de compilación.**
 
-Muestra de compilación.
+![](portada.png)
+**Pantalla inicial del programa.**
+
+![](instrucciones.png)
+**Pantalla de instrucciones del programa.**
+
+![](datos.png)
+**El usuario ingresa los datos**
+
+![](confirma.png)
+**Se le muestran al usuario los datos de la simulación.**
+
+![](simula.png)
+**Se inicia la simulación en consola.**
+
+![](res.png)
+**Pantalla de los resultados de la simulación.**
+
+![](final.png)
+**Se termina la ejecución sin problemas ni errores.**
