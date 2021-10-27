@@ -1,6 +1,5 @@
 import threading
 
-
 class Controlador:
 
     def __init__(self):
