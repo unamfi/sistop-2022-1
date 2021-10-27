@@ -1,0 +1,24 @@
+Cada año, se abre la tienda con motivo de Halloween, en dicha tienda se venden productos que están distribuidos en un estante.
+Con motivo de que en este Halloweense se podrá salir a la calle, se espera que todos los clientes que entren adquieran un producto.
+La tienda todavia implementará restricciones sanitarias, una de ellas es que no se permitirá tener mas de x personas al mismo tiempo.
+Como toda tienda, habra ciertos momentos en que se quede sin productos, por lo que un empleado deberá llamar a un proveedor para que este 
+surta la tienda.
+Por politicas de la tienda, un cliente debe enseñar su ticket antes de abandonar la tienda, y un cliente tiene prohibido ingresar a la 
+zona de empleados.
+**La tienda tiene un horario de 8-8pm, por lo que despues de las 8 pm, ya no se dará servicio de ningún  tipo y se deberá cerrar la tienda
+una vez terminado las actividades pendientes.
+
+
+Señalizar: Que los empleados esperen al proveedor antes de querer sumunistrar el estante
+Rendezvous: Un cliente no puede abandonar la tienda hasta que este haya pagado su producto, y el empleado generado el ticket.
+---Multiplex: Limitar el aforo maximo de x personas a la tienda, solo se permite tener 3 clientes en el estante
+---Torniquete: La persona que ingresa a la tienda
+Apagador: Los clientes no tienen permitido acceder al area de caja
+Barrera: *Para poder cerrar la tienda, todos los que esten adentro no tienen que tener actividades pendientes
+Cola: 
+
+
+-
+Lista de tareas
+
+Lista de actores
