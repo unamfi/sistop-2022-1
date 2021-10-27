@@ -28,7 +28,6 @@ class Memoria(threading.Thread):
         # semaforo para indicarle al taquero que se ponga a trabajar
         self.hay_pedido = threading.Semaphore(0)
 
-    # metodo que guarda los pedidos nuevos
     def nuevo_pedido(self, pedido):
         self.mutex_pedidos.acquire()
         self.pedidos.append(pedido)
@@ -118,6 +117,8 @@ class Cliente:
         if self.enojometro < 3:
             
             print("     C%d: Gracias :D" % self.id)
+            
+            # si recibio su pedido detiene el proceso de espera para irse a comer sus tacos
             self.do_run = False
 
     # cuando un cliente realiza su pedido comienza a esperar
