@@ -1,8 +1,8 @@
+import utilidades.Constantes;
 import utilidades.Impresor;
 import utilidades.Logger;
 
 public class Mostrador implements Logger {
-    private static final int TRABAJADORES_EN_MOSTRADOR = 3;
     private final Fila fila;
     private final Horno horno;
 
@@ -14,7 +14,7 @@ public class Mostrador implements Logger {
     public static void iniciar(Fila fila, Horno horno) {
         Mostrador mostrador = new Mostrador(fila, horno);
         mostrador.imprimirMensaje("Iniciando...");
-        for (int i = 0; i < TRABAJADORES_EN_MOSTRADOR; i++) {
+        for (int i = 0; i < Constantes.TRABAJADORES_EN_MOSTRADOR; i++) {
             int id = i + 1;
             mostrador.imprimirMensaje("Creando e iniciando TrabajadorEnMostrador " + id + "...");
             new Thread(new TrabajadorEnMostrador(id, mostrador)).start();

@@ -1,20 +1,14 @@
-import utilidades.ColaSegura;
-import utilidades.ConjuntoSeguro;
-import utilidades.Impresor;
-import utilidades.Logger;
+import utilidades.*;
 
 import java.util.concurrent.TimeUnit;
 
 public class Horno implements Logger {
-    private static final int MAX_PIZZAS_LISTAS = 15;
-    private static final int MAX_PIZZAS_HORNEANDOSE = 15;
-    private static final int TIEMPO_DE_HORNEADO = 10;
     private final ColaSegura<Pizza> pizzasListas;
     private final ConjuntoSeguro<Pizza> pizzasHorneandose;
 
     public Horno() {
-        this.pizzasListas = new ColaSegura<>(MAX_PIZZAS_LISTAS);
-        this.pizzasHorneandose = new ConjuntoSeguro<>(MAX_PIZZAS_HORNEANDOSE);
+        this.pizzasListas = new ColaSegura<>(Constantes.MAX_PIZZAS_LISTAS);
+        this.pizzasHorneandose = new ConjuntoSeguro<>(Constantes.MAX_PIZZAS_HORNEANDOSE);
     }
 
     public void imprimirMensaje(String mensaje) {
@@ -25,7 +19,7 @@ public class Horno implements Logger {
         pizzasHorneandose.agregar(pizza);
         imprimirMensaje("Horneando " + pizza);
         try {
-            TimeUnit.SECONDS.sleep(TIEMPO_DE_HORNEADO);
+            TimeUnit.SECONDS.sleep(Constantes.TIEMPO_DE_HORNEADO);
         } catch (InterruptedException e) {
             throw new RuntimeException("HORNO FUE INTERRUMPIDO");
         }

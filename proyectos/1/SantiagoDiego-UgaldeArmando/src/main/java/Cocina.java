@@ -1,13 +1,11 @@
 import utilidades.AcumuladorSeguro;
+import utilidades.Constantes;
 import utilidades.Impresor;
 import utilidades.Logger;
 
 import java.util.concurrent.TimeUnit;
 
 public class Cocina implements Logger {
-    //public static int MAX_PIZZAS_EN_INVENTARIO = 1000;
-    private static final int PIZZEROS = 3;
-    private static final int TIEMPO_PARA_PONER_PIZZA_EN_HORNO = 1;
     //private boolean trabajando = true;
     private final AcumuladorSeguro pizzasProducidas = new AcumuladorSeguro();
     private final Horno horno;
@@ -19,7 +17,7 @@ public class Cocina implements Logger {
     public static void iniciar(Horno horno) {
         Cocina cocina = new Cocina(horno);
         cocina.imprimirMensaje("Iniciando...");
-        for (int i = 0; i < PIZZEROS; i++) {
+        for (int i = 0; i < Constantes.PIZZEROS; i++) {
             int id = i + 1;
             cocina.imprimirMensaje("Creando e iniciando Pizzero " + id + "...");
             new Thread(new Pizzero(cocina, id)).start();
@@ -38,7 +36,7 @@ public class Cocina implements Logger {
     public void ponerEnHorno(Pizza pizzaCruda) {
         imprimirMensaje("Poniendo " + pizzaCruda + " en el horno");
         try {
-            TimeUnit.SECONDS.sleep(TIEMPO_PARA_PONER_PIZZA_EN_HORNO);
+            TimeUnit.SECONDS.sleep(Constantes.TIEMPO_PARA_PONER_PIZZA_EN_HORNO);
         } catch (InterruptedException e) {
             throw new RuntimeException("COCINA FUE INTERRUMPIDA");
         }

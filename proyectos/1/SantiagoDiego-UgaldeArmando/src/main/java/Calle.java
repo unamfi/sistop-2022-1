@@ -1,3 +1,4 @@
+import utilidades.Constantes;
 import utilidades.Impresor;
 import utilidades.Logger;
 import utilidades.UtilidadesNumericas;
@@ -5,8 +6,6 @@ import utilidades.UtilidadesNumericas;
 import java.util.concurrent.TimeUnit;
 
 public class Calle implements Logger {
-    private static final int MAX_CLIENTES_EN_PERIODO = 5;
-    private static final int TIEMPO_ENTRE_LLEGADAS = 15;
     private final Fila fila;
 
     private Calle(Fila fila) {
@@ -25,16 +24,16 @@ public class Calle implements Logger {
     }
 
     private void generarClientesPeriodicamente() {
-        imprimirMensaje("Empezará a generar clientes cada " + TIEMPO_ENTRE_LLEGADAS + " segundos");
+        imprimirMensaje("Empezará a generar clientes cada " + Constantes.TIEMPO_ENTRE_LLEGADA_DE_CLIENTES + " segundos");
         while (true) {
-            int clientesPorAgregar = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(MAX_CLIENTES_EN_PERIODO);
+            int clientesPorAgregar = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(Constantes.MAX_CLIENTES_EN_PERIODO);
 
             for (int i = 0; i < clientesPorAgregar; i++)
                 this.fila.formarCliente(new Cliente());
             imprimirMensaje("Se agregaron " + clientesPorAgregar + " clientes a la fila");
 
             try {
-                TimeUnit.SECONDS.sleep(TIEMPO_ENTRE_LLEGADAS);
+                TimeUnit.SECONDS.sleep(Constantes.TIEMPO_ENTRE_LLEGADA_DE_CLIENTES);
             } catch (InterruptedException e) {
                 throw new RuntimeException("CALLE FUE INTERRUMPIDA");
             }

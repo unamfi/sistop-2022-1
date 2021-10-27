@@ -1,3 +1,4 @@
+import utilidades.Constantes;
 import utilidades.Impresor;
 import utilidades.Logger;
 
@@ -6,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 public class Pizzero implements Runnable, Logger {
     private final Cocina cocina;
     private final int id;
-    private static final int TIEMPO_DE_PREPARACION = 5;
 
     public Pizzero(Cocina cocina, int id) {
         this.cocina = cocina;
@@ -23,7 +23,7 @@ public class Pizzero implements Runnable, Logger {
 
         this.imprimirMensaje("Haciendo " + pizza);
         try {
-            TimeUnit.SECONDS.sleep(TIEMPO_DE_PREPARACION);
+            TimeUnit.SECONDS.sleep(Constantes.TIEMPO_DE_PREPARACION_DE_PIZZA);
         } catch (InterruptedException e) {
             throw new RuntimeException("PIZZERO FUE INTERRUMPIDO");
         }
