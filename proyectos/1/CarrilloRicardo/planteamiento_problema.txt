@@ -1,0 +1,28 @@
+a) Describan la situación que modelarán
+
+El problema consta de la simulacion de un sistema que haga un analisis de lenguaje natural, para encontrar respuestas 
+de tareas en las cuales se te brinda un documento de texto. Evidentemente, mis habilidades con respecto al procesamiento de
+lenguaje natural se limitan a lo mas basico, por lo el analisis y busqueda de las respuestas se simularan mandando a dormir
+al hilo y las posibles respuenstas encontradas se simularan por medio de texto aleatorio. 
+
+Por lo que el sistema crea hilos por cada pregunta, donde cada hilo "analiza" a la misma y "busca" coincidencias con un "texto" brindado. 
+Todo siendo controlado por otro hilo que evitara que los hilos accedan a las regiones criticas (archivo de coincidencias) para evitar bloqueos 
+
+
+b) ¿Dónde pueden verse las consecuencias nocivas de la concurrencia? ¿Qué eventos pueden ocurrir que queramos controlar?
+
+Supongamos que deseo ser una persona antisistemica ;) que busca "ayudar" a los jovenes con sus tareas tediosas, entonces necesitare subir 
+este programa a un servidor y que los alumnos desesperados suban los archivos de sus tareas para ayudarles; esa primisa me obliga a pensar en 
+una situacion en paralela ya que cada tarea corresponde a un controlador diferente y cada pregunta respresenta a un hilo el cual debe realizar 
+la tarea de busqueda y analisis. Y aunque el sistema dice para varias tareas, ese no es el enfoque de momento; pensemos en pequeno primero 
+tratando de atacar una tarea a la vez (tal vez un poco rudimentario :/ pero funcional :D)
+
+El principal evento que se nos presenta, es que los hilos de pregutas traten de acceder al archvio de manera simultanea y escribir sus respuestas
+obtenidas (pero no lo permitiremos); ademas de que el controlador se pueda confundir por los diferentes accesos de las areas criticas y no pueda
+hacer bien su chamba de mantener a los hilos preguntas quietos. 
+
+
+c) ¿Hay eventos concurrentes para los cuales el ordenamiento relativo no resulta importante?
+
+No en realidad, el orden de llegada de las respuestas no nos resulta relevante siempre y cuando diferenciemos de manera correcta a las coincidencias
+obtenidas
