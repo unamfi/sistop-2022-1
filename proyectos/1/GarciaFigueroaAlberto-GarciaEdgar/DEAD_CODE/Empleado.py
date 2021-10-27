@@ -22,6 +22,7 @@ class Empleado(object):
         self.tienda.CajaRelease.acquire()
         self.tienda.CajaEmpleado.release()
         print("Empleado "+str(self.id)+" entrega ticket y producto a ")
+    
     def checarEstante(self):
         if self.tienda.estante<15:
             self.llamarProveedor()

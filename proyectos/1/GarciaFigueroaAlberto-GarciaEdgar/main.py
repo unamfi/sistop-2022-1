@@ -11,90 +11,115 @@ contador_personas=0
 mercancia=100
 
 #Administración de procesos
-estante_mutex= threading.Semaphore()
-entrada_mutex= threading.Semaphore()
+estante_mutex= threading.Semaphore(1)
+entrada_mutex= threading.Semaphore(1)
+salida_mutex= threading.Semaphore(1)
+caja_mutex= threading.Semaphore(1)
 suministro=threading.Event()
 caja=threading.Event()
+ticket=threading.Event()
 
 def runEmpleado(numC):
-    print("Empleado "+str(numC)+" se prepara para trabajar")
+    print(" ╬ Empleado "+str(numC)+" se prepara para trabajar")
 
 def runCliente(numC):
-    print("Cliente "+str(numC)+" solicitando entrar") 
+    print(" ┼ Cliente "+str(numC)+" solicitando entrar") 
 
 def runProveedor(numC):
     global mercancia, suministro
-    print("Proveedor "+str(numC)+" listo para despachar, esperando llamada...")
-    while(True):
-        estante_mutex.acquire()
-        if suministro:
-            print("Surtiendo estantes....")
+    print(" = El proveedor "+str(numC)+" está listo para despachar, esperando la llamada de empleado") 
+    suministro.wait(timeout=None)
+    while True:
+        if suministro.wait(timeout=None):
+            estante_mutex.acquire()
+            print(" = Estoy surtiendo los estantes con de la tienda")
             time.sleep(5)
             mercancia=100
+            flag=suministro.clear()
             estante_mutex.release()
-            suministro=False
+            
     
 
-def cobrar(numC,numE):
-    print("Empleado "+str(numE)+" cobra los articulos de cliente"+str(numC))
+#def cobrar(numC,numE):
+#    print("Empleado "+str(numE)+" cobra los articulos de cliente"+str(numC))
 
-def pagar(numC,numE):
+def pagar(numC):
+    global ticket
+    caja_mutex.acquire()
+    print(" ┼ El cliente "+str(numC)+" está pagando por sus articulos")
     caja.set()
-    print("Cliente "+str(numE)+" paga los articulos"+str(numC))
+    while True:
+        flag=ticket.wait()
+        if flag:
+            caja_mutex.release()
+            salir(numC)
+            break
 
-def solicitarMercancia(numE):
-    print("Llamando al prooveedor")
+# def solicitarMercancia(numE):
+#     print(" ╬ El empleado llama al prooveedor por más producto")
 
-def entregarMercancia():
-    print("El proveedor despacha mercancia")
+# def entregarMercancia():
+#     print("El proveedor despacha mercancia")
+
+def salir(num):
+    global contador_personas
+    print(" ┼ El cliente "+str(num)+ " ya compró y abandona la tienda")
+    salida_mutex.acquire()
+    contador_personas-=1
+    salida_mutex.release()
 
 def entrar(num):
-    print("El cliente "+str(num)+" entró a la tienda")
-    agarrar()
+    print(" ┼ El cliente "+str(num)+" entró a la tienda")
+    agarrar(num)
 
 
-def agarrar():
-    global mercancia,suministro
-    print("El cliente se decide a comprar algun objeto :0")
+def agarrar(num):
+    global mercancia
     viendo=random.randint(1,6)
-    despensa=random.randint(5,100)
     time.sleep(viendo)
+    print(" ┼ El cliente "+str(num)+" decide realizar una compra en la tienda")
+    despensa=random.randint(5,100)
+
     estante_mutex.acquire()
     mercancia=mercancia-despensa
-    print(mercancia)
     if mercancia<20:
-        print("----------"+str(mercancia))
         suministro.set()
     estante_mutex.release()
-    pagar()
+    pagar(num)
 
 def Cliente(num):
     global contador_personas
     runCliente(num)
     entrada_mutex.acquire()
     contador_personas+=1
-    entrada_mutex.release()
-    if contador_personas < 8:
+    if contador_personas < 4:
         entrar(num)
+    entrada_mutex.release()
+   
 
 def Empleado(num):
     global id, caja
     runEmpleado(num)
     while(True):
-        caja.
+        flag=caja.wait()
+        if flag:
+            print(" ╬ El empleado despacha el pedido del cliente")
+            ticket.set()
+            break
 
 def Proveedor(num):
     runProveedor(num)
 
-def Tienda():
-    print("")
 
-# Almacenamos los hilos de los elfos y renos
+# Almacenamos los hilos de actores
 hilos_clientes = []  
 hilos_empleados = []
 hilos_proveedores= []
 def main():
-    
+    print("     ╔"+"═"*21+"╗")
+    print("     ║ TIENDA DE DISFRACES ║")
+    print("     ╚"+"═"*21+"╝")
+
     for k in range (1):
         hilos_proveedores.append(threading.Thread(target=Proveedor, args=[k])) #Creamos los hilos de los proovedores
         hilos_proveedores[k].start()
