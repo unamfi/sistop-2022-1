@@ -5,6 +5,10 @@ import utilidades.Logger;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Representa la Cocina del establecimiento. Contiene un Horno donde se pondrán a hornear las pizzas y se llevará la
+ * cuenta del total de pizzas producidas por todos los Pizzeros. Al iniciar se creará el número de PIZZEROS indicados.
+ */
 public class Cocina implements Logger {
     //private boolean trabajando = true;
     private final AcumuladorSeguro pizzasProducidas = new AcumuladorSeguro();

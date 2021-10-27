@@ -10,7 +10,7 @@ import java.io.IOException;
  * Parámetros importantes del programa. Los valores se obtienen de un archivo JSON con los nombres de los parámetros en
  * minúsculas, como se muestra en los atributos de la clase. Si este archivo no se encuentra o no es posible abrirlo, se
  * utilizarán los valores por default. Además, todos los atributos son opcionales en el archivo, por lo que, de no
- * encontrarse alguno, se utilizará también su valor por default.
+ * encontrarse alguno, se utilizará también su valor por default. Todos los tiempos se encuentran en segundos.
  */
 @Data
 public class Constantes {

@@ -4,6 +4,13 @@ import utilidades.Logger;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Representa a un trabajador de la Cocina. Se puede considerar que es un productor, ya que está encargado de preparar
+ * las pizzas, meterlas al horno, esperar a que se horneen, y finalmente pasarlas al horno de pizzas listas (buffer).
+ * Los detalles de esta funcionalidad se encuentran implementados en el método ponerEnHorno de la clase Cocina. Además,
+ * es importante mencionar que un Pizzero siempre tratará de que el horno esté lleno, es decir, no parará a menos de que
+ * el Horno esté lleno.
+ */
 public class Pizzero implements Runnable, Logger {
     private final Cocina cocina;
     private final int id;

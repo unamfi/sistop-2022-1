@@ -2,6 +2,10 @@ import utilidades.Constantes;
 import utilidades.Impresor;
 import utilidades.Logger;
 
+/**
+ * Representa el Mostrador del establecimiento. Contendrá un cierto número de TrabajadoresEnMostrador, quienes se
+ * encargarán de atender a los Clientes en la fila.
+ */
 public class Mostrador implements Logger {
     private final Fila fila;
     private final Horno horno;

@@ -2,6 +2,10 @@ import utilidades.AcumuladorSeguro;
 import utilidades.Constantes;
 import utilidades.UtilidadesNumericas;
 
+/**
+ * Representa un Cliente a atender. Tendrá un ID único y un número de pizzasDeseadas generado de forma aleatoria con un
+ * valor entre 1 y MAX_PIZZAS_POR_CLIENTE.
+ */
 public class Cliente {
     private static final AcumuladorSeguro clientesGenerados = new AcumuladorSeguro();
     private final int id;

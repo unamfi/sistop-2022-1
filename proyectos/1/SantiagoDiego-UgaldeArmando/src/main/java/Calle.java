@@ -5,6 +5,11 @@ import utilidades.UtilidadesNumericas;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Funcionará como un productor y generará un número aleatorio de Clientes cada cierto tiempo
+ * (TIEMPO_ENTRE_LLEGADA_DE_CLIENTES), tomando en cuenta un número máximo de clientes a agregar en cada momento
+ * (MAX_CLIENTES_EN_PERIODO). Estos se agregarán a la Fila para que sean atendidos.
+ */
 public class Calle implements Logger {
     private final Fila fila;
 
