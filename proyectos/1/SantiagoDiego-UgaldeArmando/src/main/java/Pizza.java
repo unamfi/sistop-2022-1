@@ -7,7 +7,7 @@ public class Pizza {
     }
 
     public void marcarComoHorneada() {
-        cruda = true;
+        cruda = false;
     }
 
     @Override
