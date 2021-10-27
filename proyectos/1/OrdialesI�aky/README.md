@@ -1,18 +1,16 @@
 _Elaborado por: **Ordiales Caballero, Iñaky**_
 
-# Una situación cotidiana paralalizable
+# Una situación cotidiana paralalizable: "Centro Comercial"
 
-```
-_Fecha de entrega:_ 26 de octubre del 2021.
-```
+> _Fecha de entrega:_ 26 de octubre del 2021.
 
 ## Identificación y descripción del problema
 
 Como bien se menciona en las especificaciones del proyecto, existen muchos eventos 
 de la vida real que pueden ser modelados como procesos paralelos o concurrentes. 
 El hecho de que hubiera tantas opciones para escoger, pero que no fueran delimitadas 
-por el profesor, hizo que me tardara en poder elegir una que considerada adecuada. 
-Por mi mentre pasaron varias ideas como modelar la reta de fútbol en el parque, o 
+por el profesor, hizo que me tardara en poder elegir una que considerara adecuada. 
+Por mi mente pasaron varias ideas como modelar la reta de fútbol en el parque, o 
 trabajar con situaciones de tráfico. Pero finalmente decidí modelar el flujo de un 
 centro comercial en esta época de pandemia.
 
@@ -22,7 +20,7 @@ instaló un semáforo que define el riesgo que presenta la situación sanitaria 
 Según el color de estos semáforos (siendo verde el de menor peligro y rojo el de mayor 
 precaución) se crearon restricciones en el aforo permitido de los establecimientos 
 comerciales. Este se calcula como un porcentaje de su cupo máximo normal y por norma 
-no se puede rebasar. Fue esta situación la que decidí modelar en mi programa, el 
+no se puede rebasar. Fue esta situación por la que me decidí a modelar en mi programa, el 
 control de entrada de las personas a un centro comercial e individualmente a las 
 tiendas dentro de éste. 
 
@@ -57,8 +55,7 @@ en cuenta que no nos importa quién salga, pero sí saber cuándo lo hace.
 En un principio quise utilizar casi todas las herramientas que revisamos en clase, 
 porque todas se me hacen útiles al estudiarlas. Sin embargo, tuve que entender que no en 
 todas las situaciones se deben de utilizar. Y que es mejor una solución clara y sencilla 
-que una más compleja. Por lo tanto, utilicé solamente los siguientes mecanismos de 
-sincronización.
+que una más compleja. Por lo tanto, utilicé los siguientes mecanismos de sincronización.
 
 
 + Semáforos:
@@ -78,33 +75,79 @@ A groso modo los mecanismos antes mencionados se usaron para los siguientes cont
 de la simulación:
 
 
-- Torniquete: para simular la apertura y cierre de la puerta principal de la plaza. Esta 
+- **Torniquete**: para simular la apertura y cierre de la puerta principal de la plaza. Esta 
 la lleva a cabo el hilo que simula ser un agente de seguridad. Cuando se cumple una 
 condición, el agente abre el torniquete y los clientes pueden empezar a formarse y entrar 
 a la plaza.
 
-- Variable de condición: ésta se utilizó para despertar al agente de seguridad a la hora 
+- **Variable de condición**: ésta se utilizó para despertar al agente de seguridad a la hora 
 de abrir y cerrar el torniquete. El aviso se daba al inicio de la simulación y cuando 
 había pasado determinado tiempo. De este modo el agente no entraba en espera activa.
 
-- Mutex: se usaron principalmente para proteger las regiones críticas donde se modificaba 
+- **Mutex**: se usaron principalmente para proteger las regiones críticas donde se modificaba 
 las ventas o el número de cliente que se asignaba a cada persona. También se usó para las 
 tiendas donde sólo había un cajero disponible.
 
-- Multiplex: fueron los más importantes en mi implementación. Los usé para controlar el 
+- **Multiplex**: fueron los más importantes en mi implementación. Los usé para controlar el 
 aforo tanto en el centro comercial completo, como en las tiendas individualmente. Me 
 permitieron no llevar un contador, ya que solitos restringen el cupo máximo.
  
 
 ## Lógica de operación
 
-- Identificación del estado compartido (variables o estructuras globales)
+### Estado compartido
 
-- Descripción algorítmica del avance de cada hilo/proceso.
+El programa funciona principalmente con hilos clientes, fuera de ellos sólo se cuenta con el hilo 
+del main y el del agente de seguridad que abre y cierra. Existen variables globales que son 
+consultadas por todos los clientes como pueden ser el número de cliente, o las ventas de las tiendas 
+que se modifican cada vez que un cliente realiza una compra. Además de las áreas críticas para la
+obtención de un número de cliente, donde es importante que se protega para poder contabilizarlos 
+de forma adecuada. Mis variables compartidas serían _bool abierto_ , las ventas individuales de 
+cada tienda y _clientesAdentro_ la cuenta de los clientes que lograron entrar al centro comercial.
 
-- Descripción de la interacción entre ellos (sea mediante los mecanismos de sincronización 
-o de alguna otra manera).
+### Avance del proceso
 
++ Hilo **main**: su avance (dejando a un lado la parte gráfica) es muy simple y lineal. Primero 
+presenta al usuario las instrucciones, le pide los datos para la simulación y a partir de estos 
+inicializa los semaforos correspondientes, da valores a variables y crea al hilo agenteSeguridad. 
+Si este no se crea, finaliza main ya que este hilo es necesario para la simulación. Después pasa 
+a crear todos los hilos cliente, los cuales se atascan en un torniquete cerrado. Luego el main 
+despierta al agenteSeguridad, espera el tiempo indicado por el usuario y vuelve a despertar al 
+agenteSeguridad. Finalmente muestra los resultados en pantalla y finaliza el programa con 0.
+
++ Hilo **agenteSeguridad**: su proceso es el más reducido, una vez creado checa si la condición 
+de que el centro comercial esté abierto se cumple, como al inicio nunca es así se duerme. Ahí 
+espera a que alguien le avise un cambio y cuando lo hacen vuelve a checar la apertura del centro. 
+En esta ocasión sí estára abierto, entonces el libera el torniquete de entrada para los clientes 
+y vuelve a dormir esperando el cambio en la variable de condición. Finalmente será despertado 
+por útlima vez para dar un anuncio y cerrar el torniquete.
+
+* Hilo **cliente**: son los más activos e importantes. En un inicio al ser creados se atascan en 
+un torniquete cerrado, cuando este se abre van pasando uno por uno tomando su numero de cliente e
+intentan entrar al centro comercial. Si logran entrar, entonces pueden realizar de 1 a 3 compras 
+en diferentes tiendas. Pero una vez seleccionan una tienda para entrar (representada con una función) 
+deben de esperar a que un multiplex que limita la entrada se los permita. Cuando entren a la función 
+de una tienda, realizarán su compra y tendrán que volverse a formar en un multiplex para acceder a la 
+caja. Saliendo de la tienda irán a formarse a otra hasta acabar su número de compras. Inclusive cuando 
+se cierra el torniquete de la entrada, los hilos clientes terminarán sus compras y hasta después 
+saldrán y finalizarán. Por otro lado los que nunca lograron entrar en el cupo del centro comercial saldrán 
+directamente de la fila y finalizarán.
+
+
+### Interacción entre hilos
+
+En esta parte me parece muy interesante de mencionar la interacción que realiza el hilo main y mi 
+hilo de agente de seguridad. El hilo de seguridad es creado en el main, pero a la brevedad checa 
+una condición y se pone a dormir (espera inactiva). Hasta el momento en que el main le indica que 
+debe despertar mediante una variable de condición vuelve a despertar. Ahora la interacción es entre
+el hilo de seguridad y los clientes, ya que es éste primero el que libera el torniquete de entrada 
+para que los hilos clientes puedan avanzar en su proceso. 
+
+Las mayores interacciones que encontramos no son directas, sino mediante el uso o espera de los 
+semaforos del programa, ya que los diferentes hilos cliente se están constantemente esperando. Hay 
+muchos semaforos que no protegen un área protegida, sino que son la base de la simulación del 
+aforo máximo. Es con estos que interactúan entre sí, además de la lectura y modificación de las 
+variables globales que de una u otra forma los acaba afectando en sus tiempos y definición.
  
 
 ## Entorno de desarrollo
