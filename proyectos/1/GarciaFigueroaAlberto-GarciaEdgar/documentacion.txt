@@ -11,8 +11,8 @@ una vez terminado las actividades pendientes.
 
 Señalizar: Que los empleados esperen al proveedor antes de querer sumunistrar el estante
 Rendezvous: Un cliente no puede abandonar la tienda hasta que este haya pagado su producto, y el empleado generado el ticket.
-Multiplex: Limitar el aforo maximo de x personas a la tienda, solo se permite tener 3 clientes en el estante
-Torniquete: La persona que ingresa a la tienda
+---Multiplex: Limitar el aforo maximo de x personas a la tienda, solo se permite tener 3 clientes en el estante
+---Torniquete: La persona que ingresa a la tienda
 Apagador: Los clientes no tienen permitido acceder al area de caja
 Barrera: *Para poder cerrar la tienda, todos los que esten adentro no tienen que tener actividades pendientes
 Cola: 

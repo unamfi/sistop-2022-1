@@ -8,6 +8,9 @@ class Empleado(object):
     def __init__(self,id,tienda):
         self.id = id
         self.tienda=tienda
+        global CajaEmpleado
+        CajaEmpleado=threading.Semaphore(0)
+        
     
     def run(self):
         self.asignarTarea()
