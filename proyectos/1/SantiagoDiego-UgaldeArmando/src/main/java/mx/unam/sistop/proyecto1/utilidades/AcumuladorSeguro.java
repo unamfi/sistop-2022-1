@@ -1,4 +1,4 @@
-package utilidades;
+package mx.unam.sistop.proyecto1.utilidades;
 
 /**
  * Acumulador thread-safe.

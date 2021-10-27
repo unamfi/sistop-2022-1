@@ -1,5 +1,7 @@
-import utilidades.Impresor;
-import utilidades.Logger;
+package mx.unam.sistop.proyecto1;
+
+import mx.unam.sistop.proyecto1.utilidades.Impresor;
+import mx.unam.sistop.proyecto1.utilidades.Logger;
 
 /**
  * Representa un trabajador del mostrador. Atenderán a los Clientes llamando al primero de la Fila (para consumirlo)

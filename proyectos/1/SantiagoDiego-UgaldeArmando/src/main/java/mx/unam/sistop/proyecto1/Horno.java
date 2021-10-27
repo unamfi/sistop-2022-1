@@ -1,4 +1,6 @@
-import utilidades.*;
+package mx.unam.sistop.proyecto1;
+
+import mx.unam.sistop.proyecto1.utilidades.*;
 
 import java.util.concurrent.TimeUnit;
 

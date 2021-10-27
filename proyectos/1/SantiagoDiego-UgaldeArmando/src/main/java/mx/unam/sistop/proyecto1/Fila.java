@@ -1,6 +1,8 @@
-import utilidades.ColaSegura;
-import utilidades.Impresor;
-import utilidades.Logger;
+package mx.unam.sistop.proyecto1;
+
+import mx.unam.sistop.proyecto1.utilidades.ColaSegura;
+import mx.unam.sistop.proyecto1.utilidades.Impresor;
+import mx.unam.sistop.proyecto1.utilidades.Logger;
 
 /**
  * Representa la fila para ser atendido en el establecimiento y funcionará como un buffer infinito. Los clientes serán

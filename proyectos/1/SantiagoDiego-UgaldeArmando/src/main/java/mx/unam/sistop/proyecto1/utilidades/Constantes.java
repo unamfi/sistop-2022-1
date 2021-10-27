@@ -1,4 +1,4 @@
-package utilidades;
+package mx.unam.sistop.proyecto1.utilidades;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;

@@ -1,7 +1,9 @@
-import utilidades.Constantes;
-import utilidades.Impresor;
-import utilidades.Logger;
-import utilidades.UtilidadesNumericas;
+package mx.unam.sistop.proyecto1;
+
+import mx.unam.sistop.proyecto1.utilidades.Constantes;
+import mx.unam.sistop.proyecto1.utilidades.Impresor;
+import mx.unam.sistop.proyecto1.utilidades.Logger;
+import mx.unam.sistop.proyecto1.utilidades.UtilidadesNumericas;
 
 import java.util.concurrent.TimeUnit;
 

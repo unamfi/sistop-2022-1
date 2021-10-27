@@ -1,6 +1,8 @@
-import utilidades.Constantes;
-import utilidades.Impresor;
-import utilidades.Logger;
+package mx.unam.sistop.proyecto1;
+
+import mx.unam.sistop.proyecto1.utilidades.Constantes;
+import mx.unam.sistop.proyecto1.utilidades.Impresor;
+import mx.unam.sistop.proyecto1.utilidades.Logger;
 
 /**
  * Representa el Mostrador del establecimiento. Contendrá un cierto número de TrabajadoresEnMostrador, quienes se

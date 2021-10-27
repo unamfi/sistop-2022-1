@@ -1,3 +1,5 @@
+package mx.unam.sistop.proyecto1;
+
 public class Pizza {
     private final int id;
     private boolean cruda = true;

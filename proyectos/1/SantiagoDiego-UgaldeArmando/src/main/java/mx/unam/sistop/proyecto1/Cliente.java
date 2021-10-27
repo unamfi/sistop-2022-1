@@ -1,6 +1,8 @@
-import utilidades.AcumuladorSeguro;
-import utilidades.Constantes;
-import utilidades.UtilidadesNumericas;
+package mx.unam.sistop.proyecto1;
+
+import mx.unam.sistop.proyecto1.utilidades.AcumuladorSeguro;
+import mx.unam.sistop.proyecto1.utilidades.Constantes;
+import mx.unam.sistop.proyecto1.utilidades.UtilidadesNumericas;
 
 /**
  * Representa un Cliente a atender. Tendrá un ID único y un número de pizzasDeseadas generado de forma aleatoria con un

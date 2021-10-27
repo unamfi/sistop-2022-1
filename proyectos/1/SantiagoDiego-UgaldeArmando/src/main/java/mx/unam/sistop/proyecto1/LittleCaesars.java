@@ -1,4 +1,6 @@
-import utilidades.Constantes;
+package mx.unam.sistop.proyecto1;
+
+import mx.unam.sistop.proyecto1.utilidades.Constantes;
 
 public class LittleCaesars {
     public static void main(String[] args) {
