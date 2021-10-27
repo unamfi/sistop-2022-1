@@ -1,0 +1,64 @@
+Proyecto 1 
+Jimenez Rodrigo
+
+Entorno:
+Python 3.8.8
+IDE spyder
+Windows 10
+"Librerias" a considerar: 
+ -Curses: suele estar ya incluido en los modulos de Python.
+
+Para la ejecución del programa:
+ -El principal es 'interfaz.py' asi que este es el archivo a ejecutar.
+ -Es necesario hacerlo desde la terminal directamente o configurar el IDE para que haga la 
+  salida en una terminal ya que de otra forma puede presentar errores.
+ -Tener en el mismo directorio a 'config.py' y 'proyecto.py'
+
+Funcionamiento:
+ Se despliega un menu con dos opciones de ejecución y una de salida.
+ -Si se presiona '1' se mostrará la descripción del problema.
+ -Si se presiona '2' se mostrará la descripción grafica y textual de lo que sucede.
+  *En esta pantalla*
+  -Si se presiona 's' se detendrá la descripcíon grafica y el programa volverá al menú.
+ -Si se presiona 'q' se terminará la ejecucion del programa.
+
+Mecanismos de sincronización
+Para este problema, se utilizaron:
+-Semáforos (s) 
+ -debeLevantarse (s).  Es una señalización que le indica al bufón cuándo debe levantarse del trono. 
+ -puedeSentarse (s).   Es una especie de apagador (apagador cuando lo usa el rey y el cortesano; señalizador cuando lo usa el bufón) 
+                       que se prende y apaga por el primero y el último en entrar, respectivamente (ya sea cortesano o el rey), 
+                       pero únicamente si el bufón no está sentado. También lo prende y apaga el bufón al sentarse y levantarse. 
+ -puertaCortesanos (s). Es un torniquete/barrera para los cortesanos. Se puede cerrar o abrir dependiendo de cuántos cortesanos han pasado o cuántos 
+                        cortesanos hay esperando, respectivamente.
+ -bufonSeSienta (s). Es una señalización del bufón que indica a un actor (ya sea cortesano o rey) que el bufón se ha sentado luego de haber señalizado puedeSentarse.
+ -mutex (s). Es un mutex que protege todas las variables de condición. 
+
+-Variables de condición (vc). 
+ -reyPresente. Booleano que indica que el rey está presente en la sala.
+ -bufonSentado. Booleano que indica que el bufón está sentado.
+ -cortesanosPasados. Entero que cuenta los cortesanos que han pasado por la sala mientras el bufón no está sentado. 
+ -cortesanosEsperando. Entero que cuenta los cortesanos que están afuera esperando en la puerta. 
+ -presentes. Entero que cuenta a los presentes en la sala, cortesanos o rey, sin incluir al bufón.
+
+Éstos y los métodos de los hilos se encuentran en 'proyecto.py'
+También se tiene a los booleanos puertaCerrada y reySentado (auto explicativos) que no son requeridos para resolver problemas de concurrencia
+, pero son utilizados para visualizar el escenario en la interfaz.
+
+Recomendaciones:
+-No se detenga y vuelva a ejecutar desde el menú, es mejor detener la descripción, salir del programa y volverlo a ejecutar.
+-No se redimensione la pantalla, al menos no en el menú y la descrpcíon grafica.
+
+Comentarios:
+El programa ya funcionaba casi correctamente, solo hice mejoras minimas, casi imperceptibles.
+Había un problema que hacia que luego de cierto tiempo de ejecución el programa aparentemente se congelara, pero logre solucionarlo.
+La idea es tomada de semestres anteriores, la verdad no se me ocurria nada fuera de area de servicios como restaurantes, tiendas o autolavados. 
+
+
+
+
+
+
+
+
+
