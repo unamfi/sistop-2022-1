@@ -48,7 +48,6 @@ public class ColaSegura<T> {
     }
 
     public T desencolar() {
-        T desencolado;
         try {
             // Solo se puede desencolar un elemento si hay un elemento al menos.
             llenos.acquire();
@@ -59,7 +58,7 @@ public class ColaSegura<T> {
 
         // Desencolar el elemento en la cola interna de forma atómica.
         lockDeCola.lock();
-        desencolado = cola.remove();
+        T desencolado = cola.remove();
         lockDeCola.unlock();
 
         // Ahora hay otro espacio vacío.
