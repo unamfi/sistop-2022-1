@@ -8,4 +8,12 @@ public class Resultado {
     int tiempoEnEspera;
     int proporcionDePenalizacion;
     String representacion;
+
+    @Override
+    public String toString() {
+        return "Tiempo de respuesta (T): " + tiempoDeRespuesta
+                + "\nTiempo en espera (E): " + tiempoEnEspera
+                + "\nProporción de penalización (P): " + proporcionDePenalizacion
+                + "\n" + representacion;
+    }
 }
