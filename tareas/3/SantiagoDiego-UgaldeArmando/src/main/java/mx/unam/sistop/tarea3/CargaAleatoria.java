@@ -41,4 +41,16 @@ public class CargaAleatoria {
                 .mapToInt(Proceso::getTiempoDeEjecucion)
                 .reduce(0, Integer::sum);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        char nombreDelProceso = 'A';
+
+        for (Proceso proceso : procesos) {
+            stringBuilder.append(nombreDelProceso).append(": ").append(proceso).append("\n");
+            nombreDelProceso++;
+        }
+        return stringBuilder.toString();
+    }
 }
