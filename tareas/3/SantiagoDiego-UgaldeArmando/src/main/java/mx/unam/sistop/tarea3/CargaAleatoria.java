@@ -51,6 +51,8 @@ public class CargaAleatoria {
             stringBuilder.append(nombreDelProceso).append(": ").append(proceso).append("\n");
             nombreDelProceso++;
         }
+
+        stringBuilder.append("Tiempo total: ").append(getTiempoTotalDeEjecucion());
         return stringBuilder.toString();
     }
 }
