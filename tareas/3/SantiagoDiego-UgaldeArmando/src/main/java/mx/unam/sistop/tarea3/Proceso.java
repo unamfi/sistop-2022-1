@@ -6,9 +6,12 @@ import lombok.Value;
 public class Proceso {
     int tiempoDeLlegada;
     int tiempoDeEjecucion;
+    String id;
 
     @Override
     public String toString() {
-        return "Tiempo de llegada = " + tiempoDeLlegada + "\tTiempo de ejecución = " + tiempoDeEjecucion;
+        return id + ": "
+                + "Tiempo de llegada = " + tiempoDeLlegada
+                + "\tTiempo de ejecución = " + tiempoDeEjecucion;
     }
 }

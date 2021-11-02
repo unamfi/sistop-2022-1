@@ -20,7 +20,8 @@ public class CargaAleatoria {
         List<Proceso> procesosGenerados = new ArrayList<>();
 
         int tiempoTotal = 0, tiempoDeLlegadaAnterior = 0;
-        for (int i = 0; i < TOTAL_PROCESOS; i++) {
+        char c = 'A';
+        for (int i = 0; i < TOTAL_PROCESOS; i++, c++) {
             int tiempoDeLlegada = tiempoTotal <= 1 ?
                     0 : UtilidadesNumericas.obtenerEnteroInclusivo(tiempoDeLlegadaAnterior, tiempoTotal - 1);
             tiempoDeLlegadaAnterior = tiempoDeLlegada;
@@ -28,7 +29,7 @@ public class CargaAleatoria {
             int tiempoDeEjecucion = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(MAX_TIEMPO_DE_EJECUCION_POR_PROCESO);
             tiempoTotal += tiempoDeEjecucion;
 
-            Proceso proceso = new Proceso(tiempoDeLlegada, tiempoDeEjecucion);
+            Proceso proceso = new Proceso(tiempoDeLlegada, tiempoDeEjecucion, String.valueOf(c));
 
             procesosGenerados.add(proceso);
         }
@@ -45,11 +46,9 @@ public class CargaAleatoria {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        char nombreDelProceso = 'A';
 
         for (Proceso proceso : procesos) {
-            stringBuilder.append(nombreDelProceso).append(": ").append(proceso).append("\n");
-            nombreDelProceso++;
+            stringBuilder.append(proceso).append("\n");
         }
 
         stringBuilder.append("Tiempo total: ").append(getTiempoTotalDeEjecucion());
