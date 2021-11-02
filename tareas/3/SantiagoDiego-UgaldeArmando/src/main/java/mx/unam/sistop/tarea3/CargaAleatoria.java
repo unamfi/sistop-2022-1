@@ -18,7 +18,8 @@ public class CargaAleatoria {
 
         int tiempoTotal = 0, tiempoDeLlegadaAnterior = 0;
         for (int i = 0; i < TOTAL_PROCESOS; i++) {
-            int tiempoDeLlegada = UtilidadesNumericas.obtenerEnteroInclusivo(tiempoDeLlegadaAnterior, tiempoTotal - 1);
+            int tiempoDeLlegada = tiempoTotal == 0 ?
+                    0 : UtilidadesNumericas.obtenerEnteroInclusivo(tiempoDeLlegadaAnterior, tiempoTotal - 1);
             tiempoDeLlegadaAnterior = tiempoDeLlegada;
 
             int tiempoDeEjecucion = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(MAX_TIEMPO_DE_EJECUCION_POR_PROCESO);
