@@ -9,6 +9,9 @@ import java.util.List;
 @Value
 public class CargaAleatoria {
     private static final int MAX_TIEMPO_DE_EJECUCION_POR_PROCESO = 10;
+    /**
+     * Debe ser menor a 26, ya que se utilizan letras para nombrarlos.
+     */
     private static final int TOTAL_PROCESOS = 10;
 
     List<Proceso> procesos;
@@ -18,7 +21,7 @@ public class CargaAleatoria {
 
         int tiempoTotal = 0, tiempoDeLlegadaAnterior = 0;
         for (int i = 0; i < TOTAL_PROCESOS; i++) {
-            int tiempoDeLlegada = tiempoTotal == 0 ?
+            int tiempoDeLlegada = tiempoTotal <= 1 ?
                     0 : UtilidadesNumericas.obtenerEnteroInclusivo(tiempoDeLlegadaAnterior, tiempoTotal - 1);
             tiempoDeLlegadaAnterior = tiempoDeLlegada;
 
