@@ -10,7 +10,6 @@ import java.util.Map;
 public class FirstComeFirstServed {
     public static Resultado simular(CargaAleatoria cargaAleatoria) {
         Map<Proceso, Integer> tiemposDeFinalizacion = new HashMap<>();
-        int numProcesos = cargaAleatoria.getProcesos().size();
 
         StringBuilder representacion = new StringBuilder();
 
