@@ -1,0 +1,34 @@
+Tarea:Comparación de planificadores
+Unicamente son los FCFS, RR, RR4 y SPN.
+
+El lenguaje y entorno:
+Python en Sublime Text.
+
+¿Qué tengo que saber / tener / hacer para ejecutar su programa en mi computadora?
+Con el comando básico en cmd: py T3_DíazBryan.py
+
+La estrategia que funcionó:
+Para el desarrollo de la tarea, aplique el guardar atributos en un arreglo, como el nombre  y los tiempos de cada unos de los procesos,
+esto igual se pudo haber hecho en una clase proceso para esto de los atributos pero me parecio mas sencillo el usar las listas anidadas.
+
+FCFS:
+Para implementar el algoritmo lo mas complejo fue calcular las metricas de los tiempos, y pues resolvi agregando una constante que me 
+permitiera hacer diferencias de valores de esta forma sabría cuando termina un proceso y con ese dato podría deducir todos los demás.
+
+RR:
+Lo que más se me dificulto fue el asignar de un quantum en quantum a cada proceso pero haciendo algo similar al FCFS pues recorri en 
+linea cada uno de los procesos, y cada vez que el procesos ya había llegado se le daba restaba una unidad de tiempo requerido, y así 
+hasta que las unidades de tiempo que requería fueran cero, igual había un detalle y es que si el el proceso llega muy tarde de tal 
+manera que  el contador no pueda hacer tiempo mediante los procesos que llegan el contador se queda en el mismo valor y el while se 
+queda en un ciclo infinito, pero eso se arregla haciendo el tiempo de llegada menor o igual al tiempo solicitado de los procesos.
+
+RR4:
+Se aplica lo mismo que en RR, pero ahora se considera un intervalo de 4 para poder seleccionar a los hilos y darles paso a ocupar el 
+tiempo que requieren.
+
+SPN:
+En base al comportamiento que tiene, se parece al FCFS debido a que cuando el proceso inicia no se ve interrumpido, pero bajo un criterio
+de prioridad en cuanto al tiempo que requieren sea menor, entonces solo se hace una comprobación con los procesos y el que sea menor pasa
+a ejecutarse, y si hay un proceso que requiere mas tiempo y se ejecuta el de menor tiempo en su lugar, se debe de hacer un intercambio 
+para poder realizar la comprobación con el siguiente proceso y no perder el proceso actual.  
+
