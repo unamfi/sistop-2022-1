@@ -1,5 +1,7 @@
 package mx.unam.sistop.tarea3;
 
+import mx.unam.sistop.tarea3.planificadores.Planificadores;
+
 public class ComparadorDePlanificadores {
     private static final int RONDAS = 5;
 
