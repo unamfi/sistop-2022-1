@@ -3,17 +3,17 @@
 #include <time.h>
 
 
-// ESTRUCTURA PROCESO
+// ESTRUCTURA PROCESO                                                           
 
 struct Proceso{
   char nombre;
-  int llegada;     // El tiempo en el que llega
-  int requerido;   // Su tiempo de ejecución necesario
-  int inicio;      // Cuando llega a formarse
-  int final;       // Cuando termina ejecución
-  int tiempo;      // El tiempo que existió (final - llegada)
-  int espera;      // El tiempo que esper sin ejecutarse (tiempo - requerido)
-  float por;       // Tiemo tardado entre tiempo requerido
+  int llegada;     // El tiempo en el que llega                                 
+  int requerido;   // Su tiempo de ejecución necesario                          
+  int inicio;      // Cuando llega a formarse                                   
+  int final;       // Cuando termina ejecución                                  
+  int tiempo;      // El tiempo que existió (final - llegada)                   
+  int espera;      // El tiempo que esper sin ejecutarse (tiempo - requerido)   
+  float por;       // Tiemo tardado entre tiempo requerido                      
 };
 
 
@@ -28,7 +28,7 @@ void selfRR(struct Proceso*, int, int, int);
 
 
 
-// Algoritmos de administración de procesos
+// Algoritmos de administración de procesos                                     
 
 void fifo(struct Proceso *lista, int num){
 
@@ -40,22 +40,22 @@ void fifo(struct Proceso *lista, int num){
   int aux = 1;
 
   printf("FIFO:  ");
-  
+
   while(aux){
 
-    // Si no hay proceso
+    // Si no hay proceso                                                        
     if(!proceso && lista[i+1].llegada<=tiempo){
       i++;
       actual = lista[i];
       actual.inicio = tiempo;
       proceso = 1;
     }
-    
+
     printf("%c", actual.nombre);
 
     tiempo++;
-    
-    // Si ya acabó
+
+    // Si ya acabó                                                              
     if((tiempo-actual.inicio)==actual.requerido){
       proceso=0;
       actual.final = tiempo-1;
@@ -65,7 +65,7 @@ void fifo(struct Proceso *lista, int num){
 
       if(i==num-1)
 	aux=0;
-      
+
     }
   }
   printf("\n");
@@ -84,12 +84,12 @@ void shortNext(struct Proceso *lista, int num, int q){
 
 void highPNext(struct Proceso *lista, int num){
 
-  
+
 }
 
 void fb(struct Proceso *lista, int num, int n, int q){
 
-  
+
 }
 
 void selfRR(struct Proceso *lista, int num, int a, int b){
@@ -126,11 +126,11 @@ int main() {
     promedio+=listaEjemplo[i].requerido;
   }
   promedio /= i;
-  
-  fifo(listaEjemplo, 5);
-  
 
-  
+  fifo(listaEjemplo, 5);
+
+
+
 
   return 0;
 }
