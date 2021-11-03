@@ -11,8 +11,15 @@ public class Planificadores {
 
     public static void ejecutar(CargaAleatoria cargaAleatoria) {
         System.out.println(cargaAleatoria);
+
         Resultado resultadoFCFS = FirstComeFirstServed.simular(cargaAleatoria);
         System.out.println("\nFCFS:\n" + resultadoFCFS);
+
+        Resultado resultadoRR1 = RoundRobin.simular(cargaAleatoria, 1);
+        System.out.println("\nRR1:\n" + resultadoRR1);
+
+        Resultado resultadoRR4 = RoundRobin.simular(cargaAleatoria, 4);
+        System.out.println("\nRR4:\n" + resultadoRR4);
     }
 
     public static Resultado obtenerResultado(CargaAleatoria cargaAleatoria, Map<Proceso, Integer> tiemposDeFinalizacion,
