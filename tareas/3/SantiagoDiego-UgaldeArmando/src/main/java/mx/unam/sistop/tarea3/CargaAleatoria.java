@@ -12,7 +12,7 @@ public class CargaAleatoria {
     /**
      * Debe ser menor a 26, ya que se utilizan letras para nombrarlos.
      */
-    private static final int TOTAL_PROCESOS = 10;
+    private static final int TOTAL_PROCESOS = 5;
 
     List<Proceso> procesos;
 
