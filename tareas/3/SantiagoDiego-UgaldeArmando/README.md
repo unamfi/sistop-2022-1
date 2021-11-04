@@ -19,8 +19,7 @@ resultados.
 
 El código cuenta con comentarios pertinentes para explicar su funcionamiento cuando éste no es del todo obvio. La clase
 principal es **ComparadorDePlanificadores** y se puede tomar un enfoque top-down para comprender el programa partiendo
-de ésta. La lógica principal de los planificadores se encuentra en las clases respectivas en el paquete **
-planificadores**.
+de ésta. La lógica principal de los planificadores se encuentra en las clases respectivas en el paquete **planificadores**.
 
 ## Ejecución
 
