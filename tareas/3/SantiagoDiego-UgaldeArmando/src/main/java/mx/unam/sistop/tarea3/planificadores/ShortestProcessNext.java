@@ -18,12 +18,11 @@ public class ShortestProcessNext {
 
         StringBuilder representacion = new StringBuilder();
 
-        // Inicializar heap con procesos que llegan en el tiempo 0
-        minHeap.addAll(llegadas.get(0));
 
         int tiempoTotal = cargaAleatoria.getTiempoTotalDeEjecucion();
         int tiempo = 0;
         while (tiempo < tiempoTotal) {
+            minHeap.addAll(llegadas.get(tiempo));
             assert !minHeap.isEmpty();
             // Se escoge el proceso con menor tiempo de ejecución.
             Proceso aEjecutar = minHeap.poll();
@@ -31,12 +30,11 @@ public class ShortestProcessNext {
 
             // Se ejecuta por el total de su tiempo.
             for (int i = 0; i < tiempoDeEjecucion; i++) {
-                // Debido a que el heap se inicializó con los procesos que llegan en el tiempo 0, no se deben de
-                // agregar nuevamente.
-                if (tiempo != 0) {
+                // Debido a que el heap se inicializó con los procesos que llegan en el tiempo inicial de ejecución
+                // del proceso actual, no se deben de agregar nuevamente.
+                if (i != 0) {
                     // Se agregan todos los procesos que llegan en el tiempo actual.
-                    List<Proceso> llegan = llegadas.get(tiempo);
-                    minHeap.addAll(llegan);
+                    minHeap.addAll(llegadas.get(tiempo));
                 }
 
                 representacion.append(aEjecutar.getId());
