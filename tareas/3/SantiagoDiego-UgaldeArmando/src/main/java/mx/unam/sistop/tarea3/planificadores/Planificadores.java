@@ -5,6 +5,8 @@ import mx.unam.sistop.tarea3.Proceso;
 import mx.unam.sistop.tarea3.Resultado;
 import mx.unam.sistop.tarea3.utilidades.UtilidadesNumericas;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Planificadores {
@@ -46,5 +48,15 @@ public class Planificadores {
                 tiempoEnEsperaPromedio,
                 proporcionDePenalizacionPromedio,
                 representacion);
+    }
+
+    public static List<List<Proceso>> obtenerListaDeLlegadas(CargaAleatoria cargaAleatoria) {
+        int tiempoTotal = cargaAleatoria.getTiempoTotalDeEjecucion();
+        List<List<Proceso>> llegadas = new ArrayList<>();
+
+        for (int i = 0; i < tiempoTotal; i++) llegadas.add(new ArrayList<>());
+        for (Proceso proceso : cargaAleatoria.getProcesos()) llegadas.get(proceso.getTiempoDeLlegada()).add(proceso);
+
+        return llegadas;
     }
 }
