@@ -22,6 +22,9 @@ public class Planificadores {
 
         Resultado resultadoRR4 = RoundRobin.simular(cargaAleatoria, 4);
         System.out.println("\nRR4:\n" + resultadoRR4);
+
+        Resultado resultadoSPN = ShortestProcessNext.simular(cargaAleatoria);
+        System.out.println("\nSPN:\n" + resultadoSPN);
     }
 
     public static Resultado obtenerResultado(CargaAleatoria cargaAleatoria, Map<Proceso, Integer> tiemposDeFinalizacion,
