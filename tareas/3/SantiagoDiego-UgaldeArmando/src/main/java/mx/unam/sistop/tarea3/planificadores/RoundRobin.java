@@ -15,13 +15,17 @@ public class RoundRobin {
         List<List<Proceso>> llegadas = Planificadores.obtenerListaDeLlegadas(cargaAleatoria);
         StringBuilder representacion = new StringBuilder();
 
-        // Inicializar cola doble con procesos que llegan en el tiempo 0
-        Deque<Proceso> ejecutandose = new ArrayDeque<>(llegadas.get(0));
+        // Inicializar cola doble
+        Deque<Proceso> ejecutandose = new ArrayDeque<>();
 
         int tiempoTotal = cargaAleatoria.getTiempoTotalDeEjecucion();
         int tiempo = 0;
         while (tiempo < tiempoTotal) {
+            // Se agregan los procesos que llegan en el tiempo actual "al principio de la fila" para optimizar su
+            // tiempo de respuesta.
+            for (Proceso proceso : llegadas.get(tiempo)) ejecutandose.addLast(proceso);
             assert !ejecutandose.isEmpty();
+
             // Ejecutar el primer proceso en la cola de procesos ejecutándose.
             Proceso aEjecutar = ejecutandose.pollFirst();
             // El tiempo de ejecución será el round establecido. Si el tiempo de ejecución restante del proceso a
@@ -30,13 +34,13 @@ public class RoundRobin {
 
             // Ejecutar el proceso por el periodo establecido.
             for (int i = 0; i < periodo; i++) {
-                // Debido a que la cola se inicializó con los procesos que llegan en el tiempo 0, no se deben de
-                // agregar nuevamente.
-                if (tiempo != 0) {
+                // Debido a que la cola se inicializó con los procesos que llegan en el tiempo inicial del periodo,
+                // no se deben de agregar nuevamente.
+                if (i != 0) {
                     // Se agregan los procesos que llegan en el tiempo actual a la cola de procesos ejecutándose.
                     List<Proceso> llegan = llegadas.get(tiempo);
                     // Se ponen "al principio de la fila" para optimizar su tiempo de respuesta.
-                    for (Proceso proceso : llegan) ejecutandose.addFirst(proceso);
+                    for (Proceso proceso : llegan) ejecutandose.addLast(proceso);
                 }
 
                 representacion.append(aEjecutar.getId());
