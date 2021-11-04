@@ -4,6 +4,9 @@ import lombok.Value;
 
 @Value
 public class Proceso {
+    /**
+     * Se utilizan índices basados en 0.
+     */
     int tiempoDeLlegada;
     int tiempoDeEjecucion;
     String id;

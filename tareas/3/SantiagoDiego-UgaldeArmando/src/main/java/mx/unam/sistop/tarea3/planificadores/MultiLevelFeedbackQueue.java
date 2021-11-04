@@ -10,8 +10,10 @@ public class MultiLevelFeedbackQueue {
     private static final int MAX_COLAS = 10;
 
     public static Resultado simular(CargaAleatoria cargaAleatoria) {
+        // Se inicializan estructuras necesarias.
         Map<Proceso, Integer> tiemposDeFinalizacion = new HashMap<>();
-        Map<Proceso, Integer> tiemposDeEjecucionRestantes = Planificadores.inicializarTiemposDeEjecucionRestantes(cargaAleatoria);
+        Map<Proceso, Integer> tiemposDeEjecucionRestantes =
+                Planificadores.inicializarTiemposDeEjecucionRestantes(cargaAleatoria);
         List<List<Proceso>> llegadas = Planificadores.obtenerListaDeLlegadas(cargaAleatoria);
         StringBuilder representacion = new StringBuilder();
 
@@ -23,18 +25,20 @@ public class MultiLevelFeedbackQueue {
         int tiempoTotal = cargaAleatoria.getTiempoTotalDeEjecucion();
         int tiempo = 0;
 
-        // Cada unidad de tiempo se ejecuta un proceso que se encuentre en la primera cola no vacía.
-        // Antes de eso, se agregan los procesos que llegan en ese tiempo.
         while (tiempo < tiempoTotal) {
+            // Se agregan los procesos que llegan en el tiempo actual.
             List<Proceso> llegan = llegadas.get(tiempo);
             for (Proceso proceso : llegan)
                 primera.agregarProceso(proceso);
 
+            // En cada unidad de tiempo se ejecuta un proceso que se encuentre en la primera cola no vacía.
             int primeraNoVaciaIndice = Cola.encontrarPrimeraNoVacia(colas);
             Cola primeraNoVacia = colas.get(primeraNoVaciaIndice);
             Proceso aEjecutar = primeraNoVacia.sacarProceso();
-
             representacion.append(aEjecutar.getId());
+
+            // Actualizar el tiempo total de ejecución del proceso, además de su tiempo de ejecución en la cola en la
+            // que se encuentra,
             tiemposDeEjecucionRestantes.compute(aEjecutar, (k, v) -> v - 1);
             primeraNoVacia.decrementarTiempoDeEjecucionRestante(aEjecutar);
 
@@ -51,7 +55,9 @@ public class MultiLevelFeedbackQueue {
             if (primeraNoVacia.obtenerTiempoDeEjecucionRestanteEnCola(aEjecutar) == 0 && primeraNoVaciaIndice < MAX_COLAS - 1) {
                 primeraNoVacia.limpiarProceso(aEjecutar);
                 colas.get(primeraNoVaciaIndice + 1).agregarProceso(aEjecutar);
-            } else primeraNoVacia.regresarProceso(aEjecutar);
+            }
+            // No ha gastado su quantum en esta cola, se regresa a ella.
+            else primeraNoVacia.regresarProceso(aEjecutar);
 
             tiempo++;
         }
@@ -60,16 +66,29 @@ public class MultiLevelFeedbackQueue {
         return Planificadores.obtenerResultado(cargaAleatoria, tiemposDeFinalizacion, representacion.toString());
     }
 
-
+    /**
+     * Representa una cola dentro de la cola multinivel.
+     */
     public static class Cola {
+        /**
+         * Tiempo en el que se ejecutará un proceso en esta cola.
+         */
         private final int quantum;
         private final Deque<Proceso> procesos = new ArrayDeque<>();
+        /**
+         * Lleva la cuenta del tiempo restante para cada proceso que se encuentra en la cola.
+         */
         private final Map<Proceso, Integer> tiempoDeEjecucionRestanteEnCola = new HashMap<>();
 
         public Cola(int quantum) {
             this.quantum = quantum;
         }
 
+        /**
+         * @param lista Lista de colas donde se buscará.
+         * @return El índice de la primera cola no vacía en la lista proporcionada. Si todas están vacías, se retornará
+         * -1.
+         */
         public static int encontrarPrimeraNoVacia(List<Cola> lista) {
             for (int i = 0; i < lista.size(); i++) {
                 Cola cola = lista.get(i);
@@ -95,10 +114,21 @@ public class MultiLevelFeedbackQueue {
             return procesos.pollFirst();
         }
 
+        /**
+         * Elimina el mapeo existente del proceso indicado para llevar la cuenta de su tiempo de ejecución en esta
+         * cola.
+         *
+         * @param proceso Proceso del cual se eliminará el mapeo.
+         */
         public void limpiarProceso(Proceso proceso) {
             tiempoDeEjecucionRestanteEnCola.remove(proceso);
         }
 
+        /**
+         * Regresa el proceso que se sacó a la primera posición de la cola.
+         *
+         * @param proceso Proceso a regresar a la cola.
+         */
         public void regresarProceso(Proceso proceso) {
             procesos.addFirst(proceso);
         }

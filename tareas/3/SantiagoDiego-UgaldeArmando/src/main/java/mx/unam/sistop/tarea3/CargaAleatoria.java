@@ -20,13 +20,20 @@ public class CargaAleatoria {
         List<Proceso> procesosGenerados = new ArrayList<>();
 
         int tiempoTotal = 0, tiempoDeLlegadaAnterior = 0;
+        // Los procesos se nombrarán con letras del abecedario.
         char c = 'A';
         for (int i = 0; i < TOTAL_PROCESOS; i++, c++) {
+            /*
+            Se genera un nuevo proceso con un tiempo de llegada entre el tiempo de llegada anterior y el último
+            tiempo donde habrá un proceso por ejecutar. El objetivo de lo anterior es que en cualquier momento haya un
+            proceso a ejecutar.
+            */
             int tiempoDeLlegada = tiempoTotal <= 1 ?
                     0 : UtilidadesNumericas.obtenerEnteroInclusivo(tiempoDeLlegadaAnterior, tiempoTotal - 1);
             tiempoDeLlegadaAnterior = tiempoDeLlegada;
 
-            int tiempoDeEjecucion = UtilidadesNumericas.obtenerEnteroPositivoAleatorio(MAX_TIEMPO_DE_EJECUCION_POR_PROCESO);
+            int tiempoDeEjecucion =
+                    UtilidadesNumericas.obtenerEnteroPositivoAleatorio(MAX_TIEMPO_DE_EJECUCION_POR_PROCESO);
             tiempoTotal += tiempoDeEjecucion;
 
             Proceso proceso = new Proceso(tiempoDeLlegada, tiempoDeEjecucion, String.valueOf(c));
