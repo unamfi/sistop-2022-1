@@ -38,7 +38,7 @@ public class RoundRobin {
                 tiempo++;
             }
             tiemposDeEjecucionRestantes.compute(aEjecutar, (k, v) -> v - periodo);
-            if (tiemposDeEjecucionRestantes.get(aEjecutar) == 0) tiemposDeFinalizacion.put(aEjecutar, tiempo);
+            if (tiemposDeEjecucionRestantes.get(aEjecutar) == 0) tiemposDeFinalizacion.put(aEjecutar, tiempo - 1);
             else ejecutandose.addLast(aEjecutar);
         }
         assert ejecutandose.isEmpty();
