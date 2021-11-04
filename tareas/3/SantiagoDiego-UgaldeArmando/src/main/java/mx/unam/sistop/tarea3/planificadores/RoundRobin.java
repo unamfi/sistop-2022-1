@@ -9,13 +9,8 @@ import java.util.*;
 public class RoundRobin {
     public static Resultado simular(CargaAleatoria cargaAleatoria, int duracionDeRound) {
         Map<Proceso, Integer> tiemposDeFinalizacion = new HashMap<>();
-        Map<Proceso, Integer> tiemposDeEjecucionRestantes = new HashMap<>();
-        for (Proceso proceso : cargaAleatoria.getProcesos())
-            tiemposDeEjecucionRestantes.put(proceso, proceso.getTiempoDeEjecucion());
-
-        // Crear lista con listas de todos los procesos que llegan en determinado tiempo.
+        Map<Proceso, Integer> tiemposDeEjecucionRestantes = Planificadores.inicializarTiemposDeEjecucionRestantes(cargaAleatoria);
         List<List<Proceso>> llegadas = Planificadores.obtenerListaDeLlegadas(cargaAleatoria);
-
         StringBuilder representacion = new StringBuilder();
 
         // Inicializar cola doble con procesos que llegan en el tiempo 0

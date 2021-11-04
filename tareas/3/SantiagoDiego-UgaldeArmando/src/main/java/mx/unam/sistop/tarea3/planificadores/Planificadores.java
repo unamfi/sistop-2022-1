@@ -6,6 +6,7 @@ import mx.unam.sistop.tarea3.Resultado;
 import mx.unam.sistop.tarea3.utilidades.UtilidadesNumericas;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,5 +65,12 @@ public class Planificadores {
         for (Proceso proceso : cargaAleatoria.getProcesos()) llegadas.get(proceso.getTiempoDeLlegada()).add(proceso);
 
         return llegadas;
+    }
+
+    public static Map<Proceso, Integer> inicializarTiemposDeEjecucionRestantes(CargaAleatoria cargaAleatoria) {
+        Map<Proceso, Integer> tiemposDeEjecucionRestantes = new HashMap<>();
+        for (Proceso proceso : cargaAleatoria.getProcesos())
+            tiemposDeEjecucionRestantes.put(proceso, proceso.getTiempoDeEjecucion());
+        return tiemposDeEjecucionRestantes;
     }
 }
