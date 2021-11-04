@@ -25,6 +25,9 @@ public class Planificadores {
 
         Resultado resultadoSPN = ShortestProcessNext.simular(cargaAleatoria);
         System.out.println("\nSPN:\n" + resultadoSPN);
+
+        Resultado resultadoMLFQ = MultiLevelFeedbackQueue.simular(cargaAleatoria);
+        System.out.println("\nMLFQ:\n" + resultadoMLFQ);
     }
 
     public static Resultado obtenerResultado(CargaAleatoria cargaAleatoria, Map<Proceso, Integer> tiemposDeFinalizacion,
