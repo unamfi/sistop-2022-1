@@ -21,8 +21,7 @@ public class RoundRobin {
         int tiempoTotal = cargaAleatoria.getTiempoTotalDeEjecucion();
         int tiempo = 0;
         while (tiempo < tiempoTotal) {
-            // Se agregan los procesos que llegan en el tiempo actual "al principio de la fila" para optimizar su
-            // tiempo de respuesta.
+            // Se agregan los procesos que llegan en el tiempo actual.
             for (Proceso proceso : llegadas.get(tiempo)) ejecutandose.addLast(proceso);
             assert !ejecutandose.isEmpty();
 
@@ -39,7 +38,6 @@ public class RoundRobin {
                 if (i != 0) {
                     // Se agregan los procesos que llegan en el tiempo actual a la cola de procesos ejecutándose.
                     List<Proceso> llegan = llegadas.get(tiempo);
-                    // Se ponen "al principio de la fila" para optimizar su tiempo de respuesta.
                     for (Proceso proceso : llegan) ejecutandose.addLast(proceso);
                 }
 
@@ -51,7 +49,7 @@ public class RoundRobin {
             tiemposDeEjecucionRestantes.compute(aEjecutar, (k, v) -> v - periodo);
             // Si ya terminó de ejecutarse, se guarda su tiempo de finalización y no se vuelve a encolar.
             if (tiemposDeEjecucionRestantes.get(aEjecutar) == 0) tiemposDeFinalizacion.put(aEjecutar, tiempo - 1);
-                // Si aún no termina, se encola nuevamente pero "al final de la fila".
+                // Si aún no termina, se encola nuevamente.
             else ejecutandose.addLast(aEjecutar);
         }
         assert ejecutandose.isEmpty();
