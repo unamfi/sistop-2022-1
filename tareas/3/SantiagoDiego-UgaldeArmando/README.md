@@ -14,8 +14,7 @@ De igual forma, se implementó la generación de cargas de procesos aleatorias, 
 utilizando la carga presentada en las diapositivas del curso. Para el caso anterior, se obtuvieron los mismos resultados
 tanto de comportamiento como de métricas, excepto para el algoritmo RR1, donde se obtuvo un resultado diferente pero
 igualmente válido. Una vez realizadas las simulaciones con la carga presentada en las diapositivas, se realizan 5 rounds
-donde se generan cargas aleatorias en cada uno para efectuar las simulaciones de nueva cuenta y presentar sus
-resultados.
+donde se generan cargas aleatorias para efectuar las simulaciones de nueva cuenta y presentar los resultados.
 
 El código cuenta con comentarios pertinentes para explicar su funcionamiento cuando éste no es del todo obvio. La clase
 principal es **ComparadorDePlanificadores** y se puede tomar un enfoque top-down para comprender el programa partiendo
