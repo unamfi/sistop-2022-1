@@ -1,4 +1,5 @@
 # Tarea 3 Comparacion de planificadores
+# Autor: Moreno Peralta Angel Eduardo
 # Implementar FCFS,RR y SPN
 
 import random
@@ -77,12 +78,12 @@ def rr(lista,q):
 				if i[1] > 0:
 					for j in range(0,q):
 						a = str(i[2])
-						orden.append(a)#print(i[2],end='|')
+						orden.append(a)
 						interr_exe = interr_exe + 1
 				elif i[1] <= 0:
 					for j in range(0,q + i[1]):
 						a = i[2]
-						orden.append(a)#print(i[2],end='|')
+						orden.append(a)
 						interr_exe = interr_exe + 1
 					i[1] = 0
 					r.append(i)
@@ -183,7 +184,7 @@ def crearCargas():
 	
 	for i in range (0,NUM_CARGAS-1):
 		cargas = []
-		print("╔═════════════════════ RONDA "+ str(i+1) +" ═════════════════════╗")
+		print("╔═════════════════════════ RONDA "+ str(i+1) +" ═════════════════════════╗")
 		print()
 		for j in range(0,NUM_PROCESOS):
 			cargas.append(definir_proceso(PROCESOS[j]))
