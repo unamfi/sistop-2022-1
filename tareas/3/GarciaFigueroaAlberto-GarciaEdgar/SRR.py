@@ -1,27 +1,81 @@
-class SRR():
-    def __init__(self,pato,a,b):###a = nuevos , b =aceptados
-        super().__init__(pato)
-        self.a = a
-        self.b=b
-        self.top_new = 0
-        self.top_acc = 0
-        self.new = []
-        ###cola == self.acc
+from collections import deque
+import operator
+class SRR:
+    def __init__(self,ProcesoA,ProcesoB,ProcesoC,ProcesoD,ProcesoE): #Tiempos en donde entran al sistema
+        self.A=ProcesoA
+        self.B=ProcesoB
+        self.C=ProcesoC
+        self.E=ProcesoE
+        self.D=ProcesoD
+        self.T_total=0
+        self.P_total=0
+        self.E_total=0
+        self.TiempoTotal=0
+        self.Final = []
 
-    def siguiente_proceso(self,procesos_a_ejecutar):
-        to_add = []
-        if procesos_a_ejecutar:
-            self.new.extend([[x,0] for x in procesos_a_ejecutar]) ## new[proceso,valor_new]
-        if self.top_acc<=self.top_new or  (not self.cola and not self.anterior):
-            if not self.cola and not self.anterior:
-                self.top_acc=self.top_new
-            to_add = [ i[0] for i in filter(lambda x: x[1]>=self.top_acc,self.new)] ##Se agregan solo aquellos que cumplan con uno de los dos criterios
-            self.new = list(filter(lambda x: x[1]<self.top_acc,self.new))
-        #letra,tiempo = RR.siguiente_proceso(self,to_add)###ejecutamos la RR
-        if self.new:
-            self.new = [ [x,y+self.a] for x,y in self.new] ### sumamos al de new
-            self.top_new = self.new[0][1]
-        else:
-            self.top_new = 0
-        self.top_acc+=self.b
-        #return letra,tiempo
+    def run(self, a = 1, b = 2): 
+        procesos=[self.A,self.B,self.C,self.D,self.E]
+        procesosBase=[self.A,self.B,self.C,self.D,self.E]
+
+        sortedProcesses=sorted(procesos, key=operator.attrgetter("tiempo_de_llegada"))
+        terminados=[]
+        queueAceptados = []
+        prioridadAceptados = 0 
+        queueNuevos = []    
+        queueAceptados.append(sortedProcesses.pop(0))
+        while queueAceptados:
+            proc = queueAceptados.pop(0)
+            print(str(proc.id)+''+str(proc.tRestantes))
+            if proc.tRestantes == proc.t:
+                proc.inicio = self.TiempoTotal
+            self.TiempoTotal += 1
+            self.Final += proc.id
+            proc.tRestantes -= 1 
+            prioridadAceptados += a 
+            for x in procesosBase: 
+                if(x.tiempo_de_llegada == self.TiempoTotal):
+                    procNuevo= (sortedProcesses.pop(0))
+                    print("Encontre a "+str(procNuevo.id))
+            if(procNuevo):
+                queueNuevos.append(procNuevo)
+                
+            if (queueNuevos and (b/prioridadAceptados == 0)):
+                queueAceptados.append(queueNuevos.pop(0))
+            if proc.tRestantes:
+                
+                queueAceptados.append(proc)
+                
+            else:
+                
+                proc.fin = self.TiempoTotal
+                terminados.append(proc)
+
+            if not queueAceptados and queueNuevos:
+                
+                queueAceptados.append(queueNuevos.pop(0))
+    
+    def listDiaf(self):
+        for i in self.Final:
+            print(str(i) , end = '')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

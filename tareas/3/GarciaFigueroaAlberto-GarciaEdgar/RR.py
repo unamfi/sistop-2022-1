@@ -18,21 +18,17 @@ class RR:
         procesos=[self.A,self.B,self.C,self.D,self.E]
         procesosBase=[self.A,self.B,self.C,self.D,self.E]
         
-
+        #PROCESOS ORDENADOS
         sortedProcesses=sorted(procesos, key=operator.attrgetter("tiempo_de_llegada"))
-    
         queueProcesos = []
-    
         for i in sortedProcesses:
             queueProcesos.append(i)
-
+        
         primero = True
-        
-        
+        terminados=[]
+        #COLA CON PROCESO EN ESPERA
         waiting=[]
         waiting.append(sortedProcesses.pop(0))
-
-        terminados=[]
         
         while waiting:
             proc = waiting.pop(0)
@@ -40,6 +36,7 @@ class RR:
                 proc.inicio = proc.tiempo_de_llegada
                 primero = False
             banderaQuantum = 0
+            #SE REQUIERE QUE NO HAYA EXCEDIDO EL QUANTUM Y QUE AÚN LE FALTE TIEMPO PARA TERMINAR EL PROCESO
             while (banderaQuantum < self.quantum and proc.tRestantes > 0):
                 banderaQuantum += 1
                 proc.tRestantes-=1
@@ -47,14 +44,17 @@ class RR:
                 self.Final += proc.id
                 for x in procesosBase: ##BUSCA EN LA BASE DE LOS PROCESOS SI ALGUNO TIENE SU TIEMPO DE LLEGADA EN EL QUANTUM ACTUAL PARA AGREGARLO A LA COLA DE PROCESOS EN ESPERA
                     if(x.tiempo_de_llegada == self.TiempoTotal):
-                        waiting.append(sortedProcesses.pop(0))
+                        try:
+                            waiting.append(sortedProcesses.pop(0))
+                        except(IndexError):
+                            print("Somos estudiantes, Parece que algo malo paso")
             if proc.tRestantes: ##SI LE FALTA TIEMPO DE EJECUCIÓN SE VUELVE A AGREGAR A LA COLA DE PROCESOS PENDIENTES
                 waiting.append(proc)
             else:
                 proc.fin= self.TiempoTotal
                 terminados.append(proc)
         
-        
+        #SE LLENAN LOS PARAMETROS CALCULADOS DE LOS PROCESOS
         for i in terminados:
             i.T =i.fin - i.tiempo_de_llegada
             i.E = i.T -i.t

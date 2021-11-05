@@ -36,10 +36,13 @@ class SPN:
                 self.Final += proc.id
                 for x in procesosBase:
                     if(x.tiempo_de_llegada == self.TiempoTotal):
-                        waiting.append(sortedProcesses.pop(0))
+                        try:
+                            waiting.append(sortedProcesses.pop(0))
+                        except(IndexError):
+                            print("Somos estudiantes, Parece que algo malo paso")
             proc.fin= self.TiempoTotal
             terminados.append(proc)
-            waiting = sorted(waiting, key=operator.attrgetter("t")) 
+            waiting = sorted(waiting, key=operator.attrgetter("t")) #SE ORDENA CON BASE AL ATRIBUTO t DE PROCESO PARA IRSE DESENCOLANDO Y REALIZANDP LOS PROCESOS 
 
         for i in terminados:
             i.T =i.fin - i.tiempo_de_llegada

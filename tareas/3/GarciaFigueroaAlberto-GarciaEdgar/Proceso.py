@@ -9,6 +9,3 @@ class Proceso:
         self.E=0
         self.P=0
         self.tRestantes = t
-
-    def getTiempoLlegada(self):
-        return self.tiempo_de_llegada
