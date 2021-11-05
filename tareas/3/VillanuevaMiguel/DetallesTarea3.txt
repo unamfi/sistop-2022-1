@@ -1,0 +1,15 @@
+Algoritmos de planeación
+-algoritmos implementados
+*FIFO
+*RR(Quantum=1)
+*SPN
+
+-lenguaje y entorno.
+El programa está en Python versión (3.7.9) y el entorno en el que lo desarrolle fue Spyder
+
+-Ejecución
+Lo que necesita para ejecutar el programa es un IDE de Python o en su defecto ejecutarlo desde consola
+
+-observaciones
+lo que pude visualizar en mi código es que todavía hay un error en cuestión al cálculo correcto del tiempo total del SPN.
+
