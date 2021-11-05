@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from process import Process
 from fcfs import Fcfs #, Rr, Spn, Utilities, Fb
-from roundrobin import RoundRobin
+from rr import RoundRobin
 from spn import Spn
 import random, copy
 

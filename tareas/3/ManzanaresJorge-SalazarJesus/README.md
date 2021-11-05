@@ -1,6 +1,6 @@
 # Tarea 3. Sistemas Operativos
-### Manzanares Peña Jorge Luis
-### Salazar Domínguez Jesús Eduardo
+- Manzanares Peña Jorge Luis
+- Salazar Domínguez Jesús Eduardo
 
 
 ## Requisitos para la ejecución

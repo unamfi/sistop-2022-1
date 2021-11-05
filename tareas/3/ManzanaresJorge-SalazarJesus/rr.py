@@ -1,10 +1,9 @@
 from scheduler import Scheduler
 from collections import deque
-import numpy as np
 
 class RoundRobin(Scheduler):
     name = "Round Robin (RR)"
-    def __init__(self,procesos=[],quantum=1,):
+    def __init__(self,procesos=[],quantum=1):
         self.ejecutados = []
         self.ejecutados_visual = ""
         self.getMaxT(procesos)

@@ -1,6 +1,5 @@
 from scheduler import Scheduler
 from collections import deque
-import numpy as np
 
 class Spn(Scheduler):
     name = "Shortest Process Next (SPN)"

@@ -1,6 +1,5 @@
 from scheduler import Scheduler
 from collections import deque
-import numpy as np
 
 class Fcfs(Scheduler):
     name = "First Come First Serve (FCFS)"
