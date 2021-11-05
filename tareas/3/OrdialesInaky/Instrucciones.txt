@@ -1,0 +1,31 @@
+
+Tarea 3:
+
+Elaborado por Iñaky Ordiales Caballero para la materia de Sistemas Operativos.
+Profesor: Gunnar Wolf
+
+
+Instrucciones de ejecución:
+
+La tarea fue elaborada en c++, por lo que su manera de compilar y ejecutar es la siguiente:
+
+Compilación: 
+
+	g++ -o t3 tarea3.cpp
+
+Ejecución:
+	
+	./t3
+
+
+
+Comentarios:
+
+La lógica de la tarea me pareció muy interesante, pero al final ya estaba muy cansado de 
+pelearme con la implementación. En pruebas individuales y con la carga de clase me funcio-
+naban bien todos los algoritmos, pero después de acabarlos y seguir probando encontré varios
+problemas de violación de segmento (curioso que justo lo estemos viendo en clase. Entiendo
+qué es, pero aún así no pude depurarlo). Al final pude hacer que funcionaran bien todos 
+excepto FB que de repente tenia el error de violación de segmento, por lo que en el código
+entregado, viene comentada la parte donde se invocaba para evitar problemas.
+
