@@ -1,14 +1,19 @@
+from scheduler import Scheduler
 from collections import deque
 import numpy as np
 
-class RoundRobin:
-    def __init__(self,quantum,procesos=[]):
-        self.rr_queue=deque([procesos[0]])
-        self.ejecutados_visual = ""
+class RoundRobin(Scheduler):
+    name = "Round Robin (RR)"
+    def __init__(self,procesos=[],quantum=1,):
         self.ejecutados = []
+        self.ejecutados_visual = ""
+        self.getMaxT(procesos)
+        self.rr_queue=deque([procesos[0]])
         self.t = self.rr_queue[0].arrvl_time
         self.quantum = quantum
+        self.name+=" con quantum = "+str(self.quantum)
         self.procesos = procesos[1:]
+        
     
     def check_for_new_process(self):
         for i in self.procesos:
@@ -17,11 +22,8 @@ class RoundRobin:
                 self.procesos.remove(i)
 
     def execute(self):
-        while len(self.rr_queue)>0:
-            if self.rr_queue[0].arrvl_time > self.t:
-                self.ejecutados_visual+='='     
-                self.t += 1
-            else:
+        while self.t < self.max_t:
+            if self.rr_queue:
                 ejecutando = self.rr_queue.popleft()
                 timeLeft = ejecutando.timeLeft
                 if ejecutando.execute(self.quantum):
@@ -33,14 +35,7 @@ class RoundRobin:
                     self.ejecutados_visual += self.quantum*ejecutando.id
                     self.t+=self.quantum
                     self.procesos.append(ejecutando)
-                self.check_for_new_process()                
-
-    def results(self):
-        T=0
-        for i in self.ejecutados:
-            T+= (i.compl_time - i.arrvl_time)
-        T = np.mean(T)/len(self.ejecutados)
-        print(T)
-
-        print(self.ejecutados_visual)
-    
+            else:
+                self.emptyExec()
+            self.check_for_new_process()
+                               
