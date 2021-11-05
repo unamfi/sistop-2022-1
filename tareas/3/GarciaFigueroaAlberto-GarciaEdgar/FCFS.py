@@ -14,32 +14,30 @@ class FCFS:
 
     def run(self):
         procesos = deque()
-        T=0
-        E=0
         fin_anterior=0
         primero = True
         procesos=[self.A,self.B,self.C,self.D,self.E]
         sortedProcesses=sorted(procesos, key=operator.attrgetter("tiempo_de_llegada"))
-        for i in sortedProcesses:
+        for proc in sortedProcesses:
             if(primero):
-                i.inicio = i.tiempo_de_llegada
-                i.fin = i.t
-                i.T = i.t
-                i.E = i.tiempo_de_llegada
+                proc.inicio = proc.tiempo_de_llegada
+                proc.fin = proc.t
+                proc.T = proc.t
+                proc.E = proc.tiempo_de_llegada
                 primero = False
-                fin_anterior = i.fin
-                i.P = i.T / i.t
+                fin_anterior = proc.fin
+                proc.P = proc.T / proc.t
             else:
-                i.inicio= fin_anterior
-                i.fin = i.inicio + i.t
-                i.T = i.inicio - i.tiempo_de_llegada + i.t
-                i.E =  i.inicio - i.tiempo_de_llegada
-                fin_anterior = i.fin
-                i.P = i.T / i.t
-            self.T_total= self.T_total + i.T
-            self.E_total= self.E_total + i.E
-            self.P_total= self.P_total + i.P
-            print(i.id * i.t , end = '')
-        print("\nEL valor de T"+str(self.T_total/len(procesos)))
-        print("EL valor de E"+str(self.E_total/len(procesos)))
-        print("EL valor de P"+str(self.P_total/len(procesos)))
+                proc.inicio= fin_anterior
+                proc.fin = proc.inicio + proc.t
+                proc.T = proc.inicio - proc.tiempo_de_llegada + proc.t
+                proc.E =  proc.inicio - proc.tiempo_de_llegada
+                fin_anterior = proc.fin
+                proc.P = proc.T / proc.t
+            self.T_total= self.T_total + proc.T
+            self.E_total= self.E_total + proc.E
+            self.P_total= self.P_total + proc.P
+            print(proc.id * proc.t , end = '')
+        print("\nEL valor de T:"+str(self.T_total/len(procesos)))
+        print("EL valor de E:"+str(self.E_total/len(procesos)))
+        print("EL valor de P:"+str(round((self.P_total/len(procesos)),2)))

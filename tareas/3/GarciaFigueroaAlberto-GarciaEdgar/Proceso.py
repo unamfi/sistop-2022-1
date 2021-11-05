@@ -1,5 +1,5 @@
 class Proceso:
-    def __init__(self,t,tiempo_de_llegada,id):
+    def __init__(self,tiempo_de_llegada,t,id):
         self.t=t
         self.tiempo_de_llegada=tiempo_de_llegada
         self.id=id
@@ -8,6 +8,7 @@ class Proceso:
         self.T=0
         self.E=0
         self.P=0
+        self.tRestantes = t
 
     def getTiempoLlegada(self):
         return self.tiempo_de_llegada
