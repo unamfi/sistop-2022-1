@@ -1,25 +1,11 @@
+from Proceso import Proceso
+from FCFS import FCFS
 def main():
-    repite=True
-    while(repite):
-        print("Bienvenido, seleccione el algoritmo que desee que se analice")
-        print("1.- Algoritmo FCFS")
-        print("2.- Algoritmo RR")
-        print("3.- Algoritmo SPN")
-        print("4.- Algoritmo SRR")
-        print("5.- Salir del programa")
-        a=int(input("-->"))
-        if (a==1):
-            print("Se hace FCFS")
-        elif (a==2):
-            print("Se hace RR")
-        elif (a==3):
-            print("Se hace SPN")
-        elif (a==4):
-            print("Se hace SRR")
-        elif (a==5):
-            repite=False
-        else:
-            print("Vuelva a introducir un valor")
-            a=int(input("-->"))
-        
+    procesoA=Proceso(3,0,"A")
+    procesoB=Proceso(5,1,"B")
+    procesoC=Proceso(2,3,"C")
+    procesoD=Proceso(5,9,"D")
+    procesoE=Proceso(5,12,"E")
+    AlgoritmoCola=FCFS(procesoA,procesoB,procesoC,procesoD,procesoE)
+    AlgoritmoCola.run()
 main()
