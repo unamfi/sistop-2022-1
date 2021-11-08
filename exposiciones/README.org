@@ -11,13 +11,13 @@
   como lo refleja la rúbrica, obtiene una calificación un poco más alta)
   el que ustedes me planteen los temas de su interés.
 
-  |-------+--------------------+-----------------------------------------------+-------+------------+-----------+------------+---|
-  | Fecha | Tema               | Integrantes                                   | Video | Documentos | Preguntas | Evaluación |   |
-  |-------+--------------------+-----------------------------------------------+-------+------------+-----------+------------+---|
-  |       | UEFI               | Santos Albañil Morteo                         |       |            |           |            |   |
-  |       | Heartbleed         | Ricardo Carrillo                              |       |            |           |            |   |
-  |       | SPECTRE y Meltdown | Jesús Eduardo Salazar y Jorge Luis Manzanares |       |            |           |            |   |
-  |-------+--------------------+-----------------------------------------------+-------+------------+-----------+------------+---|
+  |--------+--------------------+-----------------------------------------------+-------+------------+-----------+------------+---|
+  | Fecha  | Tema               | Integrantes                                   | Video | Documentos | Preguntas | Evaluación |   |
+  |--------+--------------------+-----------------------------------------------+-------+------------+-----------+------------+---|
+  |        | UEFI               | Santos Albañil Morteo                         |       |            |           |            |   |
+  | 16/nov | Heartbleed         | Ricardo Carrillo y Lucero de la Cruz          |       |            |           |            |   |
+  |        | SPECTRE y Meltdown | Jesús Eduardo Salazar y Jorge Luis Manzanares |       |            |           |            |   |
+  |--------+--------------------+-----------------------------------------------+-------+------------+-----------+------------+---|
   #+TBLFM: 
 
 * Rúbrica de evaluación
