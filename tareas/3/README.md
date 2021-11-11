@@ -85,6 +85,6 @@ formal.
 Hagan sus entregas siguiendo los lineamientos que hemos ido revisando
 a lo largo de las prácticas 1, 2 y 3.
 
-<!-- ## Calificaciones -->
+## Calificaciones
 
-<!-- Pueden ver [las calificaciones a sus entregas aquí](./revision.org). -->
+Pueden ver [las calificaciones a sus entregas aquí](./revision.org).

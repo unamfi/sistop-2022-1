@@ -1,0 +1,249 @@
+* Revisión de la tarea #3
+
+  [[./README.md][Leer el planteamiento]]
+
+** Ricardo Carrillo
+- Documentación :: /No entregada/
+- Archivos :: [[./CarrilloRicardo/t3.py][t3.py]]
+- Comentarios ::
+  - De los mecanismos básicos, no entregaste /Ronda/
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓ (parcial)
+  - Esquema visual :: ✗
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 6
+
+** Raul Cruz
+- Documentación :: [[./CruzRaul/Documentacion.pdf][Documentacion.pdf]]
+- Archivos :: [[./CruzRaul/comparacion_planificadores.py][comparacion_planificadores.py]]
+- Comentarios ::
+  - Hice un par de pruebas viendo la ejecución de cargas aleatorias
+    con tu implementación de =rr1()= y =rr4()=, y /me parece/ que el
+    orden en que planificó los procesos es correcto
+    - Ya, también encontré casos en que se queda sin salir del cálculo
+    - ¿Será que el error que refieres se debe a que a veces generas
+      conjuntos de procesos con /hoyos/ de inactividad entre ellos?
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 9
+
+** Bryan Díaz
+- Documentación :: [[./DíazBryan/T3_Notas.txt][T3_Notas.txt]]
+- Archivos :: [[./DíazBryan/T3_DíazBryan.py][T3_DíazBryan.py]]
+- Comentarios ::
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 9
+
+** Nestor Fuerte y Erick Vazquez
+- Documentación :: /No entregada/
+- Archivos :: [[./FuerteNestor-VazquezErick/planificacion_proc.py][planificacion_proc.py]]
+- Comentarios ::
+  - ¡Les faltó implementar SPN!
+  - ¡Muy bien! Se dieron cuenta que podrían tener que implementar
+    /huecos/ si los conjuntos de procesos autogenerados no son
+    contiguos
+    - Esto llevo, sin embargo, a un pequeño bug en las funciones de
+      =ronda=: Al iniciar la evaluación de la lista, insertan un tick
+      de espera para =t=0=:
+      #+begin_src text
+	Ronda 0, tabla diapositivas:
+	 A:0 t: 3; B:1 t: 5; C:3 t: 2; D:9 t: 5; E:12 t: 5;
+
+	FCFS: T=6.20, E=2.20, P=1.74
+	AAABBBBBCCDDDDDEEEEE
+
+	RR1: T=7.60, E=3.60, P=1.98
+	nABABCABCBDBDEDEDEDEE
+
+	RR4: T=7.20, E=3.20, P=1.88
+	nAAABBBBCCBDDDDEEEEDE
+      #+end_src
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 8.5
+
+** Alberto Garcia Figueroa y Edgar Garcia
+- Documentación :: [[./GarciaFigueroaAlberto-GarciaEdgar/Prueba_1.png][Prueba_1.png]], [[./GarciaFigueroaAlberto-GarciaEdgar/Prueba_2.png][Prueba_2.png]], [[./GarciaFigueroaAlberto-GarciaEdgar/Prueba_3.png][Prueba_3.png]], [[./GarciaFigueroaAlberto-GarciaEdgar/readme.md][readme.md]]
+- Archivos :: [[./GarciaFigueroaAlberto-GarciaEdgar/FCFS.py][FCFS.py]], [[./GarciaFigueroaAlberto-GarciaEdgar/Proceso.py][Proceso.py]], [[./GarciaFigueroaAlberto-GarciaEdgar/RR.py][RR.py]], [[./GarciaFigueroaAlberto-GarciaEdgar/SPN.py][SPN.py]], [[./GarciaFigueroaAlberto-GarciaEdgar/SRR.py][SRR.py]], [[./GarciaFigueroaAlberto-GarciaEdgar/Tarea3.py][Tarea3.py]]
+- Comentarios ::
+  - La planificación de un conjunto de procesos debe tomar el mismo
+    tiempo (las diferencias son de /percepción/ entre procesos
+    únicamente). viendo la siguiente ejecución, pueden ver por la mera
+    duración total que /algo/ anda mal:
+    #+begin_src text
+      ALGORITMO FCFS
+      AABBBDDDDCCCCCCCCEEE
+      EL valor de T:10.0
+      EL valor de E:6.0
+      EL valor de P:2.58
+      ALGORITMO RR
+      ABADBDBDD
+
+      EL valor de T:6.333333333333333
+      EL valor de E:3.3333333333333335
+      EL valor de P:2.03
+      ALGORITMO SPN
+      AABBBDDDD
+
+      EL valor de T:5.333333333333333
+      EL valor de E:2.3333333333333335
+      EL valor de P:1.64
+    #+end_src
+    - En esta ejecución, parece que simplemente omitió a =D= y =E=; en
+      otras ejecuciones que probé, los ejecuta, pero por menor tiempo
+  - Veo que /intentaron/ (aunque no funcionó) la implementación de
+    =SRR=. ¡Muy bien!
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 9
+
+** Rodrigo Jimenez
+- Documentación :: /No entregada/
+- Archivos :: [[./JimenezRodrigo/Tarea3.py][Tarea3.py]]
+- Comentarios ::
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 9
+
+** Jorge Manzanares y Jesus Salazar
+- Documentación :: [[./ManzanaresJorge-SalazarJesus/README.md][README.md]]
+- Archivos :: [[./ManzanaresJorge-SalazarJesus/fcfs.py][fcfs.py]], [[./ManzanaresJorge-SalazarJesus/main.py][main.py]], [[./ManzanaresJorge-SalazarJesus/process.py][process.py]], [[./ManzanaresJorge-SalazarJesus/rr.py][rr.py]], [[./ManzanaresJorge-SalazarJesus/scheduler.py][scheduler.py]], [[./ManzanaresJorge-SalazarJesus/spn.py][spn.py]]
+- Comentarios ::
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 9
+
+** Carlos Mendoza
+- Documentación :: [[./MendozaCarlos/Tarea3_Documentacion.pdf][Tarea3_Documentacion.pdf]]
+- Archivos :: [[./MendozaCarlos/Tarea3.py][Tarea3.py]]
+- Comentarios ::
+  - ¡No le eches la culpa al IDE! Si tu programa se pasma... Es cosa
+    tuya, cosa de depurar un poco 😉
+    - Tienes un ciclo que no termina en =rr()=. ¡Depuremos! Para
+      hacerlo, hacemos un “embellecedor” para ver la información de
+      =Proceso=:
+      #+begin_src python
+	class Proceso:
+	    # (...)
+	    def str(self):
+		return('%s: %d+%d' % (self.letra, self.tiempoinicial, self.tiempo))
+      #+end_src
+      y en el ciclo de tu =rr()=:
+      #+begin_src python
+        vueltas=0
+	while procesosTerminado>0:
+	    vueltas=vueltas+1
+	    if vueltas>10:
+		print('Abortando en t=%d, %s' % (tick,[i.str() for i in copialista]))
+		return(False)
+      #+end_src
+      e iteré un par de veces hasta que me encontré con una cadena de
+      procesos que no progresó. Me encontré que el patrón que hace que
+      =rr()= falle es:
+      #+begin_src text
+	$ for i in $(seq 1 10); do python3 Tarea3.py |grep bortando; done
+	Abortando en t=0, ['A: 7+10', 'D: 1+2', 'C: 1+3', 'B: 4+5', 'E: 4+5']
+	Abortando en t=0, ['A: 2+10', 'E: 5+7', 'D: 7+10', 'C: 7+9', 'B: 8+9']
+	Abortando en t=0, ['A: 1+6', 'D: 1+2', 'B: 2+3', 'C: 9+10', 'E: 2+9']
+      #+end_src
+      Esto es, siempre que no hay ningún proceso que llegue cuando
+      =t=0=, =rr()= se quedará dándole vueltas para siempre.
+
+      ¿Y por qué no pasa con SPN y FIFO? Porque ahí estás ignorando
+      los espacios vacíos, sólo viendo cómo se ordenará el arreglo.
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 9
+
+** Eduardo Moreno
+- Documentación :: [[./MorenoEduardo/readme.md][readme.md]]
+- Archivos :: [[./MorenoEduardo/Tarea3.py][Tarea3.py]]
+- Comentarios ::
+  - ¡Vaya! ¡Por fin uno que parametriza en vez de copiar y modificar!
+    ¡Bienvenida tu función =rr(lista,q)=, que funciona con quantums de
+    diferentes tamaños!
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 9
+
+** Iñaky Ordiales
+- Documentación :: [[./OrdialesInaky/Instrucciones.txt][Instrucciones.txt]]
+- Archivos :: [[./OrdialesInaky/tarea3.cpp][tarea3.cpp]]
+- Comentarios ::
+  - ¡Muy bonito! Me gusta ver el trabajo que le metiste a esta
+    implementación.
+  - Intenté encontrar por qué tu FB se rompe a veces (y ni siquiera es
+    tan frecuente... Si acaso, una de cada 20 llamadas)
+    - Me pareció interesante: Para ver la frecuencia de fallo, hice un
+      =for i in $(seq 1 100); do ./t3 >/dev/null;done= para ver
+      cuántas veces de cada 100 se /tropezaba/... Y encontre que le
+      ocurría en muchas invocaciones seguidas.
+    - Veo que para inicializar la semilla pseudoaleatoria lo haces con
+      =srand(time(NULL))=. Para lograr mayor entropía, te sugiero
+      sumarle =getpid()= (tienes que incluir =unistd.h=).
+  - Se te pasó agregar =t3= a un =.gitignore= :-Þ
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✓
+  - Calificación :: 10
+
+** Diego Santiago y Armando Ugalde
+- Documentación :: [[./SantiagoDiego-UgaldeArmando/README.md][README.md]], [[./SantiagoDiego-UgaldeArmando/cargadiapositivas1.png][cargadiapositivas1.png]], [[./SantiagoDiego-UgaldeArmando/cargadiapositivas2.png][cargadiapositivas2.png]], [[./SantiagoDiego-UgaldeArmando/simulacion1-1.png][simulacion1-1.png]], [[./SantiagoDiego-UgaldeArmando/simulacion1-2.png][simulacion1-2.png]], [[./SantiagoDiego-UgaldeArmando/simulacion2-1.png][simulacion2-1.png]], [[./SantiagoDiego-UgaldeArmando/simulacion2-2.png][simulacion2-2.png]]
+- Archivos :: [[./SantiagoDiego-UgaldeArmando/SantiagoDiego-UgaldeArmando-1.0-SNAPSHOT-jar-with-dependencies.jar][SantiagoDiego-UgaldeArmando-1.0-SNAPSHOT-jar-with-dependencies.jar]], [[./SantiagoDiego-UgaldeArmando/pom.xml][pom.xml]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/CargaAleatoria.java][CargaAleatoria.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/ComparadorDePlanificadores.java][ComparadorDePlanificadores.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/Proceso.java][Proceso.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/Resultado.java][Resultado.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/planificadores/FirstComeFirstServed.java][FirstComeFirstServed.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/planificadores/MultiLevelFeedbackQueue.java][MultiLevelFeedbackQueue.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/planificadores/Planificadores.java][Planificadores.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/planificadores/RoundRobin.java][RoundRobin.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/planificadores/ShortestProcessNext.java][ShortestProcessNext.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea3/utilidades/UtilidadesNumericas.java][UtilidadesNumericas.java]]
+- Comentarios ::
+  - ¡Muy buena implementación!
+  - Completa, correcta y fácil de leer. ¿Qué más podía pedir? 😀
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✓
+  - Calificación :: 10
+
+** Miguel Villanueva
+- Documentación :: [[./VillanuevaMiguel/DetallesTarea3.txt][DetallesTarea3.txt]], [[./VillanuevaMiguel/evidencia.png][evidencia.png]]
+- Archivos :: [[./VillanuevaMiguel/algoritmos_deplaneacion.py][algoritmos_deplaneacion.py]]
+- Comentarios ::
+  - Faltó RR(4) — no es terrible, debe ser /muy/ parecido a la
+    implementación de RR(1).
+  - ¡Qué raro que justo SPN te pareciera más difícil! Es bastante más
+    sencillo en general de implementar que =RR(1)=.
+  - Me indicas que encontraste un problema... pero no me indicas /qué
+    problema/ encontraste. Y tu códig, sin espacios para marcar
+    bloques lógicos ni comentarios para explicar lo que haces en cada
+    bloque, no es muy amigable para leerlo e intentar mejorar el
+    resutlado ☹
+- Evaluación ::
+  - Entrega realizada :: ✓
+  - Tabla de resultados :: ✓
+  - Esquema visual :: ✓
+  - Algortimo de colas múltiples :: ✗
+  - Calificación :: 8.5
