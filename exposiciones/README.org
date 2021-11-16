@@ -11,16 +11,18 @@
   como lo refleja la rúbrica, obtiene una calificación un poco más alta)
   el que ustedes me planteen los temas de su interés.
 
-  |--------+----------------------------------------------------+-----------------------------------------------+---------+-----------------+------------------------+-------------------+---|
-  | Fecha  | Tema                                               | Integrantes                                   | Video   | Documentos      | Preguntas              | Evaluación        |   |
-  |--------+----------------------------------------------------+-----------------------------------------------+---------+-----------------+------------------------+-------------------+---|
-  | 16/nov | Heartbleed                                         | Ricardo Carrillo y Lucero de la Cruz          | [[https://youtu.be/IN0WnkDctLU][YouTube]] | [[./Carrillo_DeLaCruz/Heartbleed.pdf][Documento (PDF)]] | [[https://github.com/unamfi/sistop-2022-1/discussions/159][Preguntas y respuestas]] | [[https://www.questionpro.com/t/ARiwuZp3P5][Evaluar (alumnos)]] |   |
-  |        | UEFI                                               | Santos Albañil Morteo                         |         |                 |                        |                   |   |
-  |        | Sistemas operativos mínimos para la nube           | Edgar Cristobal García y Alberto García       |         |                 |                        |                   |   |
-  | 23/nov | SPECTRE y Meltdown                                 | Jesús Eduardo Salazar y Jorge Luis Manzanares |         |                 |                        |                   |   |
-  | 25/nov | Desduplicación                                     | Raúl Cruz Martínez y Miguel Ángel Villanueva  |         |                 |                        |                   |   |
-  | 25/nov | Planificación: Lotería y Completely Fair Scheduler | Diego Santiago y Armando Ugalde               |         |                 |                        |                   |   |
-  |--------+----------------------------------------------------+-----------------------------------------------+---------+-----------------+------------------------+-------------------+---|
+  |--------+----------------------------------------------------+-----------------------------------------------+-------------------------------------------------------------+-----------------+------------------------+-------------------+---|
+  | Fecha  | Tema                                               | Integrantes                                   | Video                                                       | Documentos      | Preguntas              | Evaluación        |   |
+  |--------+----------------------------------------------------+-----------------------------------------------+-------------------------------------------------------------+-----------------+------------------------+-------------------+---|
+  | 16/nov | Heartbleed                                         | Ricardo Carrillo y Lucero de la Cruz          | [[https://youtu.be/IN0WnkDctLU][YouTube]] (canal de la materia), [[https://www.canva.com/design/DAEv26hbBIw/oih0MAvLOAhw2SUVdCx3gQ/watch][Canva]] (mejor nivel de audio) | [[./Carrillo_DeLaCruz/Heartbleed.pdf][Documento (PDF)]] | [[https://github.com/unamfi/sistop-2022-1/discussions/159][Preguntas y respuestas]] | [[https://www.questionpro.com/t/ARiwuZp3P5][Evaluar (alumnos)]] |   |
+  |        | UEFI                                               | Santos Albañil Morteo                         |                                                             |                 |                        |                   |   |
+  | 23/nov | SPECTRE y Meltdown                                 | Jesús Eduardo Salazar y Jorge Luis Manzanares |                                                             |                 |                        |                   |   |
+  | 25/nov | Desduplicación                                     | Raúl Cruz Martínez y Miguel Ángel Villanueva  |                                                             |                 |                        |                   |   |
+  | 25/nov | Planificación: Lotería y Completely Fair Scheduler | Diego Santiago y Armando Ugalde               |                                                             |                 |                        |                   |   |
+  | 30/nov | Sistemas operativos mínimos para la nube           | Edgar Cristobal García y Alberto García       |                                                             |                 |                        |                   |   |
+  |        | Cifrado por bloques                                | Esteban Tafolla y Erick Vázquez               |                                                             |                 |                        |                   |   |
+  |        | Algoritmos libres de bloqueo                       | Bryan Díaz y Nestor Fuerte                    |                                                             |                 |                        |                   |   |
+  |--------+----------------------------------------------------+-----------------------------------------------+-------------------------------------------------------------+-----------------+------------------------+-------------------+---|
   #+TBLFM: 
 
 * Rúbrica de evaluación
