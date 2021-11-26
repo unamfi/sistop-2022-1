@@ -39,13 +39,9 @@ class File:
 
     # methods
 
-    def open(self, command, id) -> str: 
+    def open(self, mode, id) -> str: 
         if self.status == "open":
             return f"El archivo {self.name}, ya esta abierto."
-
-        mode = command[2]
-        if mode != "R" and mode != "W" and mode != "M":
-            raise ExceptionModeType("ERROR: el tipo de apertura es invalido.\nR <- read   W <- write   M <- modified")
 
         self.mode = mode
         self.id = id
@@ -57,7 +53,7 @@ class File:
         self.id = None
         self.mode = None
 
-    def read(self, length):
+    def read(self, length) -> str:
         if self.mode == "R":
             res = "" 
             count = 0
@@ -74,7 +70,7 @@ class File:
     def write(self):
         pass
 
-    def size( self ):
+    def size( self ) -> int:
         return sys.getsizeof( self.data )
 
     def __str__(self) -> str:
@@ -159,9 +155,13 @@ while True:
         try: 
             if len(command) == 3: 
                 f = busqueda_archivo(file_list, command[1])
+                mode = command[2]
+                if mode != "R" and mode != "W" and mode != "M":
+                    raise ExceptionModeType("ERROR: el tipo de apertura es invalido.\nR <- read   W <- write   M <- modified")
+
                 if f != None: 
                     #print(f, f.data)
-                    res = f.open(command, counter)
+                    res = f.open(mode, counter)
                     print(res)
                     counter += 1
                 else: 
@@ -169,7 +169,7 @@ while True:
                     f = File(command[1])
                     file_list.append(f)
                     print(f"Se ha creado un nuevo archivo vacio con nombre '{f.name}'")
-                    res = f.open(command, counter)
+                    res = f.open(mode, counter)
                     print(res)
                     counter += 1
             else: 
