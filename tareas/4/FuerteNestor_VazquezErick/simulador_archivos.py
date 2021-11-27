@@ -1,5 +1,6 @@
 import sys
 import copy
+
 """
 Estructura de un archivo
 - Nombre
@@ -63,7 +64,7 @@ class File:
             res = "" 
             count = 0
             for chr in self.data: 
-                if count == lenght and count > len(self.data):
+                if count == lenght or count == len(self.data):
                     break
                 res += chr
                 count += 1
@@ -78,8 +79,8 @@ class File:
         else:
             aux_data = list(self.data)
             aux_string = list(string)
-            print(aux_data, aux_string)
-            print(len(aux_data), lenght)
+            #print(aux_data, aux_string)
+            #print(len(aux_data), lenght)
 
             try:   
                 for i in range(lenght): 
@@ -90,7 +91,7 @@ class File:
             except IndexError:
                 self.data = "".join(aux_data)
                 string = "".join(list(filter(lambda x: x != None, aux_string)))
-                print(string)
+                #print(string)
                 self.data += string 
 
     def seek(self, pos):
@@ -281,7 +282,7 @@ def main():
             except ValueError as e:
                 print(f"ERROR: la ubicacion debe de ser un numero, por favor revise la entrada.\n{e}")        
 
-        elif info == "info": 
+        elif action == "info": 
             print(info)
 
         elif action == "quit": 
