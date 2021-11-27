@@ -11,4 +11,5 @@ write <descr> <longitud> <datos» → Escribe la cantidad de
 		 como parámetro.
 seek <descr> <ubicacion> → Salta a la ubicación especificada del
          archivo.
+info → Imprime la informacion de los comandos. 
 quit → Detiene la ejecucion de la simulación
