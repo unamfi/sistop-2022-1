@@ -1,0 +1,108 @@
+#+title: Heartbleed
+#+author: Gunnar Wolf
+
+- Tema presentado por :: Ricardo Carrillo y Lucero De la Cruz
+- Calificación global :: Por favor revisen más adelante para ver de
+  dónde vienen todos estos números 😉
+
+|------------------------+-------+--------------------+------+---------|
+| Evaluación  compañeros | Valor | Evaluación docente | Peso | *Total* |
+|------------------------+-------+--------------------+------+---------|
+|                   9.03 |   0.3 |               8.25 |  0.7 |    8.48 |
+|------------------------+-------+--------------------+------+---------|
+#+TBLFM: @2$5=$1*$2+$3*$4;f-2
+
+* Comentarios
+
+Dado que es una presentación en video, no puedo evaluar /dominio del
+tema/ y /presencia/ como lo hacemos habitualmente. Me centro en las
+respuestas que hagan a las preguntas de sus compañeros para el primero
+y en si la presentación "suena" leída directamente del material que
+prepararon o expuesta más libremente para el segundo.
+
+- Se me hizo un buen, lindo toque que hicieran más «amable» la
+  presentación poniéndole musiquita de fondo
+  - Estoy de acuerdo con los compañeros que opinan que se vuelve un
+    poco tedioso el /loop/, o en que dificulta un poco escuchar cuando
+    hablan con volumen bajo, pero... ¡Excelente iniciativa! 😉
+- El material que desarrollaron es muy bueno... ¡Lástima que no me lo
+  enviaron con un poco más de anticipación! 🙁
+- Algunos compañeros sintieron el tono de la exposición monótono... A
+  mí no me pareció así, me pareció que llevaron buen ritmo. Pero se
+  quedan con mis apreciaciones y las de sus compañeros.
+  - ¡Naturalmente no puedo (como indica la rúbrica) juzgar cómo
+    mantuvieron contacto ocular!
+- Las respuestas que envió Ricardo están bien presentadas /
+  fundamentadas; a pesar de que yo lo contradigo en algunos puntos, me
+  parecen muy buenas.
+  - Me hubiera gustado ver respuestas también por parte de Lucero 🙁
+
+* Evaluación grupal
+
+Esta evaluación proviene de la encuesta que llenaron en línea. No
+tengo acceso al desglose, por lo cual presento únicamente el resumen
+de la evaluación.
+
+|--------------+-------+------------+----------+-----------+-------|
+| Originalidad | Nivel | Relevancia | Claridad | Presencia | Total |
+|--------------+-------+------------+----------+-----------+-------|
+|          9.5 |   9.5 |        9.2 |      9.2 |       7.9 |  9.06 |
+|--------------+-------+------------+----------+-----------+-------|
+#+TBLFM: @2$6=vmean($1..$5)
+
+** Comentarios de los compañeros
+
+Tu exposición recibió los siguientes comentarios anonimizados por
+parte de tus compañeros:
+
+- El volumen de la voz de uno de los compañeros era demasiado baja con
+  respecto a la música.
+- Traten de cuidar más los cortes y sincronización del audio
+- El audio de la música de fondo estaba un poco alta provocando que se
+  oyera más la música que la voz del expositor, con Lucero no hubo
+  problema porque no se si fue por el tono de su voz o porque se
+  acerco al micrófono o la edición su voz estuvo por encima de la
+  música siempre, pero con Ricardo su voz estaba por debajo de la
+  música. Solo fue un pequeño fallo de edición que no le quita lo bien
+  explicado que estuvo el tema :D
+- Me gusto el ejemplo, se me hizo mas fácil entender el Bug
+- Quizá se dejó pasar la oportunidad de reflexionar acerca de cómo la
+  responsabilidad de un módulo tan importante para el funcionamiento
+  del internet caía, por lo que entendí, en una persona.
+- Que eviten utilizar la música en loop, llega un momento en el que
+  llega a molestar. De ahí en fuera quiza poner imagenes o algo
+  llamativo para captar la atención.
+- El audio en Youtube y en canva me fallo pero me gustó como
+  explicaron el bug planteado y como describieron los conceptos
+  relacionados para que fuera más fácil entenderlo.
+- En la primer versión el audio del fondo era mucho mayor a la voz del
+  segundo ponente, igual hubiera sido interesante poder ver un
+  ejemplo, pero quedo bastante claro el tema y el detalle de la voz
+  igual lo corrigieron.
+- Encontré algunos fallos de ortografía y redacción en las
+  diapositivas. Creo que estos podrían haber sido fácilmente
+  eliminados si se hubiera llevado a cabo una revisión. También
+  considero que el ritmo y la modulación de las voces son mejorables,
+  además de que no se mostraron los rostros de los participantes al
+  hablar. No obstante, el tema me pareció sumamente interesante y la
+  explicación fue suficientemente buena para entenderlo.
+- El temas se me hizo muy interesante y creo que lo expusieron bien y
+  simple. Sin embargo creo pueden mejorar la entonación o el ritmo
+  para que no sea tan monótono el tono a lo largo de la
+  presentación. Fuera de eso me gustó.
+
+
+* Evaluación del docente
+| *Aspecto*              | *Peso* | *Evaluación* | *Puntos* |
+|------------------------+--------+--------------+----------|
+| Originalidad del tema  |    0.1 |            5 |      0.5 |
+| Material desarrollado  |    0.2 |            5 |       1. |
+| Contenido              |    0.2 |           10 |       2. |
+| Fuentes bibliográficas |    0.1 |          7.5 |     0.75 |
+| Uso del tiempo         |    0.1 |           10 |       1. |
+| Dominio del tema       |   0.15 |           10 |      1.5 |
+| Presencia              |   0.15 |           10 |      1.5 |
+|------------------------+--------+--------------+----------|
+| *Global*               |        |              |     8.25 |
+#+TBLFM: @<<$4..@>>$4=$2*$3::$4=vsum(@<<..@>>);f-2
+

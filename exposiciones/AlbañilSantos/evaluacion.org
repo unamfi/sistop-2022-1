@@ -1,0 +1,76 @@
+#+title: Firmware: De BIOS a UEFI
+#+author: Gunnar Wolf
+
+- Tema presentado por :: Santos Albañil Morteo
+- Calificación global :: Por favor revisen más adelante para ver de
+  dónde vienen todos estos números 😉
+
+|------------------------+-------+--------------------+------+---------|
+| Evaluación  compañeros | Valor | Evaluación docente | Peso | *Total* |
+|------------------------+-------+--------------------+------+---------|
+|                    8.6 |   0.3 |                9.5 |  0.7 |    9.23 |
+|------------------------+-------+--------------------+------+---------|
+#+TBLFM: @2$5=$1*$2+$3*$4;f-2
+
+* Comentarios
+
+Dado que es una presentación en video, no puedo evaluar /dominio del
+tema/ y /presencia/ como lo hacemos habitualmente. Me centro en las
+respuestas que hagan a las preguntas de sus compañeros para el primero
+y en si la presentación "suena" leída directamente del material que
+prepararon o expuesta más libremente para el segundo.
+
+- ¡Excelente exposición!
+- Sé que tuviste que recortar fuertemente tu exposición, pero quedó
+  bastante larga. Hablaste muy pausado, me parece, para dar tiempo a
+  que la audiencia te siguiera – pero yo vi tu presentación a 1.5x y
+  me pareció un ritmo mucho más adecuado 😉 Y creo que esto está
+  relcionado con algunos de los comentarios de tus compañeros.
+
+* Evaluación grupal
+
+Esta evaluación proviene de la encuesta que llenaron en línea. No
+tengo acceso al desglose, por lo cual presento únicamente el resumen
+de la evaluación.
+
+|--------------+-------+------------+----------+-----------+-------|
+| Originalidad | Nivel | Relevancia | Claridad | Presencia | Total |
+|--------------+-------+------------+----------+-----------+-------|
+|          8.7 |     9 |        8.8 |      8.8 |       7.7 |   8.6 |
+|--------------+-------+------------+----------+-----------+-------|
+#+TBLFM: @2$6=vmean($1..$5)
+
+** Comentarios de los compañeros
+
+Tu exposición recibió los siguientes comentarios anonimizados por
+parte de tus compañeros:
+
+- El ritmo del video no se me hizo tan dinamico, sin embargo considero
+  que el expositor conoce muy bien el tema
+- Considero que el tono de voz fue bueno pero me hubiera gustado que
+  se con la voz se diera énfasis a ciertas partes, ya que sentí que el
+  tono de voz fue el mismo durante toda la exposición y se sintió
+  monótono.
+- Un poco largo pero un tema interesante
+- Un tema de gran importancia pero pusiste mucho texto en las
+  diapositivas y dificultaba un poco seguir el hilo de lo que decias y
+  se mostraba, las imágenes ayudaron
+- Me pareció muy buena la explicación, quizá un poco extensa, pero
+  igualmente no se volvió pesada porque el tema era interesante y se
+  comentó de forma completa.
+
+* Evaluación del docente
+
+
+| *Aspecto*              | *Peso* | *Evaluación* | *Puntos* |
+|------------------------+--------+--------------+----------|
+| Originalidad del tema  |    0.1 |           10 |       1. |
+| Material desarrollado  |    0.2 |           10 |       2. |
+| Contenido              |    0.2 |           10 |       2. |
+| Fuentes bibliográficas |    0.1 |           10 |       1. |
+| Uso del tiempo         |    0.1 |            5 |      0.5 |
+| Dominio del tema       |   0.15 |           10 |      1.5 |
+| Presencia              |   0.15 |           10 |      1.5 |
+|------------------------+--------+--------------+----------|
+| *Global*               |        |              |     9.50 |
+#+TBLFM: @<<$4..@>>$4=$2*$3::$4=vsum(@<<..@>>);f-2
