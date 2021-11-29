@@ -110,7 +110,7 @@ class File:
             self.pos = pos
 
     def size( self ) -> int:
-        return sys.getsizeof( self.data )
+        return len(self.data.encode("utf-8"))
 
     def __str__(self) -> str:
         return f"{self.name}  [{self.size()} bytes]"
