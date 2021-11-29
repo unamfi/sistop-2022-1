@@ -58,16 +58,24 @@ class File:
         self.status = "close"
         self.id = None
         self.mode = None
+        self.pos = 0
 
     def read(self, lenght) -> str:
         if self.mode == "R":
             res = "" 
             count = 0
-            for chr in self.data: 
-                if count == lenght or count == len(self.data):
-                    break
-                res += chr
-                count += 1
+            if self.pos == 0:
+                for chr in self.data: 
+                    if count == lenght or count == len(self.data):
+                        break
+                    res += chr
+                    count += 1
+            else:
+                for i in range(lenght):
+                    if i == lenght or (i + self.pos) == len(self.data):
+                        break
+                    
+                    res += self.data[i + self.pos]    
 
             return res
         else: 
@@ -151,8 +159,8 @@ def inicialize() -> list:
 # Const
 FILE_NAME = "informacion_uso.txt"
 
+# main function 
 def main():
-    # main function 
     try: 
         f = open( FILE_NAME, "r" )
     except:
@@ -233,7 +241,7 @@ def main():
                     else: 
                         print("ERROR: el archivo no esta abierto")
                 else: 
-                    raise ExceptionNumArgs("close")
+                    raise ExceptionNumArgs("read")
             except ExceptionNumArgs as e: 
                 print(e)
             except ValueError as e:
@@ -259,7 +267,7 @@ def main():
                     else: 
                         print("ERROR: el archivo no esta abierto")
                 else: 
-                    raise ExceptionNumArgs("close")
+                    raise ExceptionNumArgs("write")
             except ExceptionNumArgs as e: 
                 print(e)
             except ValueError as e:
@@ -276,7 +284,7 @@ def main():
                     else: 
                         print("ERROR: el archivo no esta abierto")
                 else: 
-                    raise ExceptionNumArgs("close")
+                    raise ExceptionNumArgs("seek")
             except ExceptionNumArgs as e: 
                 print(e)
             except ValueError as e:
