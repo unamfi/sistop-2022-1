@@ -16,7 +16,7 @@ Los archivos, además, se estructuran en directorios. Un directorio es una estru
 datos que permite tener acceso a varios archivos, organizados de alguna manera (que no 
 hemos abordado aún) en un medio de almacenamiento.
 
-###Instrucciones:
+### Instrucciones:
 
 Implementar un sistema interactivo con la interfaz lógica de manipulación de un directorio 
 y los archivos que éste contiene. Manejar alguna estructura que no se grabe nunca a 
@@ -33,7 +33,7 @@ Los comandos que se solicitan son:
 
 
 + Mostrar el contenido del directorio.
-+ Abrir un archivo para lectura (R), escritura (W) o modificación(A).
++ Abrir un archivo para lectura (R), escritura (W) o modificación (A).
   + Regresa un descriptor.
 + Leer un archivo.
 + Sobre escribir un archivo.
