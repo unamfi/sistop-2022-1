@@ -6,7 +6,7 @@ La siguiente tarea consiste en la ejecucion/simulacion de un administrador de ar
 Para llevar a cabo una ejecución exitosa es necesario tener instalado python y seguir la siguiente instruccion. 
 
 ```shell
-python3 shell.py
+python3 tarea4.py
 ```
 ## Funcionamiento
 Para poder usar el programa de manera correcta en necesario tomar en cuenta algunas cosas.
