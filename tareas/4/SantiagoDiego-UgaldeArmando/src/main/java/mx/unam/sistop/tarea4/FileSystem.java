@@ -44,6 +44,11 @@ public class FileSystem {
                     else printUsage();
                     break;
 
+                case "read":
+                    if (split.length == 3) handleRead(split[1], split[2]);
+                    else printUsage();
+                    break;
+
                 default:
                     printUsage();
             }
@@ -52,20 +57,63 @@ public class FileSystem {
 
     }
 
-    private static void handleClose(String descriptor) {
-        int descriptorId;
-        try {
-            descriptorId = Integer.parseInt(descriptor);
-            if (descriptorId < 1) throw new NumberFormatException();
-        } catch (NumberFormatException e) {
-            System.err.println("Error: Formato de descriptor inválido (debe ser un entero positivo)");
+    private static void handleRead(String descriptor, String lengthStr) {
+        int descriptorId = parseDescriptor(descriptor);
+        if (descriptorId == -1) return;
+
+        SimulatedFileDescriptor fileDescriptor = fileDescriptors.get(descriptorId);
+
+        if (fileDescriptor.getMode() == Mode.WRITE) {
+            System.err.println("Error: El archivo no se encuentra abierto para lectura");
             return;
         }
 
-        if (!fileDescriptors.containsKey(descriptorId)) {
-            System.err.println("Error: Descriptor inexistente");
+        int length = parseLength(lengthStr);
+        if (length == -1) return;
+
+        int offset = fileDescriptor.getOffset();
+        String readData;
+        try {
+            readData = fileDescriptor.getFile().getData(offset, length);
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Error: El índice especificado se encuentra fuera de los límites del archivo");
             return;
         }
+
+        System.out.println(readData);
+    }
+
+    private static int parsePositiveInteger(String number, String errorMessage) {
+        try {
+            int positiveInt = Integer.parseInt(number);
+            if (positiveInt < 1) throw new NumberFormatException();
+            return positiveInt;
+        } catch (NumberFormatException e) {
+            System.err.println(errorMessage);
+            return -1;
+        }
+    }
+
+    private static int parseDescriptor(String descriptor) {
+        int descriptorId = parsePositiveInteger(descriptor,
+                "Error: Formato de descriptor inválido (debe ser un entero positivo)");
+        if (descriptorId == -1) return -1;
+
+        if (!fileDescriptors.containsKey(descriptorId)) {
+            System.err.println("Error: Descriptor inexistente");
+            return -1;
+        }
+
+        return descriptorId;
+    }
+
+    private static int parseLength(String length) {
+        return parsePositiveInteger(length, "Error: Formato de longitud inválido (debe ser un entero positivo)");
+    }
+
+    private static void handleClose(String descriptor) {
+        int descriptorId = parseDescriptor(descriptor);
+        if (descriptorId == -1) return;
 
         fileDescriptors.remove(descriptorId);
         System.out.println("Descriptor " + descriptorId + " cerrado");
