@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class FileSystem {
     private static final Map<String, SimulatedFile> files = new HashMap<>();
-    private static final Map<Integer, FileDescriptor> fileDescriptors = new HashMap<>();
+    private static final Map<Integer, SimulatedFileDescriptor> fileDescriptors = new HashMap<>();
 
     public static void main(String[] args) {
         initialize();
@@ -31,6 +31,11 @@ public class FileSystem {
 
                 case "quit":
                     if (split.length == 1) return;
+                    else printUsage();
+                    break;
+
+                case "open":
+                    if (split.length == 3) handleOpen(split[1], split[2]);
                     else printUsage();
                     break;
 
@@ -75,5 +80,38 @@ public class FileSystem {
             System.out.print(file.getFilename() + " [" + file.getSize() + " bytes]\t");
         }
         System.out.println();
+    }
+
+
+    private static void handleOpen(String filename, String mode) {
+        if (!files.containsKey(filename)) {
+            System.err.println("Error: Archivo inexistente");
+            return;
+        }
+
+        Mode modeEnum;
+        switch (mode) {
+            case "R":
+                modeEnum = Mode.READ;
+                break;
+            case "A":
+                modeEnum = Mode.READ_WRITE;
+                break;
+            case "W":
+                modeEnum = Mode.WRITE;
+                break;
+            default:
+                System.err.println("Error: El modo indicado es inválido");
+                return;
+        }
+
+
+        SimulatedFileDescriptor fileDescriptor =
+                new SimulatedFileDescriptor(SimulatedFileDescriptor.CURRENT_DESCRIPTOR_ID, modeEnum,
+                        files.get(filename));
+        SimulatedFileDescriptor.CURRENT_DESCRIPTOR_ID++;
+        fileDescriptors.put(fileDescriptor.getId(), fileDescriptor);
+
+        System.out.println("Archivo abierto (" + mode + ") → " + fileDescriptor.getId());
     }
 }
