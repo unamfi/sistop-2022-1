@@ -39,12 +39,36 @@ public class FileSystem {
                     else printUsage();
                     break;
 
+                case "close":
+                    if (split.length == 2) handleClose(split[1]);
+                    else printUsage();
+                    break;
+
                 default:
                     printUsage();
             }
         }
 
 
+    }
+
+    private static void handleClose(String descriptor) {
+        int descriptorId;
+        try {
+            descriptorId = Integer.parseInt(descriptor);
+            if (descriptorId < 1) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            System.err.println("Error: Formato de descriptor inválido (debe ser un entero positivo)");
+            return;
+        }
+
+        if (!fileDescriptors.containsKey(descriptorId)) {
+            System.err.println("Error: Descriptor inexistente");
+            return;
+        }
+
+        fileDescriptors.remove(descriptorId);
+        System.out.println("Descriptor " + descriptorId + " cerrado");
     }
 
     private static void printUsage() {
