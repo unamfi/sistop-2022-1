@@ -87,13 +87,9 @@ public class FileSystem {
         }
 
         int offset = fileDescriptor.getOffset();
-        try {
-            int newOffset = fileDescriptor.getFile().writeData(offset, data);
-            fileDescriptor.setOffset(newOffset);
-        } catch (IndexOutOfBoundsException e) {
-            System.err.println("Error: El índice especificado se encuentra fuera de los límites del archivo");
-            return;
-        }
+
+        int newOffset = fileDescriptor.getFile().writeData(offset, data);
+        fileDescriptor.setOffset(newOffset);
 
         System.out.println("Escritura exitosa");
     }
