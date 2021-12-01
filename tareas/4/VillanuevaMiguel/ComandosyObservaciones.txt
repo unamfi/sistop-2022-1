@@ -1,0 +1,23 @@
+Comandos
+-open archivo modo          ->comando para abrir el archivo
+-close descr                ->comando para cerrar el archivo
+-read descr long            ->Nos muestra el contenido de nuestro archivo
+-write decr longitud datos  ->sobrescribe o modifica el archivo dependiendo del seek
+-seek  descr ubicación      ->Nos posiciona en una ubicación especifica del archivo
+-quit                       ->Termina la ejecución
+-dir                        ->Muestra el directorio con los archivos existentes
+
+donde:
+archivo: nombre del archivo a manipular
+modo: estado en el que queremos que se encuentre el archivo
+descr: descriptor para identificar al archivo
+ubicación: digito para indicar el lugar a donde queremos ir
+long: número que dice hasta que posición queremos que se lea el archivo
+longitud: longitud de la palabra que queremos escribir
+datos: palabra a escribir en el archivo
+
+Observaciones
+-Si en algunos de los comandos que necesiten descr pone el nombre del archivo, dará error y la simulación se terminara
+-Al crear una frase se tiene que pones todo junto porque si se ponen espacios el comando lo va a marcar como erróneo
+-Si el archivo se encuentra vacío y quiere escribir algo es necesario que lo haga con write antes de utilizar seek porque aunque lo ponga en la pocision 0 y luego escribe algo va a decir que lo que desea escribir sobrepasa el tamaño del archivo
+-Hay tres archivos precargados los cuales tienen el valor de descr 1,2 y 3 es por esto que si crea un archivo nuevo este va a obtener un descr 4 y así sucesivamente
