@@ -32,11 +32,11 @@ public class SimulatedFile {
         return this.fileData.substring(offset, Math.min(fileLength, offset + length));
     }
 
-    public int writeData(int offset, String newData) throws IndexOutOfBoundsException {
+    public int writeData(int offset, String newData) {
         int fileLength = this.fileData.length();
         int newDataLength = newData.length();
 
-        if (offset > fileLength) throw new IndexOutOfBoundsException();
+        offset = Math.min(offset, fileLength);
 
         int j = 0;
         for (int i = offset; i < fileLength; i++) {
