@@ -9,8 +9,8 @@ public class FileSystem {
     private static final Map<Integer, SimulatedFileDescriptor> fileDescriptors = new HashMap<>();
 
     public static void main(String[] args) {
-        initialize();
-        printUsage();
+        Util.initializeFiles(files);
+        Util.printUsage();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -19,48 +19,48 @@ public class FileSystem {
             String[] split = line.split(" ");
 
             if (split.length == 0 || split.length > 4) {
-                printUsage();
+                Util.printUsage();
                 continue;
             }
 
             switch (split[0]) {
                 case "dir":
                     if (split.length == 1) handleDir();
-                    else printUsage();
+                    else Util.printUsage();
                     break;
 
                 case "quit":
                     if (split.length == 1) return;
-                    else printUsage();
+                    else Util.printUsage();
                     break;
 
                 case "open":
                     if (split.length == 3) handleOpen(split[1], split[2]);
-                    else printUsage();
+                    else Util.printUsage();
                     break;
 
                 case "close":
                     if (split.length == 2) handleClose(split[1]);
-                    else printUsage();
+                    else Util.printUsage();
                     break;
 
                 case "read":
                     if (split.length == 3) handleRead(split[1], split[2]);
-                    else printUsage();
+                    else Util.printUsage();
                     break;
 
                 case "seek":
                     if (split.length == 3) handleSeek(split[1], split[2]);
-                    else printUsage();
+                    else Util.printUsage();
                     break;
 
                 case "write":
                     if (split.length == 4) handleWrite(split[1], split[2], split[3]);
-                    else printUsage();
+                    else Util.printUsage();
                     break;
 
                 default:
-                    printUsage();
+                    Util.printUsage();
             }
         }
 
@@ -68,7 +68,7 @@ public class FileSystem {
     }
 
     private static void handleWrite(String descriptor, String lengthStr, String data) {
-        int descriptorId = parseDescriptor(descriptor);
+        int descriptorId = Util.parseDescriptor(descriptor, fileDescriptors);
         if (descriptorId == -1) return;
 
         SimulatedFileDescriptor fileDescriptor = fileDescriptors.get(descriptorId);
@@ -78,7 +78,7 @@ public class FileSystem {
             return;
         }
 
-        int length = parseLength(lengthStr);
+        int length = Util.parseLength(lengthStr);
         if (length == -1) return;
 
         if (data.length() != length) {
@@ -99,12 +99,12 @@ public class FileSystem {
     }
 
     private static void handleSeek(String descriptor, String offset) {
-        int descriptorId = parseDescriptor(descriptor);
+        int descriptorId = Util.parseDescriptor(descriptor, fileDescriptors);
         if (descriptorId == -1) return;
 
         SimulatedFileDescriptor fileDescriptor = fileDescriptors.get(descriptorId);
 
-        int newOffset = parseNonnegativeInteger(offset,
+        int newOffset = Util.parseNonnegativeInteger(offset,
                 "Error: Formato de offset inválido (debe ser un entero no negativo)");
 
         fileDescriptor.setOffset(newOffset);
@@ -112,7 +112,7 @@ public class FileSystem {
     }
 
     private static void handleRead(String descriptor, String lengthStr) {
-        int descriptorId = parseDescriptor(descriptor);
+        int descriptorId = Util.parseDescriptor(descriptor, fileDescriptors);
         if (descriptorId == -1) return;
 
         SimulatedFileDescriptor fileDescriptor = fileDescriptors.get(descriptorId);
@@ -122,7 +122,7 @@ public class FileSystem {
             return;
         }
 
-        int length = parseLength(lengthStr);
+        int length = Util.parseLength(lengthStr);
         if (length == -1) return;
 
         int offset = fileDescriptor.getOffset();
@@ -140,68 +140,12 @@ public class FileSystem {
         System.out.println(readData);
     }
 
-    private static int parseNonnegativeInteger(String number, String errorMessage) {
-        try {
-            int nonnegativeInt = Integer.parseInt(number);
-            if (nonnegativeInt < 0) throw new NumberFormatException();
-            return nonnegativeInt;
-        } catch (NumberFormatException e) {
-            System.err.println(errorMessage);
-            return -1;
-        }
-    }
-
-    private static int parseDescriptor(String descriptor) {
-        int descriptorId = parseNonnegativeInteger(descriptor,
-                "Error: Formato de descriptor inválido (debe ser un entero no negativo)");
-        if (descriptorId == -1) return -1;
-
-        if (!fileDescriptors.containsKey(descriptorId)) {
-            System.err.println("Error: Descriptor inexistente");
-            return -1;
-        }
-
-        return descriptorId;
-    }
-
-    private static int parseLength(String length) {
-        return parseNonnegativeInteger(length, "Error: Formato de longitud inválido (debe ser un entero no negativo)");
-    }
-
     private static void handleClose(String descriptor) {
-        int descriptorId = parseDescriptor(descriptor);
+        int descriptorId = Util.parseDescriptor(descriptor, fileDescriptors);
         if (descriptorId == -1) return;
 
         fileDescriptors.remove(descriptorId);
         System.out.println("Descriptor " + descriptorId + " cerrado");
-    }
-
-    private static void printUsage() {
-        System.out.println("\nUso:");
-        System.out.println("dir → Muestra el directorio");
-        System.out.println("open <arch> <modo> → Especifica que operaremos con el archivo de nombre \"arch\", " +
-                "empleando el modo especificado. Entrega un descriptor de archivo numérico.");
-        System.out.println("close <descr> → Termina una sesión de trabajo con el archivo referido por el descriptor " +
-                "indicado. Después de un close, cualquier intento por usar ese archivo entregará error.");
-        System.out.println("read <descr> <longitud> → Lee la cantidad de bytes especificada");
-        System.out.println("write <descr> <longitud> <datos» → Escribe la cantidad de bytes especificada, guardando " +
-                "los datos indicados como parámetro.");
-        System.out.println("seek <descr> <ubicacion> → Salta a la ubicación especificada del archivo");
-        System.out.println("quit → Detiene la ejecucin de la simulación\n");
-    }
-
-    private static void initialize() {
-        files.put("arch1", new SimulatedFile("arch1",
-                "012345678901234567890123456789012345678901234567890123456789"));
-
-        files.put("arch2", new SimulatedFile("arch2",
-                "432903249803432754832574897589437587349857349875983471"));
-
-        files.put("helloworld", new SimulatedFile("helloworld",
-                "320948325093428932617647812661464876fsdafasddasfdfsdasdf"));
-
-        files.put("stgut.txt", new SimulatedFile("stgut.txt",
-                "dasfdasofjnasdofjfdjoasioasfdafsd"));
     }
 
     private static void handleDir() {
@@ -210,7 +154,6 @@ public class FileSystem {
         }
         System.out.println();
     }
-
 
     private static void handleOpen(String filename, String mode) {
         if (!files.containsKey(filename)) {
@@ -234,7 +177,6 @@ public class FileSystem {
                 System.err.println("Error: El modo indicado es inválido");
                 return;
         }
-
 
         SimulatedFileDescriptor fileDescriptor =
                 new SimulatedFileDescriptor(SimulatedFileDescriptor.CURRENT_DESCRIPTOR_ID, modeEnum,

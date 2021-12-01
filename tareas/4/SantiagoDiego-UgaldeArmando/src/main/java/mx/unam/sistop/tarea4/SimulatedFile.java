@@ -27,25 +27,25 @@ public class SimulatedFile {
      * @throws IndexOutOfBoundsException If the offset (start index) is greater than the file's bound.
      */
     public String getFileData(int offset, int length) throws IndexOutOfBoundsException {
-        int dataLength = this.fileData.length();
-        if (offset >= dataLength) throw new IndexOutOfBoundsException();
-        return this.fileData.substring(offset, Math.min(dataLength, offset + length));
+        int fileLength = this.fileData.length();
+        if (offset >= fileLength) throw new IndexOutOfBoundsException();
+        return this.fileData.substring(offset, Math.min(fileLength, offset + length));
     }
 
-    public int writeData(int offset, String data) throws IndexOutOfBoundsException {
+    public int writeData(int offset, String newData) throws IndexOutOfBoundsException {
         int fileLength = this.fileData.length();
-        int dataLength = data.length();
+        int newDataLength = newData.length();
 
         if (offset > fileLength) throw new IndexOutOfBoundsException();
 
         int j = 0;
         for (int i = offset; i < fileLength; i++) {
-            this.fileData.setCharAt(i, data.charAt(j++));
-            if (j == dataLength) return i + 1;
+            this.fileData.setCharAt(i, newData.charAt(j++));
+            if (j == newDataLength) return i + 1;
         }
 
-        for (; j < dataLength; j++) {
-            this.fileData.append(data.charAt(j));
+        for (; j < newDataLength; j++) {
+            this.fileData.append(newData.charAt(j));
         }
         return this.fileData.length();
     }
