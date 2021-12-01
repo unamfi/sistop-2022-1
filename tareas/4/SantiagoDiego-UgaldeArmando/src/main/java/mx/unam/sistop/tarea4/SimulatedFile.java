@@ -31,4 +31,21 @@ public class SimulatedFile {
         if (offset >= dataLength) throw new IndexOutOfBoundsException();
         return this.data.substring(offset, Math.min(dataLength, offset + length));
     }
+
+    public void writeData(int offset, String data) throws IndexOutOfBoundsException {
+        int fileLength = this.data.length();
+        int dataLength = data.length();
+
+        if (offset > fileLength) throw new IndexOutOfBoundsException();
+
+        int j = 0;
+        for (int i = offset; i < fileLength; i++) {
+            this.data.setCharAt(i, data.charAt(j++));
+            if (j == dataLength) break;
+        }
+
+        for (; j < dataLength; j++) {
+            this.data.append(data.charAt(j));
+        }
+    }
 }

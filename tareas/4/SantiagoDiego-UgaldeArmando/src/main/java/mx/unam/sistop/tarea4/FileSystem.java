@@ -18,7 +18,7 @@ public class FileSystem {
             String line = scanner.nextLine().strip();
             String[] split = line.split(" ");
 
-            if (split.length == 0 || split.length > 3) {
+            if (split.length == 0 || split.length > 4) {
                 printUsage();
                 continue;
             }
@@ -54,6 +54,11 @@ public class FileSystem {
                     else printUsage();
                     break;
 
+                case "write":
+                    if (split.length == 4) handleWrite(split[1], split[2], split[3]);
+                    else printUsage();
+                    break;
+
                 default:
                     printUsage();
             }
@@ -62,20 +67,47 @@ public class FileSystem {
 
     }
 
+    private static void handleWrite(String descriptor, String lengthStr, String data) {
+        int descriptorId = parseDescriptor(descriptor);
+        if (descriptorId == -1) return;
+
+        SimulatedFileDescriptor fileDescriptor = fileDescriptors.get(descriptorId);
+
+        if (fileDescriptor.getMode() != Mode.WRITE && fileDescriptor.getMode() != Mode.READ_WRITE) {
+            System.err.println("Error: El archivo no se encuentra abierto para escritura");
+            return;
+        }
+
+        int length = parseLength(lengthStr);
+        if (length == -1) return;
+
+        if (data.length() != length) {
+            System.err.println("Error: La longitud especificada no coincide con los datos a insertar");
+            return;
+        }
+
+        int offset = fileDescriptor.getOffset();
+        try {
+            fileDescriptor.getFile().writeData(offset, data);
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Error: El índice especificado se encuentra fuera de los límites del archivo");
+            return;
+        }
+
+        // TODO delete file contents when it's opened on write mode
+        // TODO update descriptors on write and read
+
+        System.out.println("Escritura exitosa");
+    }
+
     private static void handleSeek(String descriptor, String offset) {
         int descriptorId = parseDescriptor(descriptor);
         if (descriptorId == -1) return;
 
         SimulatedFileDescriptor fileDescriptor = fileDescriptors.get(descriptorId);
-        int fileSize = fileDescriptor.getFile().getSize();
 
-        int newOffset = parseNonnegativeInteger(offset, "Error: Formato de offset inválido (debe ser un entero " +
-                "positivo)");
-
-        if (newOffset >= fileSize) {
-            System.err.println("Error: El offset indicado se encuentra fuera de los límites del archivo");
-            return;
-        }
+        int newOffset = parseNonnegativeInteger(offset,
+                "Error: Formato de offset inválido (debe ser un entero no negativo)");
 
         fileDescriptor.setOffset(newOffset);
         System.out.println("Nueva posición del descriptor: " + newOffset);
@@ -109,9 +141,9 @@ public class FileSystem {
 
     private static int parseNonnegativeInteger(String number, String errorMessage) {
         try {
-            int positiveInt = Integer.parseInt(number);
-            if (positiveInt < 0) throw new NumberFormatException();
-            return positiveInt;
+            int nonnegativeInt = Integer.parseInt(number);
+            if (nonnegativeInt < 0) throw new NumberFormatException();
+            return nonnegativeInt;
         } catch (NumberFormatException e) {
             System.err.println(errorMessage);
             return -1;
@@ -120,7 +152,7 @@ public class FileSystem {
 
     private static int parseDescriptor(String descriptor) {
         int descriptorId = parseNonnegativeInteger(descriptor,
-                "Error: Formato de descriptor inválido (debe ser un entero positivo)");
+                "Error: Formato de descriptor inválido (debe ser un entero no negativo)");
         if (descriptorId == -1) return -1;
 
         if (!fileDescriptors.containsKey(descriptorId)) {
@@ -132,7 +164,7 @@ public class FileSystem {
     }
 
     private static int parseLength(String length) {
-        return parseNonnegativeInteger(length, "Error: Formato de longitud inválido (debe ser un entero positivo)");
+        return parseNonnegativeInteger(length, "Error: Formato de longitud inválido (debe ser un entero no negativo)");
     }
 
     private static void handleClose(String descriptor) {
