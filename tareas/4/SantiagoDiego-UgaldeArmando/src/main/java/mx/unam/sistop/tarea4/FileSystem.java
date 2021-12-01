@@ -88,13 +88,12 @@ public class FileSystem {
 
         int offset = fileDescriptor.getOffset();
         try {
-            fileDescriptor.getFile().writeData(offset, data);
+            int newOffset = fileDescriptor.getFile().writeData(offset, data);
+            fileDescriptor.setOffset(newOffset);
         } catch (IndexOutOfBoundsException e) {
             System.err.println("Error: El índice especificado se encuentra fuera de los límites del archivo");
             return;
         }
-
-        // TODO update descriptors on write and read
 
         System.out.println("Escritura exitosa");
     }
@@ -129,7 +128,10 @@ public class FileSystem {
         int offset = fileDescriptor.getOffset();
         String readData;
         try {
-            readData = fileDescriptor.getFile().getData(offset, length);
+            SimulatedFile file = fileDescriptor.getFile();
+            readData = file.getFileData(offset, length);
+            int newOffset = offset + length;
+            fileDescriptor.setOffset(Math.min(newOffset, file.getSize()));
         } catch (IndexOutOfBoundsException e) {
             System.err.println("Error: El índice especificado se encuentra fuera de los límites del archivo");
             return;
