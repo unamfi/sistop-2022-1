@@ -5,15 +5,15 @@ import lombok.Value;
 @Value
 public class SimulatedFile {
     String filename;
-    StringBuilder data;
+    StringBuilder fileData;
 
     public SimulatedFile(String filename, String data) {
         this.filename = filename;
-        this.data = new StringBuilder(data);
+        this.fileData = new StringBuilder(data);
     }
 
     public int getSize() {
-        return data.length();
+        return fileData.length();
     }
 
     /**
@@ -26,30 +26,31 @@ public class SimulatedFile {
      * @return The specified chunk of data
      * @throws IndexOutOfBoundsException If the offset (start index) is greater than the file's bound.
      */
-    public String getData(int offset, int length) throws IndexOutOfBoundsException {
-        int dataLength = this.data.length();
+    public String getFileData(int offset, int length) throws IndexOutOfBoundsException {
+        int dataLength = this.fileData.length();
         if (offset >= dataLength) throw new IndexOutOfBoundsException();
-        return this.data.substring(offset, Math.min(dataLength, offset + length));
+        return this.fileData.substring(offset, Math.min(dataLength, offset + length));
     }
 
-    public void writeData(int offset, String data) throws IndexOutOfBoundsException {
-        int fileLength = this.data.length();
+    public int writeData(int offset, String data) throws IndexOutOfBoundsException {
+        int fileLength = this.fileData.length();
         int dataLength = data.length();
 
         if (offset > fileLength) throw new IndexOutOfBoundsException();
 
         int j = 0;
         for (int i = offset; i < fileLength; i++) {
-            this.data.setCharAt(i, data.charAt(j++));
-            if (j == dataLength) break;
+            this.fileData.setCharAt(i, data.charAt(j++));
+            if (j == dataLength) return i + 1;
         }
 
         for (; j < dataLength; j++) {
-            this.data.append(data.charAt(j));
+            this.fileData.append(data.charAt(j));
         }
+        return this.fileData.length();
     }
 
     public void deleteContents() {
-        this.data.setLength(0);
+        this.fileData.setLength(0);
     }
 }
