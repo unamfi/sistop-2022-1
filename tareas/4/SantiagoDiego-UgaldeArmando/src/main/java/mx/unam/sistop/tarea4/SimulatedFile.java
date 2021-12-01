@@ -48,4 +48,8 @@ public class SimulatedFile {
             this.data.append(data.charAt(j));
         }
     }
+
+    public void deleteContents() {
+        this.data.setLength(0);
+    }
 }

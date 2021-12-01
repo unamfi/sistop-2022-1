@@ -94,7 +94,6 @@ public class FileSystem {
             return;
         }
 
-        // TODO delete file contents when it's opened on write mode
         // TODO update descriptors on write and read
 
         System.out.println("Escritura exitosa");
@@ -227,6 +226,7 @@ public class FileSystem {
                 break;
             case "W":
                 modeEnum = Mode.WRITE;
+                files.get(filename).deleteContents();
                 break;
             default:
                 System.err.println("Error: El modo indicado es inválido");
