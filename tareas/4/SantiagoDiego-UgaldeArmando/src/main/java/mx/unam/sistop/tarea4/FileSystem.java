@@ -49,12 +49,36 @@ public class FileSystem {
                     else printUsage();
                     break;
 
+                case "seek":
+                    if (split.length == 3) handleSeek(split[1], split[2]);
+                    else printUsage();
+                    break;
+
                 default:
                     printUsage();
             }
         }
 
 
+    }
+
+    private static void handleSeek(String descriptor, String offset) {
+        int descriptorId = parseDescriptor(descriptor);
+        if (descriptorId == -1) return;
+
+        SimulatedFileDescriptor fileDescriptor = fileDescriptors.get(descriptorId);
+        int fileSize = fileDescriptor.getFile().getSize();
+
+        int newOffset = parseNonnegativeInteger(offset, "Error: Formato de offset inválido (debe ser un entero " +
+                "positivo)");
+
+        if (newOffset >= fileSize) {
+            System.err.println("Error: El offset indicado se encuentra fuera de los límites del archivo");
+            return;
+        }
+
+        fileDescriptor.setOffset(newOffset);
+        System.out.println("Nueva posición del descriptor: " + newOffset);
     }
 
     private static void handleRead(String descriptor, String lengthStr) {
@@ -83,10 +107,10 @@ public class FileSystem {
         System.out.println(readData);
     }
 
-    private static int parsePositiveInteger(String number, String errorMessage) {
+    private static int parseNonnegativeInteger(String number, String errorMessage) {
         try {
             int positiveInt = Integer.parseInt(number);
-            if (positiveInt < 1) throw new NumberFormatException();
+            if (positiveInt < 0) throw new NumberFormatException();
             return positiveInt;
         } catch (NumberFormatException e) {
             System.err.println(errorMessage);
@@ -95,7 +119,7 @@ public class FileSystem {
     }
 
     private static int parseDescriptor(String descriptor) {
-        int descriptorId = parsePositiveInteger(descriptor,
+        int descriptorId = parseNonnegativeInteger(descriptor,
                 "Error: Formato de descriptor inválido (debe ser un entero positivo)");
         if (descriptorId == -1) return -1;
 
@@ -108,7 +132,7 @@ public class FileSystem {
     }
 
     private static int parseLength(String length) {
-        return parsePositiveInteger(length, "Error: Formato de longitud inválido (debe ser un entero positivo)");
+        return parseNonnegativeInteger(length, "Error: Formato de longitud inválido (debe ser un entero positivo)");
     }
 
     private static void handleClose(String descriptor) {
