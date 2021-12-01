@@ -2,6 +2,11 @@
 
     Entrega: 2021.11.30
 
+**Integrantes:**
+
+- Ugalde Velasco Armando
+- Diego Santiago Gutiérrez
+
 ## Notas relevantes
 
 Se implementó el programa planteado, realizando algunas aseveraciones sobre su comportamiento esperado:
