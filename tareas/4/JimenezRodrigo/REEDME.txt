@@ -1,0 +1,40 @@
+Jimenez Garcia Rodrigo Gaudencio
+Documentacion - Tarea 4
+Lenguaje utilizado: Python 3
+Sistema operativo: Windows 10
+IDE: Spyder
+Comandos:
+dir → Muestra el directorio
+open <arch> <modo> → Especifica que operaremos con el archivo de
+         nombre "arch", empleando el modo especificado. Entrega un
+		 descriptor de archivo numérico.
+close <descr> → Termina una sesión de trabajo con el archivo
+         referido por el descriptor indicado. Después de un close,
+		 cualquier intento por usar ese archivo entregará error.
+read <descr> <longitud> → Lee la cantidad de bytes especificada
+write <descr> <longitud> <datos» → Escribe la cantidad de
+         bytes especificada, guardando los datos indicados
+		 como parámetro.
+seek <descr> <ubicacion> → Salta a la ubicación especificada del
+         archivo.
+quit → Detiene la ejecución de la simulación
+
+
+Modo de uso:
+Para asegurar el correcto funcionamiento se debe:
+- Abrir los tres archivos en algun modo
+- Los unicos modos disponibles son R,A,W
+- En caso de tener problemas al ejecutarse en la terminal debera usarse algun IDE
+
+Extras:
+-Al ejecutar el programa muestra los comandos validos en la "terminal"
+-Al ejecutar algunos comandos muestra una lista con la informacion de los archivos actualizada.
+   [Nombre,Identificador,Modo,Posicion,Estado(False = Abierto)] 
+
+Comentarios:
+De principio no entendí que es lo que pedia por lo que fui trabajando
+de acuerdo a la "ejecucion" de muestra que dejó en la asignación, pero
+eso me llevo a un codigo demasiado feo, a mi parecer, ya que no es mas que if anidados
+a modo de un switch.
+
+A pesar de ser sencillo ya que no lo entendí pues me sí me tomó muchas horas más de las que yo esperaba.
