@@ -311,31 +311,9 @@
 - Documentación :: [[./OrdialesInaky/Imagenes/ayuda.png][ayuda.png]], [[./OrdialesInaky/Imagenes/close.png][close.png]], [[./OrdialesInaky/Imagenes/compilacion.png][compilacion.png]], [[./OrdialesInaky/Imagenes/dir.png][dir.png]], [[./OrdialesInaky/Imagenes/open.png][open.png]], [[./OrdialesInaky/Imagenes/read.png][read.png]], [[./OrdialesInaky/Imagenes/salir.png][salir.png]], [[./OrdialesInaky/Imagenes/writeA.png][writeA.png]], [[./OrdialesInaky/Imagenes/writeW.png][writeW.png]], [[./OrdialesInaky/README.md][README.md]]
 - Programa :: [[./OrdialesInaky/tarea4.c][tarea4.c]]
 - Comentarios ::
-  - En las implementaciones habituales (¿me faltó explicitar?), una
-    lectura o escritura sobre un archivo mueve al apuntador.
-    #+begin_src text
-      InOr  ~>> open poemaI A
-      Archivo poemaI abierto en modo 'A' con el descriptor 1
-      InOr  ~>> write 1 8 MisDatos
-      Los datos han sido modificados para el archivo del descriptor 1.
-      InOr  ~>> write 2 6 ASalvo
-      El archivo del descriptor no est en modo escritura 'W' o modificacin 'A'.
-      InOr  ~>> dir
-	InOr/Tarea4/
-	      - ProyectoFinal	[52 bytes]
-	      - PoemaI	[70 bytes] 'R'  descr: 2
-	      - PoemaII	[76 bytes]
-	      - Clasificado	[70 bytes]
-	      - Passwords	[68 bytes]
-	      - Matematicas	[19 bytes]
-	      - Poema1	[0 bytes]
-	      - poemaI	[8 bytes] 'A'  descr: 1
-    #+end_src
-    Aquí yo esperaría que =poemaI= guardara =MisDatosASalvo=, no
-    =ASalvoos=.
   - Me parece una implementación excelente, aunque probablemente
     demasiado laboriosa! 😉
-- Calificación :: 9
+- Calificación :: 10
 
 ** Diego Santiago y Armando Ugalde
 - Documentación :: [[./SantiagoDiego-UgaldeArmando/README.md][README.md]], [[./SantiagoDiego-UgaldeArmando/captura.png][captura.png]]
