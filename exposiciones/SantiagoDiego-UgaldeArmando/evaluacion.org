@@ -1,0 +1,69 @@
+#+title: Planificación: Lotería y Completely Fair Scheduler
+#+author: Gunnar Wolf
+
+- Tema presentado por :: Diego Santiago y Armando Ugalde
+- Calificación global :: Por favor revisen más adelante para ver de
+  dónde vienen todos estos números 😉
+
+|------------------------+-------+--------------------+------+---------|
+| Evaluación  compañeros | Valor | Evaluación docente | Peso | *Total* |
+|------------------------+-------+--------------------+------+---------|
+|                   9.55 |   0.3 |                9.5 |  0.7 |    9.52 |
+|------------------------+-------+--------------------+------+---------|
+#+TBLFM: @2$5=$1*$2+$3*$4;f-2
+
+* Comentarios
+
+Dado que es una presentación en video, no puedo evaluar /dominio del
+tema/ y /presencia/ como lo hacemos habitualmente. Me centro en las
+respuestas que hagan a las preguntas de sus compañeros para el primero
+y en si la presentación "suena" leída directamente del material que
+prepararon o expuesta más libremente para el segundo.
+
+- Al igual que lo dijo uno de sus compañeros, "extrañé" la presencia
+  en el video del segundo miembro del equipo.
+- ¡Me pareció muy buena exposición! El tema puede parecer árido, pero
+  mantuviste muy buen ritmo y modulación, y creo que lograste
+  comunicar muy bien lo que desarrollaron.
+
+* Evaluación grupal
+
+Esta evaluación proviene de la encuesta que llenaron en línea. No
+tengo acceso al desglose, por lo cual presento únicamente el resumen
+de la evaluación.
+
+|--------------+-------+------------+----------+-----------+-------|
+| Originalidad | Nivel | Relevancia | Claridad | Presencia | Total |
+|--------------+-------+------------+----------+-----------+-------|
+|            9 |  9.93 |         10 |     9.66 |      9.16 |  9.55 |
+|--------------+-------+------------+----------+-----------+-------|
+#+TBLFM: @2$6=vmean($1..$5)
+
+** Comentarios de los compañeros
+
+Tu exposición recibió los siguientes comentarios anonimizados por
+parte de tus compañeros:
+
+- Al ser un solo expositor se volvió algo cansada pero el tema estuvo
+  bien explicado, me hubiera gustado que los dos integrantes hubieran
+  expuesto
+- Me pareció bien la presentación, tal vez por falta de tiempo siento
+  que faltó explicar un poquito más a profundidad ciertos
+  aspectos. Por ejemplo por qué se utiliza un árbol binario rojo-negro
+  y tal vez un ejemplo completo del CFS ayudaría a integrar todo.
+
+* Evaluación del docente
+
+| *Aspecto*              | *Peso* | *Evaluación* | *Puntos* |
+|------------------------+--------+--------------+----------|
+| Originalidad del tema  |    0.1 |           10 |       1. |
+| Material desarrollado  |    0.2 |          7.5 |      1.5 |
+| Contenido              |    0.2 |           10 |       2. |
+| Fuentes bibliográficas |    0.1 |           10 |       1. |
+| Uso del tiempo         |    0.1 |           10 |       1. |
+| Dominio del tema       |   0.15 |           10 |      1.5 |
+| Presencia              |   0.15 |           10 |      1.5 |
+|------------------------+--------+--------------+----------|
+| *Global*               |        |              |     9.50 |
+#+TBLFM: @<<$4..@>>$4=$2*$3::$4=vsum(@<<..@>>);f-2
+
