@@ -1,0 +1,423 @@
+* Revisión de la tarea #4
+
+  [[./README.md][Leer el planteamiento]]
+
+** Ricardo Carrillo
+- Documentación :: [[./CarrilloRicardo/README.md][README.md]], [[./CarrilloRicardo/e1.png][e1.png]], [[./CarrilloRicardo/e2.png][e2.png]], [[./CarrilloRicardo/e3.png][e3.png]]
+- Programa :: [[./CarrilloRicardo/t4.py][t4.py]]
+- Comentarios ::
+  - ¡Ojo con lo que documentas! Tu «help» (¡gracias por incluirlo!
+    Siempre es bueno tener un comandito que te diga cómo usarlo)
+    presenta el texto como yo se los dí, incluyendo a un `dir`. ¡Pero
+    tu programa implementa `ls`! Tuve que buscar en el fuente para
+    entender lo que pasaba...
+  - Las llamadas =read()=, =write()=, =seek()= y =close()= deberían
+    trabajar con un descriptor de archivo (numérico), no con el nombre
+    de archivo. El nombre de archivo sólo debería importarle a =open()=.
+  - Implementaste el =write()= usando la semántica que emula unidad de
+    cinta, ¡bien!
+    #+begin_src text
+      gwolf:/Master ▶ touch cuac
+      gwolf:/Master ▶ open cuac A
+      gwolf:/Master ▶ write cuac 4 HOLA
+      gwolf:/Master ▶ write cuac 5 mundo
+      gwolf:/Master ▶ read cuac 10
+      HOLAmundo
+      gwolf:/Master ▶ seek cuac 5
+      gwolf:/Master ▶ write cuac 1 M
+      gwolf:/Master ▶ read cuac 10
+      HOLAMundo
+    #+end_src
+    - Sin embargo, la lectura no sigue esta lógica. Resulta imposible
+      reubicar el punto de lectura:
+      #+begin_src text
+	gwolf:/Master ▶ seek cuac 3
+	gwolf:/Master ▶ read cuac 3
+	HOL
+      #+end_src
+      La respuesta debería ser =AMu=.
+- Calificación :: 8
+
+** Raul Cruz
+- Documentación :: [[./CruzRaul/Documentacion.pdf][Documentacion.pdf]]
+- Programa :: [[./CruzRaul/tarea4.py][tarea4.py]]
+- Comentarios ::
+  - En las implementaciones habituales (¿me faltó explicitar?), una
+    lectura o escritura sobre un archivo mueve al apuntador.
+    #+begin_src text
+      user/tarea4 $ crear MisDatos
+      user/tarea4 $ open MisDatos A
+      Abriendo el archivo:  MisDatos
+      Archivo abierto ( A ) ->  1
+      user/tarea4 $ write 1 8 MisDatos
+      user/tarea4 $ write 1 6 ASalvo
+      user/tarea4 $ read 1 14
+      Error: la longitud dada, es mayor al contenido del archivo
+      user/tarea4 $ read 1 8
+      ASalvoos
+    #+end_src
+    Aquí yo esperaría que =MisDatos= guardara =MisDatosASalvo=.
+    - La funcionalidad de =seek()= es correcta:
+      #+begin_src text
+	user/tarea4 $ seek 1 4
+	user/tarea4 $ read 1 4
+	voos
+      #+end_src
+    - El comportamiento del programa es muy poco tolerante: si falta
+      algún parámetro, se muere a la mala:
+      #+begin_src text
+	user/tarea4 $ read 3 2
+	HO
+	user/tarea4 $ read 3
+	Traceback (most recent call last):
+	  File "/home/gwolf/vcs/sistop-2022-1/tareas/4/CruzRaul/tarea4.py", line 207, in <module>
+	    main()
+	  File "/home/gwolf/vcs/sistop-2022-1/tareas/4/CruzRaul/tarea4.py", line 205, in main
+	    terminal(archivos)
+	  File "/home/gwolf/vcs/sistop-2022-1/tareas/4/CruzRaul/tarea4.py", line 164, in terminal
+	    if cadena2 in archivos_abiertos:
+	TypeError: unhashable type: 'list'
+      #+end_src
+      Claro que no espero que una tareíta sea un programa
+      super-robusto, pero... ☺
+- Calificación :: 9
+
+** Bryan Díaz y Esteban Tafolla
+- Documentación :: [[./DíazBryan-TafollaEsteban/Documentación_T4.pdf][Documentación_T4.pdf]]
+- Programa :: [[./DíazBryan-TafollaEsteban/T4_DíazBryan_TafollaEsteban.py][T4_DíazBryan_TafollaEsteban.py]]
+- Comentarios ::
+  - En las implementaciones habituales (¿me faltó explicitar?), una
+    lectura o escritura sobre un archivo mueve al apuntador.
+    #+begin_src text
+      > open A1 A
+      Archivo abierto (A) -> A1
+      > write A1 8 MisDatos
+      > write A1 6 ASalvo
+      > read A1 14
+      El indice sobrepasa la longitud del archivo
+      > read A1 8
+      ASalvoos
+    #+end_src
+    Aquí yo esperaría que =A1= guardara =MisDatosASalvo=.
+  - Las llamadas =read()=, =write()=, =seek()= y =close()= deberían
+    trabajar con un descriptor de archivo (numérico), no con el nombre
+    de archivo. El nombre de archivo sólo debería importarle a =open()=.
+  - No implementan la creación de archivos nuevos :-( Tengo que
+    trabajar con los que ya existen únicamente.
+  - ¡Curioso que el directorio muestre el contenido completo de los
+    archivos!
+- Calificación :: 8
+
+** Nestor Fuertey Erick Vazquez
+- Documentación :: [[./FuerteNestor_VazquezErick/Tarea4_S0.pdf][Tarea4_S0.pdf]], [[./FuerteNestor_VazquezErick/informacion_uso.txt][informacion_uso.txt]]
+- Programa :: [[./FuerteNestor_VazquezErick/simulador_archivos.py][simulador_archivos.py]]
+- Comentarios ::
+  - ¡Bien! Me da gusto que implementaran lo que yo entendía natural
+    (pero son el primer equipo que lo hace así hasta ahora: Escribir
+    datos a un archivo causa que avance la posición del apuntador de
+    escritura
+    #+begin_src text
+      -> open arch1 W
+      Archivo abierto (M). -> 1
+      -> write 1 8 MisDatos
+      -> write 1 6 ASalvo
+      -> close 1
+      -> open arch1 R
+      Archivo abierto (R). -> 2
+      -> read 2 19
+      Hola!MisDatosASalvo
+    #+end_src
+    ...sin embargo, la orden =seek()= no hace nada ☹
+    #+begin_src text
+      -> seek 4 0
+      -> write 4 4 Foo.
+      -> close 4
+      -> open arch1 R
+      Archivo abierto (R). -> 5
+      read 5 23
+      MisDatosASalvoFoo.
+    #+end_src
+  - Tampoco encuentro diferencia entre los modos W y M.
+- Calificación :: 8
+
+** Alberto Garcia Figueroa y  Edgar Garcia Gutierrez
+- Documentación :: [[./GarciaFigueroaAlberto-GarciaGutierrez/Prueba_1.png][Prueba_1.png]], [[./GarciaFigueroaAlberto-GarciaGutierrez/Prueba_2.png][Prueba_2.png]], [[./GarciaFigueroaAlberto-GarciaGutierrez/Prueba_3.png][Prueba_3.png]], [[./GarciaFigueroaAlberto-GarciaGutierrez/readme.md][readme.md]]
+- Programa :: [[./GarciaFigueroaAlberto-GarciaGutierrez/shell.py][shell.py]]
+- Comentarios ::
+  - En las implementaciones habituales (¿me faltó explicitar?), una
+    lectura o escritura sobre un archivo mueve al apuntador.
+    #+begin_src text
+      /: open arch1 W
+      Archivo abierto(W) -> arch1
+      /: write arch1 8 MisDatos
+      /: write arch1 6 ASalvo
+      /: close arch1
+      Archivo arch1 cerrado
+      /: open arch1 R
+      Archivo abierto(R) -> arch1
+      /: read arch1 14
+      La longitud a leer es mayor al tamaño del archivo
+      /: read arch1 8
+      La longitud a leer es mayor al tamaño del archivo
+      /: read arch1 6
+      ASalvo
+    #+end_src
+    Aquí yo esperaría que =arch1= guardara =MisDatosASalvo=.
+  - Tampoco implementan la creación de un archivo nuevo al abrir para
+    escritura, sólo puedo trabajar con los ya definidos.
+  - Las llamadas =read()=, =write()=, =seek()= y =close()= deberían
+    trabajar con un descriptor de archivo (numérico), no con el nombre
+    de archivo. El nombre de archivo sólo debería importarle a =open()=.
+- Calificación :: 8
+
+** Rodrigo Jimenez
+- Documentación :: [[./JimenezRodrigo/Captura1.PNG][Captura1.PNG]], [[./JimenezRodrigo/REEDME.txt][REEDME.txt]]
+- Programa :: [[./JimenezRodrigo/Tarea4.py][Tarea4.py]]
+- Comentarios ::
+  - En las implementaciones habituales (¿me faltó explicitar?), una
+    lectura o escritura sobre un archivo mueve al apuntador.
+    #+begin_src text
+      → open arch1 A
+      Archivo abierto (A) → 1
+      → seek 1 0
+      [['arch1', 1, 'A', 0, False]]
+      → write 1 10 Cuacuacuac
+      → write 1 5 Hola.
+      → read 1 15
+      [['arch1', 1, 'A', 0, False]]
+      Tiene 1 archivos
+      Hola.cuacde esc
+    #+end_src
+    El "Hola." sobreescriió el inicio del Cuacuacuac; debería haberse
+    escrito al terminar éste.
+  - No implementa2 la creación de un archivo nuevo al abrir para
+    escritura, sólo puedo trabajar con los ya definidos.
+- Calificación :: 8
+
+** Ricardo Juarez
+- Programa :: [[./JuarezRicardo/mentira.py][mentira.py]]
+- Comentarios ::
+  - Tu entrega está muy incompleta ☹
+  - No presentas la funcionalidad (de por sí mínima) que solicté;
+    únicamente tu =open= entrega el contenido completo de cada uno de
+    los registros
+- Calificación :: 5
+
+** Jorge Manzanares y Jesus Salazar
+- Documentación :: [[./ManzanaresJorge-SalazarJesus/README.md][README.md]]
+- Programa :: [[./ManzanaresJorge-SalazarJesus/file.py][file.py]], [[./ManzanaresJorge-SalazarJesus/interface.py][interface.py]]
+- Comentarios ::
+  - En las implementaciones habituales (¿me faltó explicitar?), una
+    lectura o escritura sobre un archivo mueve al apuntador.
+    #+begin_src text
+      » open arch1 A
+      Archivo abierto (A) -> 1
+      » write 1 4 HOLA
+      » write 1 5 Mundo
+      » read 1 10
+      MundoFGHIJ
+    #+end_src
+    El "Mundo" sobreescribió al "HOLA" por completo; debería haberse
+    escrito al terminar éste.
+  - ¡Me gusta la implementación! Permítanme sugerirles un uso más
+    eficiente de las expresiones regulares: Ya que están buscando que
+    la cadena cumpla con determinado formato:
+    #+begin_src python
+      read_regex=re.search("^read [0-9]+ [0-9]+$",line)
+    #+end_src
+    Podrían usar los paréntesis para /capturar/ partes de este
+    patrón, de forma que no tuvieran que usar el =split()=:
+    #+begin_src python
+      # Asumiendo que line='read 1 1500'
+      read_regex=re.search("^read ([0-9]+) ([0-9]+)$",line)
+      print(read_regex.groups())
+      # =>  ('1', '1500')
+      descriptor = read_regex.groups[0]
+      longitud = read_regex.groups[1]
+    #+end_src
+    - Por otro lado, las expresiones regulares son mucho más /caras/
+      computacionalmente que la comparación en cadenas. Hacen muy bien
+      en usar las anclas =^= y =$=, pero aún así, es mucho más
+      conveniente decir =if line == 'dir'= que =re.search("^dir$",
+      line)=.
+- Calificación :: 9
+
+** Carlos Mendoza
+- Documentación :: [[./MendozaCarlos/DocumentacionTarea4.pdf][DocumentacionTarea4.pdf]]
+- Programa :: [[./MendozaCarlos/Tarea4.py][Tarea4.py]]
+- Comentarios ::
+  - Tu directorio reporta archivos con diez veces el tamaño que
+    tienen. Creí que era un error, pero tu código dice:
+    #+begin_src python
+      def impresionDir(nombreArchivos):
+	  for obj in nombreArchivos:
+	      print("\t",obj.nombre,int( len(obj.contenido)*10.24),"[bytes]")
+    #+end_src
+    ¿Por qué?
+  - No encontré modo de escribir, siempre me indica longitud
+    equivocada:
+    #+begin_src python
+      write 1 8 MisDatos
+      Error: La longitud de la cadena no es la adecuada
+      write 1 4 MisD
+      Error: La longitud de la cadena no es la adecuada
+      write 1 5 MisD
+      Error: La longitud de la cadena no es la adecuada
+      write 1 4 Hola
+      Error: La longitud de la cadena no es la adecuada
+    #+end_src
+  - =seek()= no tiene efecto (las lecturas se hacen siempre desde el
+    principio):
+    #+begin_src python
+      open Tarea1 R
+      Archivo  Tarea1 (R) -> 1
+      Ya esta abierto
+      read 1 4
+      Hola
+      seek 1 2
+      [2]
+      read 1 2
+      Ho
+    #+end_src
+- Calificación :: 7
+
+** Eduardo Moreno
+- Documentación :: [[./MorenoEduardo/1.png][1.png]], [[./MorenoEduardo/2.png][2.png]], [[./MorenoEduardo/readme.md][readme.md]], [[./MorenoEduardo/texto.txt][texto.txt]]
+- Programa :: [[./MorenoEduardo/Tarea4.py][Tarea4.py]]
+- Comentarios ::
+  - No entendí la lógica del modo =A=, que denominaste
+    /Búsqueda/. ¿Sólo permite mover la cabeza lectora, pero no leer ni
+    escribir?
+  - El manejo de la abstracción de cabeza de escritura me
+    parece... ¡rarísimo! Diferente, pero rarísimo: ¿Empujas la /cinta/
+    hacia adelante para escribir?
+    #+begin_src text
+      → open time.txt W
+      Archivo abierto W → 1
+      → write 1 8 MisDatos
+      Llevado a cabo correctamente
+      → write 1 6 ASalvo
+      Llevado a cabo correctamente
+      → close 1
+      Archivo Cerrado
+      → open time.txt R
+      Archivo abierto R → 2
+      → read 2 50
+      ASalvoMisDatos* At times, you see it flickering.
+    #+end_src
+- Calificación :: 8
+
+** Inaky Ordiales
+- Documentación :: [[./OrdialesInaky/Imagenes/ayuda.png][ayuda.png]], [[./OrdialesInaky/Imagenes/close.png][close.png]], [[./OrdialesInaky/Imagenes/compilacion.png][compilacion.png]], [[./OrdialesInaky/Imagenes/dir.png][dir.png]], [[./OrdialesInaky/Imagenes/open.png][open.png]], [[./OrdialesInaky/Imagenes/read.png][read.png]], [[./OrdialesInaky/Imagenes/salir.png][salir.png]], [[./OrdialesInaky/Imagenes/writeA.png][writeA.png]], [[./OrdialesInaky/Imagenes/writeW.png][writeW.png]], [[./OrdialesInaky/README.md][README.md]]
+- Programa :: [[./OrdialesInaky/tarea4.c][tarea4.c]]
+- Comentarios ::
+  - En las implementaciones habituales (¿me faltó explicitar?), una
+    lectura o escritura sobre un archivo mueve al apuntador.
+    #+begin_src text
+      InOr  ~>> open poemaI A
+      Archivo poemaI abierto en modo 'A' con el descriptor 1
+      InOr  ~>> write 1 8 MisDatos
+      Los datos han sido modificados para el archivo del descriptor 1.
+      InOr  ~>> write 2 6 ASalvo
+      El archivo del descriptor no est en modo escritura 'W' o modificacin 'A'.
+      InOr  ~>> dir
+	InOr/Tarea4/
+	      - ProyectoFinal	[52 bytes]
+	      - PoemaI	[70 bytes] 'R'  descr: 2
+	      - PoemaII	[76 bytes]
+	      - Clasificado	[70 bytes]
+	      - Passwords	[68 bytes]
+	      - Matematicas	[19 bytes]
+	      - Poema1	[0 bytes]
+	      - poemaI	[8 bytes] 'A'  descr: 1
+    #+end_src
+    Aquí yo esperaría que =poemaI= guardara =MisDatosASalvo=, no
+    =ASalvoos=.
+  - Me parece una implementación excelente, aunque probablemente
+    demasiado laboriosa! 😉
+- Calificación :: 9
+
+** Diego Santiago y Armando Ugalde
+- Documentación :: [[./SantiagoDiego-UgaldeArmando/README.md][README.md]], [[./SantiagoDiego-UgaldeArmando/captura.png][captura.png]]
+- Programa :: [[./SantiagoDiego-UgaldeArmando/pom.xml][pom.xml]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea4/FileSystem.java][FileSystem.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea4/Mode.java][Mode.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea4/SimulatedFile.java][SimulatedFile.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea4/SimulatedFileDescriptor.java][SimulatedFileDescriptor.java]], [[./SantiagoDiego-UgaldeArmando/src/main/java/mx/unam/sistop/tarea4/Util.java][Util.java]]
+- Comentarios ::
+  - GUAU. Simplemente... Guau.
+
+    [[./img/dependencias.jpeg]]
+
+    Preparar el entorno de compilación para un programa pequeño de una
+    tarea relativamente simple requirió descargar... *783 archivos*
+    (117 .jar individuales, 20MB) como dependencias. Eso... Hay que
+    pensarlo dos, tres o seis veces 😉
+  - La implementación y ejecución: *¡FELICIDADES!* Me sentía muy mal
+    porque nadie del grupo había implementado la semántica de
+    cinta. ¡Ustedes lo hicieron bien!
+    #+begin_src text
+      dir
+      arch2 [54 bytes]	helloworld [56 bytes]	arch1 [60 bytes]	stgut.txt [33 bytes]	
+      open arch2 A
+      Archivo abierto (A) → 1
+      read 1 54
+      432903249803432754832574897589437587349857349875983471
+      read 1 5
+      Error: El índice especificado se encuentra fuera de los límites del archivo
+      seek 1 0
+      Nueva posición del descriptor: 0
+      read 1 5
+      43290
+      write 1 5 abcde
+      Escritura exitosa
+      read 1 5
+      03432
+      write 1 5 bcdef
+      Escritura exitosa
+      seek 1 0
+      Nueva posición del descriptor: 0
+      read 1 30
+      43290abcde03432bcdef2574897589
+    #+end_src
+    - Bueeeeno... Tengo que reconocerlo: Si sólo uno de 13 equipos
+      entendieron cómo funciona la semántica de cinta de los
+      archivos... Creo que tengo que revisar cómo enseño el tema ☹
+- Calificación :: 10
+
+** Miguel Villanueva
+- Documentación :: [[./VillanuevaMiguel/ComandosyObservaciones.txt][ComandosyObservaciones.txt]]
+- Programa :: [[./VillanuevaMiguel/Tarea4.py][Tarea4.py]]
+- Comentarios ::
+  - En las implementaciones habituales (¿me faltó explicitar?), una
+    lectura o escritura sobre un archivo mueve al apuntador.
+    #+begin_src text
+      C:\ User> open otro_mas A
+      Abriendo archivo.....
+      Archivo abierto ( A ) ->  2
+      C:\ User> write 2 8 MisDatos
+      C:\ User> write 2 6 ASalvo
+      C:\ User> read 2 10
+      el contenido del archivo es:  ASalvo
+    #+end_src
+    El "ASalvo" sobreescribió por completo al archivo; debería haberse
+    escrito al terminar la primera cadena, y en caso de quedar
+    información en el archivo después de la posición 14 (8+6), debería
+    seguirse mostrando.
+  - Si bien permites la lectura más allá del final del archivo, no
+    permites la escritura que exceda al contenido actual, incluso
+    abriendo en modo =Append=:
+    #+begin_src text
+      C:\ User> open arch1 R
+      Abriendo archivo.....
+      Archivo abierto ( R ) ->  1
+      C:\ User> read 1 10
+      el contenido del archivo es:  holamundo
+      C:\ User> read 1 100
+      el contenido del archivo es:  holamundo
+      C:\ User> open otro_mas A
+      Abriendo archivo.....
+      Archivo abierto ( A ) ->  2
+      C:\ User> write 2 4 Cuac
+      Error: lo que decea escribir sobrepasa el tamaño del archivo
+    #+end_src
+  - Algo muy bueno: Tu programa implementa atrapar condiciones de
+    error y mostrar un mensaje informando al respecto, sin morir en
+    pánico como muchos de los de tus compañeros.
+- Calificación :: 9
