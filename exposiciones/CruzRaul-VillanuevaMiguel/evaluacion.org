@@ -1,0 +1,67 @@
+#+title: Desduplicación
+#+author: Gunnar Wolf
+
+- Tema presentado por :: Raúl Cruz Martínez y Miguel Ángel Villanueva
+- Calificación global :: Por favor revisen más adelante para ver de
+  dónde vienen todos estos números 😉
+
+|------------------------+-------+--------------------+------+---------|
+| Evaluación  compañeros | Valor | Evaluación docente | Peso | *Total* |
+|------------------------+-------+--------------------+------+---------|
+|                   9.44 |   0.3 |                8.5 |  0.7 |    8.78 |
+|------------------------+-------+--------------------+------+---------|
+#+TBLFM: @2$5=$1*$2+$3*$4;f-2
+
+* Comentarios
+
+Dado que es una presentación en video, no puedo evaluar /dominio del
+tema/ y /presencia/ como lo hacemos habitualmente. Me centro en las
+respuestas que hagan a las preguntas de sus compañeros para el primero
+y en si la presentación "suena" leída directamente del material que
+prepararon o expuesta más libremente para el segundo.
+
+* Evaluación grupal
+
+Esta evaluación proviene de la encuesta que llenaron en línea. No
+tengo acceso al desglose, por lo cual presento únicamente el resumen
+de la evaluación.
+
+|--------------+-------+------------+----------+-----------+-------|
+| Originalidad | Nivel | Relevancia | Claridad | Presencia | Total |
+|--------------+-------+------------+----------+-----------+-------|
+|          9.4 |   9.6 |        9.8 |      9.2 |       9.2 |  9.44 |
+|--------------+-------+------------+----------+-----------+-------|
+#+TBLFM: @2$6=vmean($1..$5)
+
+** Comentarios de los compañeros
+
+Tu exposición recibió los siguientes comentarios anonimizados por
+parte de tus compañeros:
+
+- La música de fondo en un punto cambia y se escuchan como una segunda
+  voz, y como el ritmo cambia constantemente lo vuelve dinámica la
+  presentación pero cuando se escuchan las voces distraen un poco.
+- Personalmente no me agrada mucho que exista
+  música de fondo durante la explicación, pero como digo, es meramente
+  una preferencia personal. Aún así, me pareció muy interesante el
+  tema y su forma de tratarlo.
+- En general está bien y clara la presentación, pero hay ciertos
+  errores de atención como algunos errores ortográficos de comerse
+  letras. También creo que la explicación del ratio pudo haber sido
+  más rápida para aprovechar el tiempo explicando otros aspectos.
+
+* Evaluación del docente
+
+| *Aspecto*              | *Peso* | *Evaluación* | *Puntos* |
+|------------------------+--------+--------------+----------|
+| Originalidad del tema  |    0.1 |          7.5 |     0.75 |
+| Material desarrollado  |    0.2 |          7.5 |      1.5 |
+| Contenido              |    0.2 |           10 |       2. |
+| Fuentes bibliográficas |    0.1 |           10 |       1. |
+| Uso del tiempo         |    0.1 |           10 |       1. |
+| Dominio del tema       |   0.15 |          7.5 |    1.125 |
+| Presencia              |   0.15 |          7.5 |    1.125 |
+|------------------------+--------+--------------+----------|
+| *Global*               |        |              |     8.50 |
+#+TBLFM: @<<$4..@>>$4=$2*$3::$4=vsum(@<<..@>>);f-2
+
