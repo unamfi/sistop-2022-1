@@ -39,6 +39,12 @@ de la evaluación.
 Tu exposición recibió los siguientes comentarios anonimizados por
 parte de tus compañeros:
 
+- La exposición me resulto muy amena y muy interesante. Me dio una
+  idea muy amplia de lo que son los algoritmos libres de bloqueo y por
+  donde seguir si en algún punto me interesa aplicarlos o
+  estudiarlos.
+- Me gustó la intención y el ritmo que intentaron meterle a la
+  presentación, aunque por momentos este se vio disminuido.
 
 * Evaluación del docente
 
