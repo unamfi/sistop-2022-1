@@ -1,0 +1,75 @@
+#+title: Sistemas operativos mínimos para la nube
+#+author: Gunnar Wolf
+
+- Tema presentado por :: Alberto García Figueroa y Edgar Cristóbal
+  García Gutiérrez
+- Calificación global :: Por favor revisen más adelante para ver de
+  dónde vienen todos estos números 😉
+
+|------------------------+-------+--------------------+------+---------|
+| Evaluación  compañeros | Valor | Evaluación docente | Peso | *Total* |
+|------------------------+-------+--------------------+------+---------|
+|                   9.45 |   0.3 |               7.88 |  0.7 |    8.35 |
+|------------------------+-------+--------------------+------+---------|
+#+TBLFM: @2$5=$1*$2+$3*$4;f-2
+
+* Comentarios
+
+Dado que es una presentación en video, no puedo evaluar /dominio del
+tema/ y /presencia/ como lo hacemos habitualmente. Me centro en las
+respuestas que hagan a las preguntas de sus compañeros para el primero
+y en si la presentación "suena" leída directamente del material que
+prepararon o expuesta más libremente para el segundo.
+
+- El documento y la presentación están (y lo comentamos en iteraciones
+  previas del documento) muy enfocados al aspecto "mercadotécnico" de
+  la nube
+  - Hicieron un buen trabajo /agregando/ la sección sobre OSv; se
+    siente, como sea, "parche" sobre un trabajo
+- ...Pero se metieron bastante bien en detalles técnicos respecto a lo
+  que es la virtualización ☺
+- No respondieron las preguntas de sus compañeros ☹
+
+* Evaluación grupal
+
+Esta evaluación proviene de la encuesta que llenaron en línea. No
+tengo acceso al desglose, por lo cual presento únicamente el resumen
+de la evaluación.
+
+|--------------+-------+------------+----------+-----------+-------|
+| Originalidad | Nivel | Relevancia | Claridad | Presencia | Total |
+|--------------+-------+------------+----------+-----------+-------|
+|            9 |  9.75 |       9.75 |     9.25 |       9.5 |  9.45 |
+|--------------+-------+------------+----------+-----------+-------|
+#+TBLFM: @2$6=vmean($1..$5)
+
+** Comentarios de los compañeros
+
+Tu exposición recibió los siguientes comentarios anonimizados por
+parte de tus compañeros:
+
+- Excelente presentación y dominio del tema
+- La mayoría de sus diapositivas me gustaron mucho, pero en algunas
+  otras considero que había mucho texto. También note que se les pasó
+  cortar algunas partes del video. No obstante, la presentación me
+  agradó mucho y el tema fue muy interesante.
+- Creo que faltó darle una revisión final al material. Tanto las
+  láminas de la presentación como el video tenían errores de
+  ortografía y redacción o de edición (repetían diálogos). Se nota que
+  su investigación y comprensión del tema eran buenos, pero estos
+  detalles le bajan mucho la calidad en general.
+
+* Evaluación del docente
+
+| *Aspecto*              | *Peso* | *Evaluación* | *Puntos* |
+|------------------------+--------+--------------+----------|
+| Originalidad del tema  |    0.1 |          7.5 |     0.75 |
+| Material desarrollado  |    0.2 |          7.5 |      1.5 |
+| Contenido              |    0.2 |           10 |       2. |
+| Fuentes bibliográficas |    0.1 |           10 |       1. |
+| Uso del tiempo         |    0.1 |          7.5 |     0.75 |
+| Dominio del tema       |   0.15 |            5 |     0.75 |
+| Presencia              |   0.15 |          7.5 |    1.125 |
+|------------------------+--------+--------------+----------|
+| *Global*               |        |              |     7.88 |
+#+TBLFM: @<<$4..@>>$4=$2*$3::$4=vsum(@<<..@>>);f-2
