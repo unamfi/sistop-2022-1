@@ -1,0 +1,65 @@
+#+title: Cifrado por bloques
+#+author: Gunnar Wolf
+
+- Tema presentado por :: Esteban Tafolla y Erick Vázquez
+- Calificación global :: Por favor revisen más adelante para ver de
+  dónde vienen todos estos números 😉
+
+|------------------------+-------+--------------------+------+---------|
+| Evaluación  compañeros | Valor | Evaluación docente | Peso | *Total* |
+|------------------------+-------+--------------------+------+---------|
+|                   9.65 |   0.3 |               9.25 |  0.7 |    9.37 |
+|------------------------+-------+--------------------+------+---------|
+#+TBLFM: @2$5=$1*$2+$3*$4;f-2
+
+* Comentarios
+
+Dado que es una presentación en video, no puedo evaluar /dominio del
+tema/ y /presencia/ como lo hacemos habitualmente. Me centro en las
+respuestas que hagan a las preguntas de sus compañeros para el primero
+y en si la presentación "suena" leída directamente del material que
+prepararon o expuesta más libremente para el segundo.
+
+- Muy buen recurso el de atrapar la atención de sus compañeros
+  empleando al inefable Bob Esponja 😉
+  - Lástima de mundo en el que vivimos, lástima de reglas de derechos
+    de autor...
+- Como les comenté en la revisión, si les interesa clavarse en la
+  criptografía, ¡con mucho gusto los acompaño (a ustedes y a cualquier
+  otro compañero) por ese camino!
+
+* Evaluación grupal
+
+Esta evaluación proviene de la encuesta que llenaron en línea. No
+tengo acceso al desglose, por lo cual presento únicamente el resumen
+de la evaluación.
+
+|--------------+-------+------------+----------+-----------+-------|
+| Originalidad | Nivel | Relevancia | Claridad | Presencia | Total |
+|--------------+-------+------------+----------+-----------+-------|
+|         9.71 |    10 |       9.42 |     9.71 |      9.42 | 9.652 |
+|--------------+-------+------------+----------+-----------+-------|
+#+TBLFM: @2$6=vmean($1..$5)
+
+** Comentarios de los compañeros
+
+Tu exposición recibió los siguientes comentarios anonimizados por
+parte de tus compañeros:
+
+- Una pena lo del video inicial con copyright, pero la exposición fue
+  muy clara y me agradó el tema.
+
+* Evaluación del docente
+
+| *Aspecto*              | *Peso* | *Evaluación* | *Puntos* |
+|------------------------+--------+--------------+----------|
+| Originalidad del tema  |    0.1 |           10 |       1. |
+| Material desarrollado  |    0.2 |          7.5 |      1.5 |
+| Contenido              |    0.2 |           10 |       2. |
+| Fuentes bibliográficas |    0.1 |          7.5 |     0.75 |
+| Uso del tiempo         |    0.1 |           10 |       1. |
+| Dominio del tema       |   0.15 |           10 |      1.5 |
+| Presencia              |   0.15 |           10 |      1.5 |
+|------------------------+--------+--------------+----------|
+| *Global*               |        |              |     9.25 |
+#+TBLFM: @<<$4..@>>$4=$2*$3::$4=vsum(@<<..@>>);f-2
